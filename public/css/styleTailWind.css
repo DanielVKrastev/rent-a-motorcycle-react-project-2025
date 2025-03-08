@@ -102,6 +102,17 @@ h3{
 .success{
     color: green;
 }
+
+.backdrop {
+    /*background-color: rgba(0, 0, 0, 0.75);*/
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  }
+
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*css for header*/
 .header-contact{
@@ -617,7 +628,7 @@ img.bg-routes{
     border: 1px solid rgba(255,144,105,1);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background-image: linear-gradient(to left bottom, rgba(255,144,105,0.8), rgba(255,130,139,0.8));
+    background-image: linear-gradient(to left bottom, hsl(0, 74%, 71%),  hsl(0, 74%, 69%));
     margin: 20px 10% 0% 10%;
     padding: 1%;
     color: white;

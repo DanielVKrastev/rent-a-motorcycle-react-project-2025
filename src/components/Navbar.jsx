@@ -1,10 +1,26 @@
+import { Link } from "react-router";
+
+import 'flowbite';
+import { useState } from "react";
+
 export default function Navbar() {
+    const [close, isSetClose] = useState(false);
+
+    function closeMobileMenu() {
+        isSetClose(true);
+    };
+
+    function openMobileMenu() {
+        isSetClose(false);
+    };
+
     return (
         <>
+          <div className="backdrop" onClick={closeMobileMenu}></div>
           <nav className="sticky top-0 bg-white dark:bg-gray-900 w-full z-20 border-b border-gray-200 dark:border-gray-600 transition-all duration-300">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a
-                href="https://flowbite.com/"
+            <Link
+                to="/"
                 className="flex items-center space-x-3 rtl:space-x-reverse"
             >
                 <img
@@ -12,7 +28,7 @@ export default function Navbar() {
                 className="h-12"
                 alt="Flowbite Logo"
                 />
-            </a>
+            </Link>
             <div className="flex md:order-2">
                 <button
                 type="button"
@@ -20,6 +36,7 @@ export default function Navbar() {
                 aria-controls="navbar-search"
                 aria-expanded="false"
                 className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
+                onClick={openMobileMenu}
                 >
                 <svg
                     className="w-5 h-5"
@@ -120,29 +137,45 @@ export default function Navbar() {
                 </div>
                 <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-400">
                 <li>
-                    <a
-                    href="#"
+                    <Link
+                    to="/"
                     className="block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400"
                     aria-current="page"
                     >
                     Home
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a
-                    href="#"
+                    <Link
+                    to="/rent-a-motorcycle"
+                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    >
+                    Rent a Moto
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                    to="#"
+                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    >
+                    Login
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                    to="#"
+                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    >
+                    Register
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                    to="/about"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 md:dark:hover:text-red-400 dark:text-white dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
                     >
                     About
-                    </a>
-                </li>
-                <li>
-                    <a
-                    href="#"
-                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
-                    >
-                    Services
-                    </a>
+                    </Link>
                 </li>
                 </ul>
             </div>
