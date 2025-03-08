@@ -1,6 +1,8 @@
 import './App.css';
+import ScrollEffectMotoInfo from './jsDesignHelpers/scrollEffectMotoInfo';
 
 function App() {
+  ScrollEffectMotoInfo();
     return (
         <>
   {/*Start Header section*/}
