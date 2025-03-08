@@ -1,0 +1,806 @@
+/* 
+    Author: Daniel Krastev;
+    Thema: Moto Rent & Tour;
+    version: 1.0;
+*/
+
+/*css for all*/
+*{
+
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #ffffff;
+}
+
+
+.container{
+  /* border: 1px solid black;*/
+    width: 80%;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.container h2{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.clearfix{
+    clear:both;
+    float: none;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-center{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    padding: 1%;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary{
+    border: 1px solid #B52E37;
+    background-color: #ff828b;
+    color: white;
+    width: 100px;
+}
+
+.btn-primary:hover{
+    background-color: #fd6b75; 
+}
+
+.btn-secondary{
+    border: 1px solid black;
+    background-color: white;
+    width: 200px;
+    color: black;
+}
+
+.btn-secondary:hover{
+    background-color: rgb(241, 241, 241); 
+}
+
+.float-container{
+    position: relative;
+}
+
+.input-style{
+    width: 55%;
+    padding: 5px 2px;
+    margin: 8px 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+h2{
+    color:  black;
+}
+
+h3{
+    color: #DB3C48;
+    font-size: 16px;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*css for header*/
+.header-contact{
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 40px;
+}
+
+.header-contact div{
+    float: left;
+    margin-left: 2%;
+    margin-top: 10px;
+    color:#6f6f6f;
+}
+
+.header-contact p{
+    float: left;
+    margin-left: 5px;
+}
+
+.header-contact img{
+    float: left;
+}
+
+.header-contact .header-social{
+    float: right;
+    margin-right: 0px;
+    margin-top: 1px;
+    width: 130px;
+}
+
+.header-contact .header-social img{
+    padding: 2% 2%;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* css for Rent-moto */
+.rent-moto{
+    padding: 1%;
+}
+
+.rent-box-3{
+    width: 29%;
+    float: left;
+    margin: 3% 4% 3% 0%;
+}
+
+.rent-moto-img{
+    background-color: #ff828b;
+    border: none;
+    border-radius: 40%;
+    padding: 5% 5%;
+    float: left;
+    box-shadow: 0px 20px 20px 0px rgba(0,0,0,0.2);
+}
+
+.rent-box-3 h4{
+    font-weight: bold;
+    width: 50%;
+    float: left;
+    margin: 3% 4%;
+    color: #891e26;
+}
+
+/*css for Rent-moto description */
+
+.rent-moto-desc{
+    padding: 1% 0%;
+    background-image: url(../images/bg-moto-rent-landscape.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.box{
+    width: 75%;
+    list-style-type: none;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 20px 20px 0px rgba(0,0,0,0.2);
+    background-image: linear-gradient(to left bottom, rgba(251, 105, 115, 0.8), rgba(255,130,139,0.8));
+    padding: 1%;
+    margin: 1% 2% 1% 9%;
+    transform: translateX(400%);
+    transition: transform 0.4s ease;
+}
+
+.box:nth-of-type(even){
+    transform: translateX(-400%);
+}
+
+.box.show{
+    transform: translateX(0);
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+/* css for frequently section*/
+.rent-moto{
+    padding: 1% 1% 1% 2%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.frequently-box-3{
+    border: 1px solid rgba(181,46,55,0.4);
+    border-radius: 5px;
+    width: 25%;
+    float: left;
+    margin: 4%;
+    cursor: pointer;
+}
+
+.frequently-box-3 img{
+    width: 100%;
+    padding: 10%;
+}
+
+.frequently-box-3 .moto-info{
+    background-image: linear-gradient(to left bottom, rgba(255, 105, 135, 0.1), rgba(245, 0, 8, 0.1));
+    width: 100%;
+    padding: 2% 0%;
+    border-top: 1px solid rgba(181,46,55,0.4);
+    border-bottom: 1px solid rgba(181,46,55,0.4);
+}
+
+.frequently-box-3 input[type="submit"]{
+    border: none;
+    background-color: #ff828b;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+
+.frequently-box-3 h4{
+    margin: 5px;
+    color: black;
+}
+
+.frequently-box-3 p{
+    margin: 5px;
+    color: rgb(68, 68, 68);
+}
+
+.frequently-box-3:hover{
+    border: 1px solid rgba(181,46,55,1);
+    box-shadow: 0px 20px 20px 0px rgba(0,0,0,0.2);
+}
+
+.frequently-box-3:hover .moto-info{
+    background-image: linear-gradient(to left bottom, rgba(255, 135, 149, 0.4), rgba(255, 30, 37, 0.1));
+    border-top: 1px solid rgba(181,46,55,1);
+    border-bottom: 1px solid rgba(181,46,55,1);
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* css for routes section */
+.routes{
+    padding: 3%;
+    z-index: 2;
+}
+
+.routes h3{
+    color: #ff828b;
+}
+
+.routes-slide .item {
+    height: 300px;
+    z-index: 2
+}
+.item{
+    margin: 1%;
+    padding: 5% 0%;
+}
+
+.item .owl-text-overlay {
+    position: absolute;
+    width: 50%;
+    margin-top: 40%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1%;
+    border-radius: 15px 30px 30px 15px;
+  }
+
+.item .owl-button-overlay {
+    position: absolute;
+    margin-top: 40%;
+    width: 20%;
+    transform: translateY(-50%);
+    left: 66%;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    background-color: rgba(255,130,139,0.8);
+    font-size: 22px;
+    font-family: Monotype Corsiva;
+    border-radius: 10px;
+    padding: 2% 1%;
+  }
+
+.owl-text-overlay h3{
+    color: #ffbec2;
+    font-family: Monotype Corsiva;
+    font-size: 28px;
+  }
+
+.item p{
+    font-family: Monotype Corsiva;
+    font-size: 20px;
+  }
+
+.item:hover .img-country {
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+  }
+  
+.item:hover .owl-button-overlay {
+    background-color: rgba(202, 104, 110, 0.85);
+    z-index: 1;
+  }
+  
+.item:hover .owl-text-overlay {
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+  }
+
+
+.owl-carousel-nav{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.owl-carousel-nav div{
+    background: #ff828b;
+    color: #fff;
+    padding: 8px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.carousel-prev:hover {
+    background: #e07279;
+}
+
+.carousel-next:hover {
+    background: #e07279;
+}
+
+.routes-desc ul{
+    padding: 2%;
+    list-style-type: none;
+}
+
+.routes-desc ul li{
+    margin-left: 10%;
+    padding: 1.4%;
+    width: 45%;
+    float: left;
+}
+
+.routes-desc ul li p{
+    margin: 1% 1% 1% 10%;
+    color: #891e26;
+}
+
+.routes-desc ul li span{
+    font-size: 18px;
+    color: #191919;
+}
+
+.routes-desc{
+    margin-top: 1%;
+}
+
+img.bg-routes{
+    width: 55%;
+    position: sticky;
+    float: left;
+    margin: 0% 0% 10% -17%;
+
+}
+
+.routes-desc-img{
+    float: left;
+    width: 30px;
+    height: 30px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* css for footer*/
+.footer{
+    background: linear-gradient(to bottom, #242424 0%, #191919 100%);
+}
+
+.footer .box-1{
+    padding: 1%;
+    margin: 1% 1%;
+    float: left;
+    width: 29%;
+}
+
+.footer .box-1 h3{
+    color: rgb(240, 240, 240);
+    font-size: 20px;
+}
+
+.footer .box-1 span{
+    color: #aeaeae;
+    margin: auto;
+}
+
+.footer .box-1 img{
+    padding: 1%;
+}
+
+.footer .box-1 p{
+    color: #e2e2e2;
+}
+
+.footer .box-1 a{
+    color:#e07279;
+}
+
+.footer-hr{
+    color: #6f6f6f;
+    width: 80%;
+    margin-left: 10%
+}
+
+.footer-rules{
+    color: #aeaeae;
+    padding: 2%;
+}
+
+.footer-rules a{
+    color:#ff3f4d;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+/*css for Filter section for rent a moto page*/
+.filter{
+    margin:0 auto;
+    width: 100%;
+}
+
+.filter-hr{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.filter-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-box{
+    border-radius: 20px;
+    border: none;
+    background-color: #ff3f4d;
+    width: 110px;
+    color: white;
+    float: left;
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: -10px;
+    padding: 10px 25px;
+}
+
+
+.filter-box:hover{
+    background-color: #d93641;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 35px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+/*css for routes for routes page*/
+.routes-boxs{
+    padding: 1%;
+}
+
+.routes-boxs .box-2{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 45%;
+    margin: 1%;
+    box-shadow: 0px 20px 20px 0px rgba(0,0,0,0.5);
+}
+
+.routes-boxs .box-2 h1{
+    font-size: 45px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.routes-boxs .box-2 .cities{
+    padding: 6%;
+    background-color: rgba(0, 0, 0, 0.55);
+    height: 30px;
+}
+
+.routes-boxs .box-2 .days{
+    font-size: 30px;
+    padding-top: 6%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.routes-boxs .box-2 .price{
+    font-size: 25px;
+    padding: 0%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.routes-boxs .box-2 .period{
+    height: 90px;
+    font-style: italic;
+    padding: 8%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.routes-boxs .box-2 .button-more{
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.routes-boxs .box-2 input[type="button"]{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: rgba(255,130,139,0.8);
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    font-style: oblique;
+    width: 180px;
+    height: 40px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.routes-boxs .box-2:hover{
+    cursor: pointer;
+}
+
+.routes-boxs .box-2:hover h1,
+.routes-boxs .box-2:hover .cities,
+.routes-boxs .box-2:hover  .days,
+.routes-boxs .box-2:hover   .price,
+.routes-boxs .box-2:hover    .period,
+.routes-boxs .box-2:hover     .button-more{
+    background-color: rgba(0, 0, 0, 0.45); 
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*css for about page */
+.about-text{
+    width: 60%;
+    float: left;
+    padding: 1%;
+    margin: 0px 0px 10px 10px;
+   /* border: 1px solid black;*/
+}
+
+.about-contact{
+    width: 30%;
+    float: left;
+    padding: 1%;
+    margin: 0px 0px 10px 10px;
+   /* border: 1px solid red;*/
+    color: #474747;
+}
+
+.about-contact p{
+    margin-top: 10px;
+}
+
+.about-faq{
+    width: 100%;
+    /*border: 1px solid blue;*/
+    border-radius: 10px;
+    float: left;
+    margin-top: 20px;
+    display: grid;
+}
+
+.about-faq .faq-box{
+    border: 1px solid rgba(255,144,105,1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-image: linear-gradient(to left bottom, rgba(255,144,105,0.8), rgba(255,130,139,0.8));
+    margin: 20px 10% 0% 10%;
+    padding: 1%;
+    color: white;
+    font-size: 18px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.about-faq .faq-content{
+    padding: 1%;
+    background-color: rgba(255,144,105,0.02);
+    border-bottom: 1px solid #5c5c5c;
+    border-left: 1px solid #5c5c5c;
+    border-right: 1px solid #5c5c5c;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0% 10% 0% 10%;
+    font-style: italic;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
+}
+
+.about-input{
+    width: 90%;
+    height: 30px;
+    font-size: 15px;
+    border: 1px solid #474747;
+    border-radius: 5px;
+}
+
+.about-contact textarea{
+    width: 90%;
+    border: 1px solid #474747;
+    border-radius: 5px;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/*css for moobile size or smaller screens*/
+
+/*header*/
+@media only screen and (max-width:1080px) {
+    .header-work-time{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:680px) {
+    .header-phones{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:310px) {
+    .header-social{
+        display: none;
+    }
+}
+/*-----------------------------------------------*/
+
+@media only screen and (max-width:820px) {
+
+    body{
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+        margin: 0;
+        white-space: normal;
+    }
+
+    .navbar{
+        display: none;
+    }
+
+    .navbar-mobile{
+        display: inline;
+    }
+
+    .search-box form{
+        width: 80%;
+        margin: -80px auto;
+    }   
+
+    .wrapper-radio{
+        display: inline-block;
+        margin: -30px 50px 10px 0px;
+        height: 25px;
+        width: 150px;
+    }
+
+    .wrapper-radio .option{
+        margin-top: 5px;
+    }
+
+    .input-style{
+        width: 90%;
+    }
+
+    .rent-box-3 h4{
+        width: 20%;
+        font-size: 12px;
+    }
+
+    .rent-box-3{
+        width: 29%;
+        margin: 3% 10% 2% 10%;
+    }
+
+    .frequently-box-3{
+        width: 55%;
+        margin-left: 22%;
+    }
+
+    .bg-routes{
+        display: none;
+    }
+
+    .routes-desc ul li{
+        width: 100%;
+        margin-left: 0%;
+        padding: 2%;
+    }
+
+    .item p{
+        font-size: 18px;
+    }
+
+    .item .owl-button-overlay {
+        width: 30%;
+    }
+
+    .owl-stage-outer{
+        height: 10%;
+    }
+
+    .footer .box-1{
+        padding: 1%;
+        margin: 2% 2%;
+        float: left;
+        width: 80%;
+    }
+    .filter-box{
+        margin: 5px;
+    }
+
+    .routes-boxs .box-2{
+        display: block;
+        width: 98%;
+    }
+
+    .about-text{
+        width: 99%;
+        float: inline-block;
+    }
+
+    .about-contact{
+        width: 100%;
+        float: inline-block;
+    }
+}
+
+@media only screen and (max-width:540px) {
+    .frequently-box-3{
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .item p{
+        font-size: 16px;
+    }
+
+    .owl-stage-outer{
+        height: 250px;
+    }
+
+    .filter-buttons{
+        padding: 0 auto;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .filter-box{
+        margin-left: auto;
+    }
+
+}
