@@ -4,19 +4,15 @@ import 'flowbite';
 import { useState } from "react";
 
 export default function Navbar() {
-    const [close, isSetClose] = useState(false);
 
-    function closeMobileMenu() {
-        isSetClose(true);
+    const [openMobileNav, setOpenMobileNav] = useState(true);
+
+    function closeOpenHandlerMobileMenu() {
+        setOpenMobileNav(state => !state);
     };
-
-    function openMobileMenu() {
-        isSetClose(false);
-    };
-
+    
     return (
         <>
-          <div className="backdrop" onClick={closeMobileMenu}></div>
           <nav className="sticky top-0 bg-white dark:bg-gray-900 w-full z-20 border-b border-gray-200 dark:border-gray-600 transition-all duration-300">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link
@@ -36,7 +32,7 @@ export default function Navbar() {
                 aria-controls="navbar-search"
                 aria-expanded="false"
                 className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
-                onClick={openMobileMenu}
+                onClick={closeOpenHandlerMobileMenu}
                 >
                 <svg
                     className="w-5 h-5"
@@ -87,6 +83,7 @@ export default function Navbar() {
                 className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-search"
                 aria-expanded="false"
+                onClick={closeOpenHandlerMobileMenu}
                 >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -107,7 +104,9 @@ export default function Navbar() {
                 </button>
             </div>
             <div
-                className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                className={openMobileNav? 
+                    "items-center justify-between hidden w-full md:flex md:w-auto md:order-1" 
+                    : "items-center justify-between w-full md:flex md:w-auto md:order-1" }
                 id="navbar-search"
             >
                 <div className="relative mt-3 md:hidden">
@@ -141,6 +140,7 @@ export default function Navbar() {
                     to="/"
                     className="block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400"
                     aria-current="page"
+                    onClick={closeOpenHandlerMobileMenu}
                     >
                     Home
                     </Link>
@@ -149,6 +149,7 @@ export default function Navbar() {
                     <Link
                     to="/rent-a-motorcycle"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    onClick={closeOpenHandlerMobileMenu}
                     >
                     Rent a Moto
                     </Link>
@@ -157,6 +158,7 @@ export default function Navbar() {
                     <Link
                     to="#"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    onClick={closeOpenHandlerMobileMenu}
                     >
                     Login
                     </Link>
@@ -165,6 +167,7 @@ export default function Navbar() {
                     <Link
                     to="#"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    onClick={closeOpenHandlerMobileMenu}
                     >
                     Register
                     </Link>
@@ -173,6 +176,7 @@ export default function Navbar() {
                     <Link
                     to="/about"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 md:dark:hover:text-red-400 dark:text-white dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                    onClick={closeOpenHandlerMobileMenu}
                     >
                     About
                     </Link>
