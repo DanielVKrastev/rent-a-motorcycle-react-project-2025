@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function CatalogMoto() {
     return (
 <>
@@ -24,7 +26,7 @@ export default function CatalogMoto() {
     {/* Start Most rented moto section*/}
     <section className="rent-moto">
         <div className="container">
-        <a href="rentMoto.html">
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -38,8 +40,8 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
-        <a href="rentMoto.html">
+        </Link>
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -53,8 +55,8 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
-        <a href="rentMoto.html">
+        </Link>
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -68,8 +70,8 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
-        <a href="rentMoto.html">
+        </Link>
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -83,8 +85,8 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
-        <a href="rentMoto.html">
+        </Link>
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -98,8 +100,8 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
-        <a href="rentMoto.html">
+        </Link>
+        <Link to="/rent-a-motorcycle/motorcycle">
             <div className="frequently-box-3 float-container">
             <img src="images/honda_cbr.png" alt="honda_cbr" />
             <div className="moto-info">
@@ -113,13 +115,13 @@ export default function CatalogMoto() {
             </div>
             <input type="submit" name="submit" defaultValue="Повече детайли" />
             </div>
-        </a>
+        </Link>
         <div className="clearfix" />
         <div className="text-center">
             <br />
-            <a href="" className="btn btn-secondary" name="more_moto">
+            <Link to="" className="btn btn-secondary" name="more_moto">
             Разгледай още
-            </a>
+            </Link>
         </div>
         <div className="clearfix" />
         </div>

@@ -20,7 +20,7 @@ export default function Navbar() {
                 className="flex items-center space-x-3 rtl:space-x-reverse"
             >
                 <img
-                src="./images/logo-white.png"
+                src="/images/logo-white.png"
                 className="h-12"
                 alt="Flowbite Logo"
                 />
