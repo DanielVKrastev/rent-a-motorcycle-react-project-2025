@@ -619,6 +619,7 @@ export default function MotorcycleRent() {
                                     onChange={(date) => setStartDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
+                                    className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 />
                             </div>
                             <div className="end-rent">
@@ -628,6 +629,7 @@ export default function MotorcycleRent() {
                                     onChange={(date) => setEndDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={startDate}
+                                    className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 />
                             </div>
                             <div className="check-button">
