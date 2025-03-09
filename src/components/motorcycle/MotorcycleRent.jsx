@@ -1,6 +1,10 @@
+import { useState } from "react";
 import MostRented from "../MostRented";
+import DatePicker from "react-datepicker";
 
 export default function MotorcycleRent() {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     return (
         <>
             <div className="page-2-boxs">
@@ -471,26 +475,20 @@ export default function MotorcycleRent() {
 
                     <div className="start-rent" id="start-rent">
                         <p>Дата на наемане </p>
-                        <input
-                            form="form-reservation"
-                            type="text"
-                            defaultValue=""
-                            name="start-rent-date"
-                            className="js-start-rent-input"
-                            id="start-rent-input"
-                            required=""
+                        <DatePicker 
+                            selected={startDate} 
+                            onChange={(date) => setStartDate(date)} 
+                            dateFormat="dd/MM/yyyy"
+                            minDate={new Date()} 
                         />
                     </div>
                     <div className="end-rent">
                         <p>Дата на отдаване </p>
-                        <input
-                            form="form-reservation"
-                            type="text"
-                            defaultValue=""
-                            name="end-rent-date"
-                            className="js-end-rent-input"
-                            id="end-rent-input"
-                            required=""
+                        <DatePicker 
+                            selected={endDate} 
+                            onChange={(date) => setEndDate(date)} 
+                            dateFormat="dd/MM/yyyy"
+                            minDate={startDate} 
                         />
                     </div>
                     <div className="check-button">
@@ -529,6 +527,10 @@ export default function MotorcycleRent() {
             <div id="page-boxs-end" />
 
             <MostRented />
+
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
+
         </>
     );
 }

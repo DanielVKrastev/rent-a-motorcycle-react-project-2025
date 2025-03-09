@@ -2,3 +2,4 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+@import "react-datepicker/dist/react-datepicker.css";
