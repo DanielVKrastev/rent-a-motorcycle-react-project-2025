@@ -34,12 +34,12 @@
 /* for page-box mobile version for rent panel */
 .page-box-right-mobile {
     width: 280px;
-    height: 70px;
-    padding: 5px 10px 5px 5px;
+    height: 80px;
+    padding: 0px 10px 5px 5px;
     display: grid;
     position: sticky;
     margin: 0 auto;
-    bottom: 70px;
+    bottom: 60px;
     display: none;
 }
 

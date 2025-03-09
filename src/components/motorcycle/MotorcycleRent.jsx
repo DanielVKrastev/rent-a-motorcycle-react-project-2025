@@ -131,7 +131,7 @@ export default function MotorcycleRent() {
                                     name="add-options-equipment"
                                     defaultValue={25.0}
                                     data-amount={25.0}
-                                    
+
                                 />
                                 Екипировка за пасажер <b>+ 25 лв.</b>
                             </div>
@@ -147,7 +147,7 @@ export default function MotorcycleRent() {
                                     name="add-options-helmet"
                                     defaultValue={20.0}
                                     data-amount={20.0}
-                                    
+
                                 />
                                 Каска за пасажер <b>+ 20 лв.</b>
                             </div>
@@ -163,7 +163,7 @@ export default function MotorcycleRent() {
                                     name="add-options-tank"
                                     defaultValue={60.0}
                                     data-amount={60.0}
-                                    
+
                                 />
                                 Върни с празен резервоар <b>+ 60 лв.</b>
                             </div>
@@ -179,7 +179,7 @@ export default function MotorcycleRent() {
                                     name="add-options-delivery-airport"
                                     defaultValue={25.0}
                                     data-amount={25.0}
-                                   
+
                                 />
                                 Доставяне /летище/ <b>+ 25 лв.</b>
                             </div>
@@ -195,7 +195,7 @@ export default function MotorcycleRent() {
                                     name="add-options-return-airport"
                                     defaultValue={25.0}
                                     data-amount={25.0}
-                                   
+
                                 />
                                 Връщане /летище/ <b>+ 25 лв.</b>
                             </div>
@@ -211,7 +211,7 @@ export default function MotorcycleRent() {
                                     name="add-options-delivery-hotel"
                                     defaultValue={20.0}
                                     data-amount={20.0}
-                                   
+
                                 />
                                 Доставяне /хотел/ <b>+ 20 лв.</b>
                             </div>
@@ -227,7 +227,7 @@ export default function MotorcycleRent() {
                                     name="add-options-return-hotel"
                                     defaultValue={20.0}
                                     data-amount={20.0}
-                                   
+
                                 />
                                 Връщане /хотел/ <b>+ 20 лв.</b>
                             </div>
@@ -436,7 +436,7 @@ export default function MotorcycleRent() {
                     <div className="btn-close-box">
                         <img
                             src="/images/icons/icons8-close-48.png"
-                            alt=""    
+                            alt=""
                         />
                     </div>
                     <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
@@ -475,20 +475,20 @@ export default function MotorcycleRent() {
 
                     <div className="start-rent" id="start-rent">
                         <p>Дата на наемане </p>
-                        <DatePicker 
-                            selected={startDate} 
-                            onChange={(date) => setStartDate(date)} 
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
                             dateFormat="dd/MM/yyyy"
-                            minDate={new Date()} 
+                            minDate={new Date()}
                         />
                     </div>
                     <div className="end-rent">
                         <p>Дата на отдаване </p>
-                        <DatePicker 
-                            selected={endDate} 
-                            onChange={(date) => setEndDate(date)} 
+                        <DatePicker
+                            selected={endDate}
+                            onChange={(date) => setEndDate(date)}
                             dateFormat="dd/MM/yyyy"
-                            minDate={startDate} 
+                            minDate={startDate}
                         />
                     </div>
                     <div className="check-button">
@@ -518,7 +518,20 @@ export default function MotorcycleRent() {
                     <div className="rent-for-days js-rent-for-days-mobile">Наем за 1 ден</div>
                     <div className="rent-price-sum js-rent-price-sum-mobile">70 лв.</div>
                     <div className="next-button-mobile">
-                        <button >Напред</button>
+
+                        <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+                            {/* Modal toggle */}
+                            <button
+                                data-modal-target="small-modal"
+                                data-modal-toggle="small-modal"
+                                className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button"
+                            >
+                                Напред
+                            </button>
+                        </div>
+
+
                     </div>
                 </div>
                 {/* End rent box */}
@@ -526,11 +539,127 @@ export default function MotorcycleRent() {
             <div className="clearfix" />
             <div id="page-boxs-end" />
 
+            {/* Small Modal */}
+            <div
+                id="small-modal"
+                tabIndex={-1}
+                className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+            >
+                <div className="relative w-full max-w-md max-h-full">
+                    {/* Modal content */}
+                    <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center">
+                        {/* Modal header */}
+                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                                Наем на Honda CBR 600RR
+                            </h3>
+                            <button
+                                type="button"
+                                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-hide="small-modal"
+                            >
+                                <svg
+                                    className="w-3 h-3"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 14 14"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                    />
+                                </svg>
+                                <span className="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        {/* Modal body */}
+                        <div className="p-4 md:p-1 space-y-4">
+
+                            <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
+                            <input
+                                form="form-reservation"
+                                type="hidden"
+                                name="rent-days"
+                                defaultValue={1}
+                                className="js-rent-for-days-input"
+                            />
+                            <div className="rent-per-day js-rent-per-day">(70.00 лв. на ден)</div>
+                            <input
+                                form="form-reservation"
+                                type="hidden"
+                                name="rent-per-day"
+                                defaultValue={70.0}
+                                className="js-rent-per-day-input"
+                            />
+                            <div className="rent-price-sum js-rent-price-sum">70 лв.</div>
+                            <input
+                                form="form-reservation"
+                                type="hidden"
+                                name="moto-rent-price"
+                                defaultValue={70.0}
+                                className="js-moto-rent-price-input"
+                            />
+                            <input
+                                form="form-reservation"
+                                type="hidden"
+                                name="rent-price-sum"
+                                defaultValue={70.0}
+                                className="js-rent-price-sum-input"
+                            />
+                            <hr />
+
+                            <div className="start-rent" id="start-rent">
+                                <p>Дата на наемане </p>
+                                <DatePicker
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
+                                    dateFormat="dd/MM/yyyy"
+                                    minDate={new Date()}
+                                />
+                            </div>
+                            <div className="end-rent">
+                                <p>Дата на отдаване </p>
+                                <DatePicker
+                                    selected={endDate}
+                                    onChange={(date) => setEndDate(date)}
+                                    dateFormat="dd/MM/yyyy"
+                                    minDate={startDate}
+                                />
+                            </div>
+                            <div className="check-button">
+                                <button
+                                    form="form-reservation"
+                                    type="submit"
+                                    name="submit_check_button"
+                                    id="submit_check_button"
+                                >
+                                    Продължи
+                                </button>
+                            </div>
+                        </div>
+                        {/* Modal footer */}
+                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <div className="more-rent">
+                                <div className="more-rent-item">
+                                    <img src="/images/icons/icons8-check-48.png" alt="" />
+                                    <div>Гъвкаво анулиране</div>
+                                </div>
+                                <div className="more-rent-item">
+                                    <img src="/images/icons/icons8-check-48.png" alt="" />
+                                    <div>Безплатна корекция</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
             <MostRented />
-
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-            <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
-
         </>
     );
 }
