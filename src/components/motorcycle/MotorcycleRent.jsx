@@ -1,3 +1,5 @@
+import MostRented from "../MostRented";
+
 export default function MotorcycleRent() {
     return (
         <>
@@ -5,7 +7,7 @@ export default function MotorcycleRent() {
                 <form id="form-reservation" method="post" target="" action="" />
                 <div className="page-box-left" id="page-box-left">
                     <div className="moto-img">
-                        <img src="images/honda_cbr.png" alt="" />
+                        <img src="/images/honda_cbr.png" alt="" />
                     </div>
                     <div className="moto-title">
                         <h2>Honda CBR 600RR </h2>
@@ -430,8 +432,7 @@ export default function MotorcycleRent() {
                     <div className="btn-close-box">
                         <img
                             src="/images/icons/icons8-close-48.png"
-                            alt=""
-                            
+                            alt=""    
                         />
                     </div>
                     <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
@@ -465,9 +466,9 @@ export default function MotorcycleRent() {
                         defaultValue={70.0}
                         className="js-rent-price-sum-input"
                     />
-                    <br />
+
                     <hr />
-                    <br />
+
                     <div className="start-rent" id="start-rent">
                         <p>Дата на наемане </p>
                         <input
@@ -504,12 +505,16 @@ export default function MotorcycleRent() {
                     </div>
                     <hr />
                     <div className="more-rent">
-                        <img src="/images/icons/icons8-check-48.png" alt="" />
-                        Гъвкаво анулиране
-                        <br />
-                        <img src="/images/icons/icons8-check-48.png" alt="" />
-                        Безплатна корекция
+                        <div className="more-rent-item">
+                            <img src="/images/icons/icons8-check-48.png" alt="" />
+                            <div>Гъвкаво анулиране</div>
+                        </div>
+                        <div className="more-rent-item">
+                            <img src="/images/icons/icons8-check-48.png" alt="" />
+                            <div>Безплатна корекция</div>
+                        </div>
                     </div>
+
                 </div>
                 <div className="page-box-right-mobile text-center" id="mobile-box">
                     <div className="rent-for-days js-rent-for-days-mobile">Наем за 1 ден</div>
@@ -522,6 +527,8 @@ export default function MotorcycleRent() {
             </div>
             <div className="clearfix" />
             <div id="page-boxs-end" />
+
+            <MostRented />
         </>
     );
 }

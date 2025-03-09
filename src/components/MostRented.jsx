@@ -8,9 +8,9 @@ export default function MostRented() {
                 <br />
                 <h2 className="text-center">Често наемани мотоциклети</h2>
                 <br />
-                <a href="#">
+                <a href="/rent-motorcycle-rent/motorcycle">
                     <div className="frequently-box-3 float-container">
-                    <img src="images/honda_cbr.png" alt="honda_cbr" />
+                    <img src="/images/honda_cbr.png" alt="honda_cbr" />
                     <div className="moto-info">
                         <h4 className="text-center">HONDA CBR 600RR</h4>
                         <br />
@@ -23,9 +23,9 @@ export default function MostRented() {
                     <input type="submit" name="submit" defaultValue="Повече детайли" />
                     </div>
                 </a>
-                <a href="#">
+                <a href="/rent-motorcycle-rent/motorcycle">
                     <div className="frequently-box-3 float-container">
-                    <img src="images/honda_cbr.png" alt="honda_cbr" />
+                    <img src="/images/honda_cbr.png" alt="honda_cbr" />
                     <div className="moto-info">
                         <h4 className="text-center">HONDA CBR 600RR</h4>
                         <br />
@@ -38,9 +38,9 @@ export default function MostRented() {
                     <input type="submit" name="submit" defaultValue="Повече детайли" />
                     </div>
                 </a>
-                <a href="#">
+                <a href="/rent-motorcycle-rent/motorcycle">
                     <div className="frequently-box-3 float-container">
-                    <img src="images/honda_cbr.png" alt="honda_cbr" />
+                    <img src="/images/honda_cbr.png" alt="honda_cbr" />
                     <div className="moto-info">
                         <h4 className="text-center">HONDA CBR 600RR</h4>
                         <br />
