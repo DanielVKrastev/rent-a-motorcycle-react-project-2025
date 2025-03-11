@@ -440,7 +440,7 @@ export default function MotorcycleRent() {
                                 type="submit"
                                 defaultValue="Изпрати"
                                 name="submit-comment"
-                                className="btn"
+                                className="btn btn-secondary"
                             />
                         </div>
                     </section>
@@ -507,15 +507,17 @@ export default function MotorcycleRent() {
                         />
                     </div>
                     <div className="check-button">
-                        <Link
-                            to="/checkout/motorcycleId"
-                            form="form-reservation"
-                            type="submit"
-                            name="submit_check_button"
-                            id="submit_check_button"
-                        >
-                            Продължи
+                        <Link to="/checkout/motorcycleId">
+                            <button
+                                form="form-reservation"
+                                type="submit"
+                                name="submit_check_button"
+                                id="submit_check_button"
+                            >
+                                Продължи
+                            </button>
                         </Link>
+
                     </div>
                     <hr />
                     <div className="more-rent">
@@ -539,7 +541,6 @@ export default function MotorcycleRent() {
                             {/* Modal toggle */}
                             <button
                                 onClick={() => setIsOpen(true)}
-                                data-modal-target="top-left-modal" data-modal-toggle="top-left-modal"
                                 className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
@@ -555,7 +556,7 @@ export default function MotorcycleRent() {
             <div id="page-boxs-end" />
             {/* Small Modal */}
             {isOpen && (
-            <div onClick={() => setIsOpen(false)} class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
                 <div
                     id="small-modal"
                     tabIndex={-1}
@@ -653,10 +654,8 @@ export default function MotorcycleRent() {
                                 <div className="check-button">
                                     <Link to="/checkout/motorcycleId" onClick={() => setIsOpen(false)}>
                                         <button
-
                                             name="submit_check_button"
                                             id="submit_check_button"
-
                                         >
                                             Продължи
                                         </button>
