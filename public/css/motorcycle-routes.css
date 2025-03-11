@@ -15,13 +15,13 @@
 }
 
 .page-box-left {
-    margin: 2% 0% 2% 8%;
+    margin: 2% 0% 2% 10%;
     width: 55%; 
 }
 
 .page-box-right,
 .page-box-right-mobile {
-    width: 300px;
+    width: 350px;
     top: 160px;
     margin: 1%;
     height: 500px;

@@ -9,6 +9,7 @@ import './App.css';
 import About from './components/About';
 import CatalogMoto from './components/CatalogMoto';
 import MotorcycleRent from './components/motorcycle/MotorcycleRent';
+import Checkout from './components/checkout/Checkout';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/rent-a-motorcycle" element={<CatalogMoto />}></Route>
                 <Route path="/rent-a-motorcycle/motorcycle" element={<MotorcycleRent />}></Route>
+                <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
             </Routes>
 
           <Footer />

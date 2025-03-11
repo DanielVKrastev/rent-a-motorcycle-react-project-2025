@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useState } from "react";
 import MostRented from "../MostRented";
 import DatePicker from "react-datepicker";
@@ -492,14 +493,15 @@ export default function MotorcycleRent() {
                         />
                     </div>
                     <div className="check-button">
-                        <button
+                        <Link
+                            to="/checkout/motorcycleId"
                             form="form-reservation"
                             type="submit"
                             name="submit_check_button"
                             id="submit_check_button"
                         >
                             Продължи
-                        </button>
+                        </Link>
                     </div>
                     <hr />
                     <div className="more-rent">
@@ -633,14 +635,15 @@ export default function MotorcycleRent() {
                                 />
                             </div>
                             <div className="check-button">
-                                <button
+                                <Link
+                                    to="/checkout/motorcycleId"
                                     form="form-reservation"
                                     type="submit"
                                     name="submit_check_button"
                                     id="submit_check_button"
                                 >
                                     Продължи
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         {/* Modal footer */}
