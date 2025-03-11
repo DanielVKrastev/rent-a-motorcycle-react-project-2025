@@ -15,7 +15,7 @@ export default function Login() {
             />
             
         </Link>
-        <div className="w-[95vw] bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow sm:max-w-md xl:p-0 mt-10 mb-16">
+        <div className="w-[95vw] bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow sm:max-w-md xl:p-0 mt-2 mb-16">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Sign in to your account
@@ -76,9 +76,9 @@ export default function Login() {
                     </button>
                     <p className="text-sm font-light text-gray-500">
                         Don’t have an account yet?{" "}
-                        <a href="#" className="font-medium text-blue-600 hover:underline">
+                        <Link to="/register" className="font-medium text-blue-600 hover:underline">
                             Sign up
-                        </a>
+                        </Link>
                     </p>
                 </form>
             </div>
