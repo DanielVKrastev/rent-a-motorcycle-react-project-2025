@@ -1,11 +1,25 @@
 import { Link } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MostRented from "../MostRented";
 import DatePicker from "react-datepicker";
 
 export default function MotorcycleRent() {
+    const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isOpen]);
+
     return (
         <>
             <div className="page-2-boxs">
@@ -524,8 +538,8 @@ export default function MotorcycleRent() {
                         <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
                             {/* Modal toggle */}
                             <button
-                                data-modal-target="small-modal"
-                                data-modal-toggle="small-modal"
+                                onClick={() => setIsOpen(true)}
+                                data-modal-target="top-left-modal" data-modal-toggle="top-left-modal"
                                 className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 type="button"
                             >
@@ -533,138 +547,145 @@ export default function MotorcycleRent() {
                             </button>
                         </div>
 
-
                     </div>
                 </div>
                 {/* End rent box */}
             </div>
             <div className="clearfix" />
             <div id="page-boxs-end" />
-
             {/* Small Modal */}
-            <div
-                id="small-modal"
-                tabIndex={-1}
-                className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
-            >
-                <div className="relative w-full max-w-md max-h-full">
-                    {/* Modal content */}
-                    <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center">
-                        {/* Modal header */}
-                        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                Наем на Honda CBR 600RR
-                            </h3>
-                            <button
-                                type="button"
-                                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                data-modal-hide="small-modal"
-                            >
-                                <svg
-                                    className="w-3 h-3"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 14 14"
+            {isOpen && (
+            <div onClick={() => setIsOpen(false)} class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+                <div
+                    id="small-modal"
+                    tabIndex={-1}
+                    className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
+                    aria-modal="true"
+                    role="dialog"
+                >
+                    <div className="relative w-full max-w-md max-h-full">
+                        {/* Modal content */}
+                        <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center" onClick={(e) => e.stopPropagation()}>
+                            {/* Modal header */}
+                            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                                    Наем на Honda CBR 600RR
+                                </h3>
+                                <button
+                                    type="button"
+                                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onClick={() => setIsOpen(false)}
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                    />
-                                </svg>
-                                <span className="sr-only">Close modal</span>
-                            </button>
-                        </div>
-                        {/* Modal body */}
-                        <div className="p-4 md:p-1 space-y-4">
-
-                            <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
-                            <input
-                                form="form-reservation"
-                                type="hidden"
-                                name="rent-days"
-                                defaultValue={1}
-                                className="js-rent-for-days-input"
-                            />
-                            <div className="rent-per-day js-rent-per-day">(70.00 лв. на ден)</div>
-                            <input
-                                form="form-reservation"
-                                type="hidden"
-                                name="rent-per-day"
-                                defaultValue={70.0}
-                                className="js-rent-per-day-input"
-                            />
-                            <div className="rent-price-sum js-rent-price-sum">70 лв.</div>
-                            <input
-                                form="form-reservation"
-                                type="hidden"
-                                name="moto-rent-price"
-                                defaultValue={70.0}
-                                className="js-moto-rent-price-input"
-                            />
-                            <input
-                                form="form-reservation"
-                                type="hidden"
-                                name="rent-price-sum"
-                                defaultValue={70.0}
-                                className="js-rent-price-sum-input"
-                            />
-                            <hr />
-
-                            <div className="start-rent" id="start-rent">
-                                <p>Дата на наемане </p>
-                                <DatePicker
-                                    selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
-                                    className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                />
+                                    <svg
+                                        className="w-3 h-3"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 14 14"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                        />
+                                    </svg>
+                                    <span className="sr-only">Close modal</span>
+                                </button>
                             </div>
-                            <div className="end-rent">
-                                <p>Дата на отдаване </p>
-                                <DatePicker
-                                    selected={endDate}
-                                    onChange={(date) => setEndDate(date)}
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={startDate}
-                                    className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                />
-                            </div>
-                            <div className="check-button">
-                                <Link
-                                    to="/checkout/motorcycleId"
+                            {/* Modal body */}
+                            <div className="p-4 md:p-1 space-y-4">
+
+                                <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
+                                <input
                                     form="form-reservation"
-                                    type="submit"
-                                    name="submit_check_button"
-                                    id="submit_check_button"
-                                >
-                                    Продължи
-                                </Link>
-                            </div>
-                        </div>
-                        {/* Modal footer */}
-                        <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                            <div className="more-rent">
-                                <div className="more-rent-item">
-                                    <img src="/images/icons/icons8-check-48.png" alt="" />
-                                    <div>Гъвкаво анулиране</div>
+                                    type="hidden"
+                                    name="rent-days"
+                                    defaultValue={1}
+                                    className="js-rent-for-days-input"
+                                />
+                                <div className="rent-per-day js-rent-per-day">(70.00 лв. на ден)</div>
+                                <input
+                                    form="form-reservation"
+                                    type="hidden"
+                                    name="rent-per-day"
+                                    defaultValue={70.0}
+                                    className="js-rent-per-day-input"
+                                />
+                                <div className="rent-price-sum js-rent-price-sum">70 лв.</div>
+                                <input
+                                    form="form-reservation"
+                                    type="hidden"
+                                    name="moto-rent-price"
+                                    defaultValue={70.0}
+                                    className="js-moto-rent-price-input"
+                                />
+                                <input
+                                    form="form-reservation"
+                                    type="hidden"
+                                    name="rent-price-sum"
+                                    defaultValue={70.0}
+                                    className="js-rent-price-sum-input"
+                                />
+                                <hr />
+
+                                <div className="start-rent" id="start-rent">
+                                    <p>Дата на наемане </p>
+                                    <DatePicker
+                                        selected={startDate}
+                                        onChange={(date) => setStartDate(date)}
+                                        dateFormat="dd/MM/yyyy"
+                                        minDate={new Date()}
+                                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    />
                                 </div>
-                                <div className="more-rent-item">
-                                    <img src="/images/icons/icons8-check-48.png" alt="" />
-                                    <div>Безплатна корекция</div>
+                                <div className="end-rent">
+                                    <p>Дата на отдаване </p>
+                                    <DatePicker
+                                        selected={endDate}
+                                        onChange={(date) => setEndDate(date)}
+                                        dateFormat="dd/MM/yyyy"
+                                        minDate={startDate}
+                                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    />
+                                </div>
+                                <div className="check-button">
+                                    <Link to="/checkout/motorcycleId" onClick={() => setIsOpen(false)}>
+                                        <button
+
+                                            name="submit_check_button"
+                                            id="submit_check_button"
+
+                                        >
+                                            Продължи
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
+                            {/* Modal footer */}
+                            <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                <div className="more-rent">
+                                    <div className="more-rent-item">
+                                        <img src="/images/icons/icons8-check-48.png" alt="" />
+                                        <div>Гъвкаво анулиране</div>
+                                    </div>
+                                    <div className="more-rent-item">
+                                        <img src="/images/icons/icons8-check-48.png" alt="" />
+                                        <div>Безплатна корекция</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-                
             </div>
+            )}
+
 
             <MostRented />
+
         </>
     );
 }
