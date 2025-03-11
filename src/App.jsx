@@ -10,6 +10,7 @@ import About from './components/About';
 import CatalogMoto from './components/CatalogMoto';
 import MotorcycleRent from './components/motorcycle/MotorcycleRent';
 import Checkout from './components/checkout/Checkout';
+import Login from './components/login/Login';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/rent-a-motorcycle" element={<CatalogMoto />}></Route>
                 <Route path="/rent-a-motorcycle/motorcycle" element={<MotorcycleRent />}></Route>
                 <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
+                <Route path="/login" element={<Login />}></Route>
             </Routes>
 
           <Footer />

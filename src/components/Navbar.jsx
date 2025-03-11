@@ -129,7 +129,7 @@ export default function Navbar() {
                 </div>
                 <input
                     type="text"
-                    id="search-navbar"
+                    
                     className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search..."
                 />
@@ -156,7 +156,7 @@ export default function Navbar() {
                 </li>
                 <li>
                     <Link
-                    to="#"
+                    to="/login"
                     className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
                     onClick={closeOpenHandlerMobileMenu}
                     >
