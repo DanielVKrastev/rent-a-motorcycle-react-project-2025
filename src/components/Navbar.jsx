@@ -134,6 +134,11 @@ export default function Navbar() {
                             </div>
                             <ul className="py-2" aria-labelledby="user-menu-button">
                                 <li>
+                                    <Link to="/admin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                        Admin Dashboard
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
                                         Dashboard
                                     </Link>
@@ -224,15 +229,6 @@ export default function Navbar() {
                                     onClick={closeOpenHandlerMobileMenu}
                                 >
                                     Register
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/admin/create-motorcycle"
-                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
-                                    onClick={closeOpenHandlerMobileMenu}
-                                >
-                                    Create Rent Moto
                                 </Link>
                             </li>
                             <li>

@@ -1,11 +1,11 @@
 import { Routes, Route, Router } from 'react-router';
 
+import './App.css';
+
 import ContactsHeader from './components/ContactsHeader';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-
-import './App.css';
 import About from './components/About';
 import CatalogMoto from './components/CatalogMoto';
 import MotorcycleRent from './components/motorcycle/MotorcycleRent';
@@ -13,8 +13,12 @@ import Checkout from './components/checkout/Checkout';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 
+import AdminDashboard from './components/admin/AdminDashboard';
+import Dashboard from './components/admin/dashboard/Dashboard';
+import UserTable from './components/admin/users/user-table/UserTable';
+
 import ScrollToTop from './utils/ScrollToTop';
-import CreateMotorcycle from './components/admin/create-motorcycle/CreateMotorcycle';
+import MotorcycleTable from './components/admin/motorcycles/motorcycle-table/MotorcycleTable';
 
 function App() {
     return (
@@ -32,7 +36,9 @@ function App() {
               <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
-              <Route path="/admin/create-motorcycle" element={<CreateMotorcycle />}></Route>
+
+              <Route path="/admin" element={<AdminDashboard />}>
+              </Route>
           </Routes>
 
           <Footer />
