@@ -14,6 +14,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 
 import ScrollToTop from './utils/ScrollToTop';
+import CreateMotorcycle from './components/admin/create-motorcycle/CreateMotorcycle';
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
+              <Route path="/admin/create-motorcycle" element={<CreateMotorcycle />}></Route>
           </Routes>
 
           <Footer />
