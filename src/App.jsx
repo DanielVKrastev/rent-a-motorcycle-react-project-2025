@@ -38,6 +38,9 @@ function App() {
               <Route path="/register" element={<Register />}></Route>
 
               <Route path="/admin" element={<AdminDashboard />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="users" element={<UserTable />} />
+                    <Route path="motorcycle" element={<MotorcycleTable />} />
               </Route>
           </Routes>
 
