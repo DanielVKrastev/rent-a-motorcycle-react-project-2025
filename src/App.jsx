@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Router } from 'react-router';
 
 import ContactsHeader from './components/ContactsHeader';
 import Footer from './components/Footer';
@@ -13,6 +13,8 @@ import Checkout from './components/checkout/Checkout';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 
+import ScrollToTop from './utils/ScrollToTop';
+
 function App() {
     return (
         <>
@@ -20,15 +22,16 @@ function App() {
 
           <Navbar />
 
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/rent-a-motorcycle" element={<CatalogMoto />}></Route>
-                <Route path="/rent-a-motorcycle/motorcycle" element={<MotorcycleRent />}></Route>
-                <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
-                <Route path="/login" element={<Login />}></Route>
-                <Route path="/register" element={<Register />}></Route>
-            </Routes>
+          <ScrollToTop />
+          <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/rent-a-motorcycle" element={<CatalogMoto />}></Route>
+              <Route path="/rent-a-motorcycle/motorcycle" element={<MotorcycleRent />}></Route>
+              <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+          </Routes>
 
           <Footer />
         </>
