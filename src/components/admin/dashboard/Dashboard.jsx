@@ -1,6 +1,6 @@
 export default function Dashboard() {
   return (
-    <div>
+    <div className="flex-1">
       <h2 className="text-3xl font-semibold mb-6">Dashboard Overview</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="p-6 bg-white shadow-md rounded-lg">

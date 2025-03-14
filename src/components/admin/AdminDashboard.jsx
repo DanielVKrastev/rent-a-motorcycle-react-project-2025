@@ -1,23 +1,31 @@
 
+import { useState } from "react";
 import Header from "./dashboard/Header";
 import Sidebar from "./dashboard/Sidebar";
 import { Outlet } from "react-router";
 
-
 export default function AdminDashboard() {
-  return (
-<div className="h-screen">
-  <div className="fixed w-64 h-full">
-    <Sidebar />
-  </div>
   
-  <div className="ml-64 flex-1 flex flex-col">
-    <Header />
-    <main className="p-6 overflow-x-auto">
-      <Outlet />
-    </main>
-  </div>
-</div>
+const [openAdminNav, setOpenAdminNav] = useState(false);
+  
+function closeOpenHandlerAdminMenu() {
+    setOpenAdminNav(state => !state);
+};
+  return (
+    <>
+      <div className="flex md:h-[calc(80vh-50px)]">
+        <div className="z-31">
+          <Sidebar openAdminNav={openAdminNav} closeOpenHandlerAdminMenu={closeOpenHandlerAdminMenu}/>
+        </div>
+        <div className="p-4 sm:ml-10 flex-1 overflow-x-auto">
+          <Header openAdminNav={openAdminNav} closeOpenHandlerAdminMenu={closeOpenHandlerAdminMenu}/>
+          <main className="p-4 overflow-x-auto">
 
+            <Outlet />
+          </main>
+        </div>
+      </div>
+
+    </>
   );
 }

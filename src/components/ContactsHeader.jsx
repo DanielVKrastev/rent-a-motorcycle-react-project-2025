@@ -2,7 +2,7 @@ export default function ContactsHeader() {
     return (
         <>
         {/*Start Header section*/}
-        <section className="header-contact">
+        <section className="header-contact sticky z-20">
             <div className="header-email">
             <img
                 width={20}
