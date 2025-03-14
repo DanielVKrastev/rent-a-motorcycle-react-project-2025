@@ -34,16 +34,16 @@ const MotorcycleTable = () => {
 
 
     const [users, setUsers] = useState([
-        { id: 1, name: "John Doe", email: "johndoe@gmail.com", role: "Admin" },
-        { id: 2, name: "Jane Smith", email: "janesmith@yahoo.com", role: "User" },
-        { id: 3, name: "Bob Johnson", email: "bobjohnson@outlook.com", role: "User" },
-        { id: 4, name: "Alice Williams", email: "alice@gmail.com", role: "Admin" },
-        { id: 5, name: "Charlie Brown", email: "charlie@yahoo.com", role: "User" },
-        { id: 6, name: "David Davis", email: "daviddavis@outlook.com", role: "Admin" },
-        { id: 7, name: "Eva White", email: "evawhite@gmail.com", role: "User" },
-        { id: 8, name: "Frank Harris", email: "frankharris@yahoo.com", role: "User" },
-        { id: 9, name: "Grace Lewis", email: "gracelewis@outlook.com", role: "Admin" },
-        { id: 10, name: "Hank Young", email: "hankyoung@gmail.com", role: "User" },
+        { id: 1, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 2, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 3, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 4, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 5, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 6, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 7, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 8, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 9, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
+        { id: 10, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
     ]);
 
     const handleDelete = (id) => {
@@ -64,7 +64,7 @@ const MotorcycleTable = () => {
 
     return (
         <>
-            <div className="">
+            <div className="w-full overflow-x-auto">
                 <button
                     onClick={() => setIsOpenCreate(true)}
                     className="mb-4 flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
@@ -72,8 +72,8 @@ const MotorcycleTable = () => {
                     <div className="mr-2" /> Add Motorcycle
                 </button>
 
-                <div className="relative w-f overflow-x-auto">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <div className="relative w-full overflow-x-auto block">
+                    <table className="min-w-[1400px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-300 dark:text-gray-800">
                             <tr>
                                 <th className="px-6 py-3 text-left" scope="col">S.N</th>
@@ -95,10 +95,10 @@ const MotorcycleTable = () => {
 
                             {currentUsers.map((user) => (
                                 <tr key={user.id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.id}</td>
                                     <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.name}</td>
                                     <td className="px-6 py-4" scope="row">{user.email}</td>
                                     <td className="px-6 py-4" scope="row">{user.role}</td>
-                                    <td className="px-6 py-4" scope="row"></td>
                                     <td className="px-6 py-4" scope="row"></td>
                                     <td className="px-6 py-4" scope="row"></td>
                                     <td className="px-6 py-4" scope="row"></td>
