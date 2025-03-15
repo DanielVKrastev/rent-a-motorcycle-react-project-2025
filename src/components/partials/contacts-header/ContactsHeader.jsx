@@ -21,7 +21,7 @@ export default function ContactsHeader() {
                 src="https://img.icons8.com/ios-filled/50/545454/apple-phone.png"
                 alt="apple-phone"
             />
-            <p>+359 89 327 6008 / +359 88 554 6666</p>
+            <p>+359 88 888 8888 / +359 88 666 6666</p>
             </div>
             <div className="header-work-time">
             <img
@@ -30,7 +30,7 @@ export default function ContactsHeader() {
                 src="https://img.icons8.com/ios-filled/50/545454/present.png"
                 alt="present"
             />
-            <p>Пон - Съб - 10:0 - 18:00 / Неделя - почивен ден</p>
+            <p>Mon - Sat - 10:00 - 18:00 / Sunday - rest day</p>
             </div>
             <div className="header-social">
             <img
