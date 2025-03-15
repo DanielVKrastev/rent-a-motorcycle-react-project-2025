@@ -5,6 +5,10 @@
     margin: 0 auto;
 }
 
+.rent-moto h2{
+    color:  black;
+}
+
 .frequently-box-3{
     border: 1px solid rgba(181,46,55,0.4);
     border-radius: 5px;
