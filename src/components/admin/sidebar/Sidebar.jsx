@@ -26,9 +26,7 @@ export default function Sidebar({
   }
 
   return (
-    <>
-
-      <div className="relative h-full py-25 top-10 w-64 bg-white" hidden={openAdminNav}>
+      <div className="relative h-full py-25 top-10 w-64 " hidden={openAdminNav}>
         <h2 className="text-2xl font-semibold mb-8 text-center">Admin Panel</h2>
         <ul className="space-y-2 font-medium">
           <li>
@@ -59,9 +57,8 @@ export default function Sidebar({
                 aria-hidden="true"
                 className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 light:text-gray-400 light:group-hover:text-white"
                 fill="currentColor"
-                viewBox="0 0 18 21"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 4.48 2 7v10c0 2.52 4.48 5 10 5s10-2.48 10-5V7c0-2.52-4.48-5-10-5zm0 2c4.97 0 8 1.94 8 3s-3.03 3-8 3-8-1.94-8-3 3.03-3 8-3zm0 16c-4.97 0-8-1.94-8-3v-2c1.93 1.25 5.07 2 8 2s6.07-.75 8-2v2c0 1.06-3.03 3-8 3zm0-6c-4.97 0-8-1.94-8-3v-2c1.93 1.25 5.07 2 8 2s6.07-.75 8-2v2c0 1.06-3.03 3-8 3z"/>
               </svg>
               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
                 CRUD
@@ -102,7 +99,7 @@ export default function Sidebar({
               }
 
             </button>
-            <ul className=" py-2 space-y-2" id="dropdown-example">
+            <ul className=" py-2 space-y-2" id="dropdown-example" hidden={!openCrudMenu}>
               <li>
                 <Link
                   onClick={() => { if (windowWidth < 780) closeOpenHandlerAdminMenu() }}
@@ -141,7 +138,5 @@ export default function Sidebar({
 
         </ul>
       </div>
-
-    </>
   );
 }

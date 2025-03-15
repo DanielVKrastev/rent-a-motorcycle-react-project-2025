@@ -19,6 +19,7 @@ import UserTable from './components/admin/users/user-table/UserTable';
 
 import ScrollToTop from './utils/ScrollToTop';
 import MotorcycleTable from './components/admin/motorcycles/motorcycle-table/MotorcycleTable';
+import Reservation from './components/admin/reservation/Reservation';
 
 function App() {
     return (
@@ -41,6 +42,7 @@ function App() {
                     <Route index element={<Dashboard />} />
                     <Route path="users" element={<UserTable />} />
                     <Route path="motorcycle" element={<MotorcycleTable />} />
+                    <Route path="reservation" element={<Reservation />} />
               </Route>
           </Routes>
 
