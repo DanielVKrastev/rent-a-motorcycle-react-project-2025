@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
-import MostRented from "../MostRented";
+import MostRented from "../most-rented/MostRented";
 import DatePicker from "react-datepicker";
 
 export default function MotorcycleRent() {

@@ -1,4 +1,5 @@
-import ScrollEffectMotoInfo from '../jsDesignHelpers/scrollEffectMotoInfo';
+import ScrollEffectMotoInfo from "../../../jsDesignHelpers/scrollEffectMotoInfo";
+
 
 export default function RentMotoDescription() {
     ScrollEffectMotoInfo();

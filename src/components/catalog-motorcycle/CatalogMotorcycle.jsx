@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export default function CatalogMoto() {
+export default function CatalogMotorcycle() {
     return (
 <>
     {/* Start Filter section*/}
