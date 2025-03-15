@@ -1,0 +1,142 @@
+/* 
+    Author: Daniel Krastev;
+    Thema: Moto Rental;
+    version: 1.0;
+*/
+
+/*css for all*/
+*{
+
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #ffffff;
+}
+
+
+.container{
+  /* border: 1px solid black;*/
+    width: 80%;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+.container h2{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.clearfix{
+    clear:both;
+    float: none;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-center{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    padding: 1%;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary{
+    border: 1px solid #B52E37;
+    background-color: #ff828b;
+    color: white;
+    width: 100px;
+}
+
+.btn-primary:hover{
+    background-color: #fd6b75; 
+}
+
+.btn-secondary{
+    border: 1px solid black;
+    background-color: white;
+    width: 200px;
+    color: black;
+}
+
+.btn-secondary:hover{
+    background-color: rgb(241, 241, 241); 
+}
+
+.float-container{
+    position: relative;
+}
+
+.input-style{
+    width: 55%;
+    padding: 5px 2px;
+    margin: 8px 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+h2{
+    color:  black;
+}
+
+h3{
+    color: #DB3C48;
+    font-size: 16px;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+
+.backdrop {
+    /*background-color: rgba(0, 0, 0, 0.75);*/
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+/*css for mobile size or smaller screens*/
+
+@media only screen and (max-width:820px) {
+
+    body{
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+        margin: 0;
+        white-space: normal;
+    }
+
+    .input-style{
+        width: 90%;
+    }
+
+    .rent-box-3 h4{
+        width: 20%;
+        font-size: 12px;
+    }
+
+    .rent-box-3{
+        width: 29%;
+        margin: 3% 10% 2% 10%;
+    }
+
+}
