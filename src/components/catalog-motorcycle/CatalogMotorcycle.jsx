@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import './CatalogMotorcycle.css';
 
 export default function CatalogMotorcycle() {
     return (

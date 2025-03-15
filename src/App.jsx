@@ -11,7 +11,7 @@ import CatalogMotorcycle from './components/catalog-motorcycle/CatalogMotorcycle
 
 import ScrollToTop from './utils/ScrollToTop';
 import Home from './components/home/Home';
-import About from './components/partials/about/About';
+import About from './components/about/About';
 import MotorcycleRent from './components/motorcycle-rent/MotorcycleRent';
 import Checkout from './components/checkout/Checkout';
 import Login from './components/login/Login';

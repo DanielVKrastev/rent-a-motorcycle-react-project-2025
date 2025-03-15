@@ -1,0 +1,58 @@
+/*css for Filter section for rent a moto page*/
+.filter{
+    margin:0 auto;
+    width: 100%;
+}
+
+.filter-hr{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.filter-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-box{
+    border-radius: 20px;
+    border: none;
+    background-color: #ff3f4d;
+    width: 110px;
+    color: white;
+    float: left;
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: -10px;
+    padding: 10px 25px;
+}
+
+
+.filter-box:hover{
+    background-color: #d93641;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.2);
+    border-radius: 35px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media only screen and (max-width:820px) {
+    .filter-box{
+        margin: 5px;
+    }
+}
+
+@media only screen and (max-width:540px) {
+    
+    .filter-buttons{
+        padding: 0 auto;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .filter-box{
+        margin-left: auto;
+    }
+}

@@ -1,3 +1,5 @@
+import './ContactsHeader.css';
+
 export default function ContactsHeader() {
     return (
         <>

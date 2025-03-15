@@ -1,0 +1,52 @@
+/*css for header*/
+.header-contact{
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 40px;
+}
+
+.header-contact div{
+    float: left;
+    margin-left: 2%;
+    margin-top: 10px;
+    color:#6f6f6f;
+}
+
+.header-contact p{
+    float: left;
+    margin-left: 5px;
+}
+
+.header-contact img{
+    float: left;
+}
+
+.header-contact .header-social{
+    float: right;
+    margin-right: 0px;
+    margin-top: 1px;
+    width: 130px;
+}
+
+.header-contact .header-social img{
+    padding: 2% 2%;
+}
+
+/*header*/
+@media only screen and (max-width:1080px) {
+    .header-work-time{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:680px) {
+    .header-phones{
+        display: none;
+    }
+}
+
+@media only screen and (max-width:310px) {
+    .header-social{
+        display: none;
+    }
+}
