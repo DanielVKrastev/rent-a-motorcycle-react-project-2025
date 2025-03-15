@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
+import './Checkout.css';
+
 export default function Checkout() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -249,17 +251,17 @@ export default function Checkout() {
 
             {/* Small Modal */}
             {isOpen && (
-                <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+                <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
                     <div
                         id="small-modal"
                         tabIndex={-1}
-                        className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
+                        className="fixed top-0 left-0 right-0 z-50 w-full p-4  md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                         aria-modal="true"
                         role="dialog"
                     >
-                        <div className="relative w-full max-w-md max-h-full">
+                        <div className="relative w-full z-50 max-w-md max-h-full">
                             {/* Modal content */}
-                            <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center" onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center z-50" onClick={(e) => e.stopPropagation()}>
                                 <div className="reservation-moto-img">
                                     <img src="/images/honda_cbr.png" alt="" />
                                 </div>

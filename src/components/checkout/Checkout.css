@@ -4,10 +4,6 @@
     version: 1.0;
 */
 
-/* CSS for all*/
-
-
-
 /**************************************************************/
 .reservation-2-boxs{
     padding-bottom: 20px;
@@ -283,5 +279,5 @@
     .input-reservation-box select,
     .input-reservation-box{
     width: 200px;
-}
+    }
 }
