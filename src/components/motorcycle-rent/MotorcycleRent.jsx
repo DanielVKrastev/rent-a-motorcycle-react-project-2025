@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import MostRented from "../most-rented/MostRented";
 import DatePicker from "react-datepicker";
 
+import './MotorcycleRent.css';
+
 export default function MotorcycleRent() {
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());

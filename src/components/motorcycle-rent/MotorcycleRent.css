@@ -71,7 +71,6 @@
 }
 
 /****************************************/
-/* FOR MOTORCYCLE BOX */
 /* for moto image */
 .moto-img {
     text-align: center;
@@ -197,19 +196,10 @@
     margin-left: 120px;
 }
 
-/*
-.more-rent,
-.more-rent-mobile {
-    color: green;
-    padding: 15px;
-    font-size: 14px;
-}
-*/
 .more-rent img,
 .more-rent-mobile img {
     width: 25px;
 }
-
 
 .more-rent {
     color: green;
@@ -225,70 +215,12 @@
     gap: 8px;
 }
 
-
 .btn-close-box {
     position: absolute;
 }
 
 .btn-close-box img {
     width: 35px;
-}
-
-/**************ROUTES PAGE******************/
-.img-header {
-    height: 250px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    filter: brightness(65%);
-}
-
-.routes-2-boxs {
-    height: auto;
-    margin: 0;
-}
-
-.routes-box-left,
-.routes-box-right {
-    border: 1px solid green;
-    background-color: white;
-    display: inline-block;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-/*************** css for ROUTES BOX LEFT *******************/
-.route-title h2 {
-    color: black;
-    margin-bottom: 10px;
-    font-size: 28px;
-    font-weight: bolder;
-}
-
-.route-city h3 {
-    color: darkgrey;
-}
-
-/* for route specification icons */
-.route-specs {
-    margin-top: 10px;
-    padding-bottom: 5px;
-    display: inline-block;
-}
-
-.route-specs-box,
-.route-specs-icons,
-.route-specs-text {
-    float: left;
-}
-
-.route-specs-icons img {
-    width: 30px;
-}
-
-.route-specs-text {
-    font-size: 13px;
-    margin: 10px 18px 10px 4px;
 }
 
 /* for description for page-box-left - subtitle */
@@ -303,20 +235,6 @@
 .subtitle h3 {
     color: #DB3C48;
     font-size: 14px;
-}
-
-/* for description for routes - description */
-.desc-rent .description {
-    color: #333333;
-    padding: 15px 0 15px 0;
-}
-
-.description p {
-    text-indent: 30px;
-}
-
-.map img {
-    width: 100%;
 }
 
 /* for page-box-right */
