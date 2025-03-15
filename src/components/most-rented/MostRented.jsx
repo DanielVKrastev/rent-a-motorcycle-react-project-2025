@@ -23,7 +23,7 @@ export default function MostRented() {
                                 <p>Weight: 190кг.</p>
                                 <p>Category: А</p>
                             </div>
-                            <input type="submit" name="submit" defaultValue="More Details" />
+                            <input type="submit" name="submit" value="More Details" />
                         </div>
                     </Link>
                     <Link to="/rent-a-motorcycle/motorcycle">
@@ -38,7 +38,7 @@ export default function MostRented() {
                                 <p>Weight: 190кг.</p>
                                 <p>Category: А</p>
                             </div>
-                            <input type="submit" name="submit" defaultValue="More Details" />
+                            <input type="submit" name="submit" value="More Details" />
                         </div>
                     </Link>
                     <Link to="/rent-a-motorcycle/motorcycle">
@@ -53,7 +53,7 @@ export default function MostRented() {
                                 <p>Weight: 190кг.</p>
                                 <p>Category: А</p>
                             </div>
-                            <input type="submit" name="submit" defaultValue="More Details" />
+                            <input type="submit" name="submit" value="More Details" />
                         </div>
                     </Link>
                     <div className="clearfix" />
