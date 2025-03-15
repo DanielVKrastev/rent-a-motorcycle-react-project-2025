@@ -6,7 +6,7 @@ export default function Register() {
             <section
                 className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-no-repeat md:h-[calc(100vh-50px)] flex items-center justify-center"
             >
-                <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0 mb-20 ">
+                <div className="flex flex-col items-center justify-center px-1 py-8 mx-auto lg:py-0 mb-20 ">
                     <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white z-0">
                         <img
                             className="w-45 h-20 mr-2"
