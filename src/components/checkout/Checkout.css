@@ -60,6 +60,7 @@
 
 .input-reservation-box input[type=text],
 .input-reservation-box input[type=date],
+.input-reservation-box input[type=number],
 .input-reservation-box select{
     width: 250px;
     padding: 6px;

@@ -25,30 +25,30 @@ export default function Checkout() {
                     <div className="reservation-data-left" id="reservation-data-left">
                         {/* Start section for reservation for data driver */}
                         <section className="reservation-driver-section">
-                            <h1>Детайли за резервацията</h1>
+                            <h1 className="text-2xl font-bold">Reservation details</h1>
                             <br />
-                            <h2>Данни за водача</h2>
-                            <h3>Тази информация ще се използва за потвърждение за наем</h3>
+                            <h2 className="text-1xl font-bold">Driver details</h2>
+                            <h3 className="text-1xl font-bold">This information will be used for rental confirmation.</h3>
                             <div className="input-reservation-box">
-                                <label htmlFor="first_name">Име *</label>
+                                <label htmlFor="first-name">Name *</label>
                                 <br />
-                                <input type="text" name="first_name" placeholder="Име" required="" />
+                                <input type="text" name="first-name" placeholder="Ivan" required="" />
                             </div>
                             <div className="input-reservation-box">
-                                <label htmlFor="second_name">Фамилия *</label>
+                                <label htmlFor="last-name">Last name *</label>
                                 <br />
                                 <input
                                     type="text"
-                                    name="second_name"
-                                    placeholder="Фамилия"
+                                    name="last-name"
+                                    placeholder="Ivanov"
                                     required=""
                                 />
                             </div>
                             <div className="input-reservation-box">
-                                <label htmlFor="client_telephone">Телефонен номер *</label>
+                                <label htmlFor="client_telephone">Telephone *</label>
                                 <br />
                                 <input
-                                    type="text"
+                                    type="number"
                                     name="client_telephone"
                                     defaultValue={+359}
                                     required=""
@@ -65,7 +65,7 @@ export default function Checkout() {
                                 />
                             </div>
                             <div className="input-reservation-box">
-                                <label htmlFor="license_category">Категория *</label>
+                                <label htmlFor="license_category">Category *</label>
                                 <br />
                                 <select name="license_category" required="">
                                     <option value="A">A</option>
@@ -75,7 +75,7 @@ export default function Checkout() {
                                 </select>
                             </div>
                             <div className="input-reservation-box" required="">
-                                <label htmlFor="birthday">Рожденна дата *</label>
+                                <label htmlFor="birthday">Date of birth *</label>
                                 <br />
                                 <input type="date" name="birthday" />
                             </div>
@@ -85,8 +85,8 @@ export default function Checkout() {
                         <hr />
                         {/* Start section for Terms & Conditions */}
                         <section className="terms-section">
-                            <h2>Правила и условия</h2>
-                            <h3>Приемете условията за да продължите</h3>
+                            <h2 className="text-1xl font-bold">Terms and conditions</h2>
+                            <h3 className="text-1xl font-bold">Accept the terms to continue</h3>
                             <div className="terms-box">
                                 <div className="terms-checkbox text-center">
                                     <input
@@ -97,8 +97,7 @@ export default function Checkout() {
                                     />
                                 </div>
                                 <div className="terms-text">
-                                    Приемам политиката за поверителност на Moto Krastev Rent &amp; Tour,
-                                    условията за ползване и условия за резервация.
+                                    I accept Moto Krastev's privacy policy, terms of use and booking conditions.
                                 </div>
                             </div>
                             <div className="terms-box">
@@ -106,8 +105,7 @@ export default function Checkout() {
                                     <input type="checkbox" name="subscribe-submit" defaultValue="Yes" />
                                 </div>
                                 <div className="terms-text">
-                                    Абонирайте се за нашия бюлетин и ние ще ви информираме за нашите
-                                    нови обиколки и услуги.
+                                    Subscribe to our newsletter and we will inform you about our new services.
                                 </div>
                             </div>
                         </section>
@@ -126,7 +124,7 @@ export default function Checkout() {
                         <hr />
                         <div className="checkout-2-boxs">
                             <div className="start-date-rent">
-                                <h5>Наемане</h5>
+                                <h5>Start</h5>
                                 <div className="date">
                                     <img src="/images/icons/icons8-date-50.png" alt="" />
                                     <input type="hidden" name="date_from" defaultValue="03.03.2025" />
@@ -134,18 +132,18 @@ export default function Checkout() {
                                 </div>
                                 <div className="location">
                                     <img src="/images/icons/icons8-airport-64.png" alt="" />
-                                    от летище
+                                    from Airport
                                     <input type="hidden" name="delivery" defaultValue="от летище" />
                                     <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
-                                    от хотел
+                                    from a Hotel
                                     <input type="hidden" name="delivery" defaultValue="от хотел" />
                                     <img src="/images/icons/icons8-office-50.png" alt="" />
-                                    от офис
+                                    from Office
                                     <input type="hidden" name="delivery" defaultValue="от офис" />
                                 </div>
                             </div>
                             <div className="end-date-rent">
-                                <h5>Отдаване</h5>
+                                <h5>End</h5>
                                 <div className="date">
                                     <img src="/images/icons/icons8-date-50.png" alt="" />
                                     <input type="hidden" name="date_to" defaultValue="03.10.2025" />
@@ -153,13 +151,13 @@ export default function Checkout() {
                                 </div>
                                 <div className="location">
                                     <img src="/images/icons/icons8-airport-64.png" alt="" />
-                                    от летище
+                                    from Airport
                                     <input type="hidden" name="bring_back" defaultValue="от летище" />
                                     <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
-                                    от хотел
+                                    from a Hotel
                                     <input type="hidden" name="bring_back" defaultValue="от хотел" />
                                     <img src="/images/icons/icons8-office-50.png" alt="" />
-                                    от офис
+                                    from Office
                                     <input type="hidden" name="bring_back" defaultValue="от офис" />
                                 </div>
                             </div>
@@ -168,56 +166,56 @@ export default function Checkout() {
                         <div className="checkout-2-boxs">
                             <div className="description">
                                 <input type="hidden" name="id_motorcycle" defaultValue="id" />
-                                <div className="desc-header">Наем на мотоциклет 7 дни</div>
+                                <div className="desc-header">Moto Rent 7 days</div>
                                 <input type="hidden" name="days" defaultValue={7} />
-                                <div className="desc-sub">Наем за ден</div>
-                                <div className="desc-header">Добавки</div>
-                                <div className="desc-sub">Екипировка</div>
-                                <div className="desc-sub">Каска</div>
-                                <div className="desc-sub">Празен резервоар</div>
-                                <div className="desc-sub">Доставяне/летище/</div>
-                                <div className="desc-sub">Връщане/летище/</div>
-                                <div className="desc-sub">Доставяне/хотел/</div>
-                                <div className="desc-sub">Връщане/хотел/</div>
+                                <div className="desc-sub">Rent for day</div>
+                                <div className="desc-header">Add-ons</div>
+                                <div className="desc-sub">Equipment </div>
+                                <div className="desc-sub">Helmet</div>
+                                <div className="desc-sub">Empty tank</div>
+                                <div className="desc-sub">Take/airport/</div>
+                                <div className="desc-sub">Return/airport/</div>
+                                <div className="desc-sub">Take/hotel/</div>
+                                <div className="desc-sub">Return/hotel/</div>
                                 <div className="desc-header">
-                                    <b>Общо</b>
+                                    <b>All</b>
                                 </div>
                             </div>
                             <div className="checkout-prices">
-                                <div className="price-header">70 лв.</div>
-                                <div className="price-sub">120 лв.</div>
-                                <div className="price-header">0 лв.</div>
+                                <div className="price-header">70 lv.</div>
+                                <div className="price-sub">120 lv.</div>
+                                <div className="price-header">0 lv.</div>
                                 <div className="price-sub">
-                                    0 лв.
+                                    0 lv.
                                     <input type="hidden" name="equipment" defaultValue={0} />
                                 </div>
                                 <div className="price-sub">
-                                    0 лв.
+                                    0 lv.
                                     <input type="hidden" name="helmet" defaultValue={0} />
                                 </div>
                                 <div className="price-sub">
-                                    0 лв.
+                                    0 lv.
                                     <input type="hidden" name="tank" defaultValue={0} />
                                 </div>
-                                <div className="price-sub">0 лв.</div>
-                                <div className="price-sub">0 лв.</div>
-                                <div className="price-sub">0 лв.</div>
-                                <div className="price-sub">0 лв.</div>
+                                <div className="price-sub">0 lv.</div>
+                                <div className="price-sub">0 lv.</div>
+                                <div className="price-sub">0 lv.</div>
+                                <div className="price-sub">0 lv.</div>
                                 <div className="price-header">
-                                    <b>120 лв.</b>
+                                    <b>120 lv.</b>
                                 </div>
                             </div>
                         </div>
                         <hr />
                         <div className="checkout-2-boxs">
                             <div className="pay-now">
-                                <b>Плати сега</b>
-                                <p>120 лв.</p>
+                                <b>Pay now</b>
+                                <p>120 lv.</p>
                                 <input type="hidden" name="paid" defaultValue={120} />
                             </div>
                             <div className="pay-onsite">
-                                <b>Плати на място</b>
-                                <p>120 лв.</p>
+                                <b>Pay after</b>
+                                <p>120 lv.</p>
                                 <input type="hidden" name="afterpay" defaultValue={120} />
                             </div>
                         </div>
@@ -226,23 +224,23 @@ export default function Checkout() {
                             <input
                                 type="submit"
                                 name="submit_pay_rent_moto"
-                                defaultValue="Плати 120 лв"
+                                defaultValue="Pay 120 lv"
                             />
                         </div>
                         <div className="close-button text-center">
                             <div className="button">
-                                Затвори
+                                Close
                             </div>
                         </div>
                     </div>
                     <div className="buttons-mobile text-center" id="buttons-mobile">
                         <div className="more-button">
                             <div onClick={() => setIsOpen(true)} >
-                                Подробности<span>&#10548;</span>
+                                Details<span>&#10548;</span>
                             </div>
                         </div>
                         <div className="pay-button-mobile">
-                            <button name="submit_pay_rent_moto">Плати 120 лв</button>
+                            <button name="submit_pay_rent_moto">Pay 120 lv</button>
                         </div>
                     </div>
                     <div className="clearfix" />
@@ -271,7 +269,7 @@ export default function Checkout() {
                                 <hr />
                                 <div className="checkout-2-boxs">
                                     <div className="start-date-rent">
-                                        <h5>Наемане</h5>
+                                        <h5>Start</h5>
                                         <div className="date">
                                             <img src="/images/icons/icons8-date-50.png" alt="" />
                                             <input type="hidden" name="date_from" defaultValue="03.03.2025" />
@@ -279,20 +277,20 @@ export default function Checkout() {
                                         </div>
                                         <div className="location">
                                             <img src="/images/icons/icons8-airport-64.png" alt="" />
-                                            от летище
+                                            from Airport
                                             {/*
                                             <input type="hidden" name="delivery" defaultValue="от летище" />
                                             <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
-                                            от хотел
+                                            from a Hotel
                                             <input type="hidden" name="delivery" defaultValue="от хотел" />
                                             <img src="/images/icons/icons8-office-50.png" alt="" />
-                                            от офис
+                                            from Office
                                             <input type="hidden" name="delivery" defaultValue="от офис" />
                                             */}
                                         </div>
                                     </div>
                                     <div className="end-date-rent">
-                                        <h5>Отдаване</h5>
+                                        <h5>End</h5>
                                         <div className="date">
                                             <img src="/images/icons/icons8-date-50.png" alt="" />
                                             <input type="hidden" name="date_to" defaultValue="03.10.2025" />
@@ -300,14 +298,14 @@ export default function Checkout() {
                                         </div>
                                         <div className="location">
                                             <img src="/images/icons/icons8-airport-64.png" alt="" />
-                                            от летище
+                                            from Airport
                                             <input type="hidden" name="bring_back" defaultValue="от летище" />
                                             {/*
                                             <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
-                                            от хотел
+                                            from a Hotel
                                             <input type="hidden" name="bring_back" defaultValue="от хотел" />
                                             <img src="/images/icons/icons8-office-50.png" alt="" />
-                                            от офис
+                                            from Office
                                             <input type="hidden" name="bring_back" defaultValue="от офис" />
                                             */}
                                         </div>
@@ -317,56 +315,56 @@ export default function Checkout() {
                                 <div className="checkout-2-boxs">
                                     <div className="description">
                                         <input type="hidden" name="id_motorcycle" defaultValue="id" />
-                                        <div className="desc-header">Наем на мотоциклет 7 дни</div>
+                                        <div className="desc-header">Moto Rent 7 days</div>
                                         <input type="hidden" name="days" defaultValue={7} />
-                                        <div className="desc-sub">Наем за ден</div>
-                                        <div className="desc-header">Добавки</div>
-                                        <div className="desc-sub">Екипировка</div>
-                                        <div className="desc-sub">Каска</div>
-                                        <div className="desc-sub">Празен резервоар</div>
-                                        <div className="desc-sub">Доставяне/летище/</div>
-                                        <div className="desc-sub">Връщане/летище/</div>
-                                        <div className="desc-sub">Доставяне/хотел/</div>
-                                        <div className="desc-sub">Връщане/хотел/</div>
+                                        <div className="desc-sub">Rent for day</div>
+                                        <div className="desc-header">Add-ons</div>
+                                        <div className="desc-sub">Equipment </div>
+                                        <div className="desc-sub">Helmet</div>
+                                        <div className="desc-sub">Empty tank</div>
+                                        <div className="desc-sub">Take/airport/</div>
+                                        <div className="desc-sub">Return/airport/</div>
+                                        <div className="desc-sub">Take/hotel/</div>
+                                        <div className="desc-sub">Return/hotel/</div>
                                         <div className="desc-header">
-                                            <b>Общо</b>
+                                            <b>All</b>
                                         </div>
                                     </div>
                                     <div className="checkout-prices">
-                                        <div className="price-header">70 лв.</div>
-                                        <div className="price-sub">120 лв.</div>
-                                        <div className="price-header">0 лв.</div>
+                                        <div className="price-header">70 lv.</div>
+                                        <div className="price-sub">120 lv.</div>
+                                        <div className="price-header">0 lv.</div>
                                         <div className="price-sub">
-                                            0 лв.
+                                            0 lv.
                                             <input type="hidden" name="equipment" defaultValue={0} />
                                         </div>
                                         <div className="price-sub">
-                                            0 лв.
+                                            0 lv.
                                             <input type="hidden" name="helmet" defaultValue={0} />
                                         </div>
                                         <div className="price-sub">
-                                            0 лв.
+                                            0 lv.
                                             <input type="hidden" name="tank" defaultValue={0} />
                                         </div>
-                                        <div className="price-sub">0 лв.</div>
-                                        <div className="price-sub">0 лв.</div>
-                                        <div className="price-sub">0 лв.</div>
-                                        <div className="price-sub">0 лв.</div>
+                                        <div className="price-sub">0 lv.</div>
+                                        <div className="price-sub">0 lv.</div>
+                                        <div className="price-sub">0 lv.</div>
+                                        <div className="price-sub">0 lv.</div>
                                         <div className="price-header">
-                                            <b>120 лв.</b>
+                                            <b>120 lv.</b>
                                         </div>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="checkout-2-boxs">
                                     <div className="pay-now">
-                                        <b>Плати сега</b>
-                                        <p>120 лв.</p>
+                                        <b>Pay now</b>
+                                        <p>120 lv.</p>
                                         <input type="hidden" name="paid" defaultValue={120} />
                                     </div>
                                     <div className="pay-onsite">
-                                        <b>Плати на място</b>
-                                        <p>120 лв.</p>
+                                        <b>Pay after</b>
+                                        <p>120 lv.</p>
                                         <input type="hidden" name="afterpay" defaultValue={120} />
                                     </div>
                                 </div>
@@ -375,12 +373,12 @@ export default function Checkout() {
                                     <input
                                         type="submit"
                                         name="submit_pay_rent_moto"
-                                        defaultValue="Плати 120 лв"
+                                        defaultValue="Pay 120 lv"
                                     />
                                 </div>
                                 <div className="close-button text-center">
                                     <div className="button" onClick={() => setIsOpen(false)}>
-                                        Затвори
+                                        Close
                                     </div>
                                 </div>
                             </div>
