@@ -1,11 +1,13 @@
+import './Comments.css';
+
 export default function Comments() {
     return(
         <>
         {/* Start section for comments */}
         <section className="comment">
                         <div className="subtitle">
-                            <h2>Последни отзиви</h2>
-                            <h3>ОТ НАШИТЕ КЛИЕНТИ.</h3>
+                            <h2 className="text-2xl font-bold">Latest Feedback</h2>
+                            <h3 className="text-4xl font-bold mt-1">WHAT OUR CLIENTS SAY.</h3>
                         </div>
                         <br />
                         <div className="comment-box">
@@ -25,10 +27,10 @@ export default function Comments() {
                         <form id="form-comment" action="" method="post" />
                         <div className="review-form">
                             <div className="subtitle">
-                                <h2>Оставете вашия отзив</h2>
-                                <h3>НИЕ ЦЕНИМ ВАШЕТО МНЕНИЕ.</h3>
+                                <h2  className="text-2xl font-bold">Leave your review</h2>
+                                <h3 className="text-4xl font-bold mt-1">WE APPRECIATE YOUR FEEDBACK.</h3>
                             </div>
-                            <label htmlFor="name">Имена:</label>
+                            <label htmlFor="name">Names:</label>
                             <input
                                 form="form-comment"
                                 type="text"
@@ -37,16 +39,7 @@ export default function Comments() {
                                 required=""
                             />
                             <br />
-                            <label htmlFor="email">E-mail:</label>
-                            <input
-                                form="form-comment"
-                                type="email"
-                                id="email"
-                                name="email"
-                                required=""
-                            />
-                            <br />
-                            <label htmlFor="rating">Оценка:</label>
+                            <label htmlFor="rating">Rating:</label>
                             <div className="rating">
                                 <span className="star">
                                     ★
@@ -73,7 +66,7 @@ export default function Comments() {
                                 />
                             </div>
                             <br />
-                            <label htmlFor="comment">Отзив:</label>
+                            <label htmlFor="comment">Review:</label>
                             <textarea
                                 form="form-comment"
                                 id="comment"
@@ -87,7 +80,7 @@ export default function Comments() {
                             <input
                                 form="form-comment"
                                 type="submit"
-                                defaultValue="Изпрати"
+                                defaultValue="Send"
                                 name="submit-comment"
                                 className="btn btn-secondary"
                             />

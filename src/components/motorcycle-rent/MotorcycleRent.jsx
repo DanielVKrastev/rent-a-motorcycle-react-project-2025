@@ -289,27 +289,15 @@ export default function MotorcycleRent() {
                             <div className="policy-box-text">
                                 You must be <b>at least 21 years old</b> and have 12 months of driving experience.
                             </div>
+                            {/*}
                             <div className="policy-box-text">
                                 You must be <b>at least 19 years old</b> and have 12 months of driving experience.
                             </div>
                             <div className="policy-box-text">
                                 You must be <b>at least 17 years old</b> and have 12 months of driving experience.
                             </div>
+                            {/*}
 
-                        </div>
-                        <div className="policy-box">
-                            <div className="policy-box-icon">
-                                <img src="/images/icons/policy/icons8-book-48.png" alt="" />
-                            </div>
-                            <div className="policy-box-text">
-                                Този мотоциклет изисква свидетелство - <b>категория А</b>.
-                            </div>
-                            <div className="policy-box-text">
-                                Този мотоциклет изисква свидетелство - <b>категория А2</b>.
-                            </div>
-                            <div className="policy-box-text">
-                                Този мотоциклет изисква свидетелство - <b>категория А1</b>.
-                            </div>
                         </div>
                         <div className="policy-box">
                             <div className="policy-box-icon">
@@ -318,12 +306,14 @@ export default function MotorcycleRent() {
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A</b> license.
                             </div>
+                            {/*}
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A2</b> license.
                             </div>
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A1</b> license.
                             </div>
+                            {*/}
                         </div>
                         <div className="policy-box">
                             <div className="policy-box-icon">
