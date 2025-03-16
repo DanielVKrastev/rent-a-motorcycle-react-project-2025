@@ -4,6 +4,7 @@ import MostRented from "../most-rented/MostRented";
 import DatePicker from "react-datepicker";
 
 import './MotorcycleRent.css';
+import Comments from "./comments/Comments";
 
 export default function MotorcycleRent() {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,44 +35,44 @@ export default function MotorcycleRent() {
                         <h2>Honda CBR 600RR </h2>
                     </div>
                     <div className="moto-type">
-                        <h3>спортен&gt;</h3>
+                        <h3>Sport</h3>
                     </div>
                     <div className="moto-specs">
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-moto-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">600 куб</div>
+                            <div className="moto-specs-text">600 cc</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-horse-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">115 кн</div>
+                            <div className="moto-specs-text">115 hp</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-speed-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">266 км/ч</div>
+                            <div className="moto-specs-text">266 km/h</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-calendar-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">2009 г.</div>
+                            <div className="moto-specs-text">2009 year</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-weight-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">210 кг.</div>
+                            <div className="moto-specs-text">210 kg</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
                                 <img src="/images/icons/icons8-fuel-50.png" alt="" />
                             </div>
-                            <div className="moto-specs-text">20 л.</div>
+                            <div className="moto-specs-text">20 L</div>
                         </div>
                         <div className="moto-specs-box">
                             <div className="moto-specs-icons">
@@ -84,48 +85,46 @@ export default function MotorcycleRent() {
                     {/* Start section for Include in price */}
                     <section className="include-price">
                         <div className="subtitle">
-                            <h2>Включено в цената</h2>
-                            <h3>ВСИЧКИ ОБИЧАТ БЕЗПЛАТНИТЕ НЕЩА!</h3>
+                            <h2 className="text-2xl font-bold">Included in the price</h2>
+                            <h3 className="text-4xl font-bold mt-1">EVERYONE LOVES FREE STUFF!</h3>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-motorcycle-64.png" alt="" />
                             </div>
-                            <div className="container-moto-rent-text">Гарантиран модел</div>
+                            <div className="container-moto-rent-text">Model Guarantee</div>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-shake-phone-64.png" alt="" />
                             </div>
-                            <div className="container-moto-rent-text">Държач за телефон</div>
+                            <div className="container-moto-rent-text">Phone holder</div>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-odometer-64.png" alt="" />
                             </div>
-                            <div className="container-moto-rent-text">
-                                Без ограничения на пробега
-                            </div>
+                            <div className="container-moto-rent-text">No mileage restrictions</div>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-jacket-64.png" alt="" />
                             </div>
-                            <div className="container-moto-rent-text">Включена екипировка</div>
+                            <div className="container-moto-rent-text">Equipment included</div>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-petrol-full-64.png" alt="" />
                             </div>
                             <div className="container-moto-rent-text">
-                                Пълен резервоар с гориво
+                                Full tank included
                             </div>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
                                 <img src="/images/icons/icons8-suitcase-64.png" alt="" />
                             </div>
-                            <div className="container-moto-rent-text">Куфар за мотор</div>
+                            <div className="container-moto-rent-text">Motorcycle suitcase</div>
                         </div>
                         <div className="clearfix" />
                     </section>
@@ -134,8 +133,8 @@ export default function MotorcycleRent() {
                     {/* Start section for add-ons option */}
                     <section className="add-option" id="sumCheckboxes">
                         <div className="subtitle">
-                            <h2>Налични добавки</h2>
-                            <h3>ИСКАШ НЯКАКВА ДОПЪЛНИТЕЛНА ЕКСТРА?</h3>
+                            <h2 className="text-2xl font-bold">Available add-ons</h2>
+                            <h3 className="text-4xl font-bold mt-1">DO YOU WANT ANY ADDITIONAL EXTRAS?</h3>
                         </div>
                         <div className="container-moto-rent">
                             <div className="container-moto-rent-icons">
@@ -150,7 +149,7 @@ export default function MotorcycleRent() {
                                     data-amount={25.0}
 
                                 />
-                                Екипировка за пасажер <b>+ 25 лв.</b>
+                                Passenger equipment <b>+ 25 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -166,7 +165,7 @@ export default function MotorcycleRent() {
                                     data-amount={20.0}
 
                                 />
-                                Каска за пасажер <b>+ 20 лв.</b>
+                                Passenger helmet <b>+ 20 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -182,7 +181,7 @@ export default function MotorcycleRent() {
                                     data-amount={60.0}
 
                                 />
-                                Върни с празен резервоар <b>+ 60 лв.</b>
+                                Return with an empty tank <b>+ 60 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -198,7 +197,7 @@ export default function MotorcycleRent() {
                                     data-amount={25.0}
 
                                 />
-                                Доставяне /летище/ <b>+ 25 лв.</b>
+                                Take on /Airport/ <b>+ 25 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -214,7 +213,7 @@ export default function MotorcycleRent() {
                                     data-amount={25.0}
 
                                 />
-                                Връщане /летище/ <b>+ 25 лв.</b>
+                                Return /Airport/ <b>+ 25 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -230,7 +229,7 @@ export default function MotorcycleRent() {
                                     data-amount={20.0}
 
                                 />
-                                Доставяне /хотел/ <b>+ 20 лв.</b>
+                                Take on /Hotel/ <b>+ 20 lv.</b>
                             </div>
                         </div>
                         <div className="container-moto-rent">
@@ -246,7 +245,7 @@ export default function MotorcycleRent() {
                                     data-amount={20.0}
 
                                 />
-                                Връщане /хотел/ <b>+ 20 лв.</b>
+                                Return /Hotel/ <b>+ 20 lv.</b>
                             </div>
                         </div>
                         <div className="clearfix" />
@@ -256,15 +255,15 @@ export default function MotorcycleRent() {
                     {/* Start section for policy rental */}
                     <section className="policy-rent">
                         <div className="subtitle">
-                            <h2>Политика за наемане</h2>
-                            <h3>НЕЩА КОИТО ТРЯБВА ДА ЗНАЕТЕ!</h3>
+                            <h2 className="text-2xl font-bold">Rental Policy</h2>
+                            <h3 className="text-4xl font-bold mt-1">WHAT YOU NEED TO KNOW!</h3>
                         </div>
                         <div className="policy-box">
                             <div className="policy-box-icon">
                                 <img src="/images/icons/policy/icons8-dolar-64.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                <b>Платете сега 20% от сумата</b>, а останалото ще платите на място.
+                                <b>Pay just 20% now</b>, and settle the rest on site.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -272,8 +271,7 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-refund-50.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Може да анулирате <b>заявката 7 дни преди дата на наемане.</b>{" "}
-                                Получавате пълната сума.
+                                You can cancel your booking <b>up to 7 days before</b> the rental date and receive a full refund.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -281,7 +279,7 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-road-64.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Включен е <b>неограничен</b> пробег.
+                                <b>No</b> mileage restrictions.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -289,17 +287,15 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-man-50.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Трябва да сте на <b>поне 21 години</b> и да имате 12 месеца
-                                шофьорски стаж.
+                                You must be <b>at least 21 years old</b> and have 12 months of driving experience.
                             </div>
                             <div className="policy-box-text">
-                                Трябва да сте на <b>поне 19 години</b> и да имате 12 месеца
-                                шофьорски стаж.
+                                You must be <b>at least 19 years old</b> and have 12 months of driving experience.
                             </div>
                             <div className="policy-box-text">
-                                Трябва да сте на <b>поне 17 години</b> и да имате 12 месеца
-                                шофьорски стаж.
+                                You must be <b>at least 17 years old</b> and have 12 months of driving experience.
                             </div>
+
                         </div>
                         <div className="policy-box">
                             <div className="policy-box-icon">
@@ -317,12 +313,24 @@ export default function MotorcycleRent() {
                         </div>
                         <div className="policy-box">
                             <div className="policy-box-icon">
+                                <img src="/images/icons/policy/icons8-book-48.png" alt="" />
+                            </div>
+                            <div className="policy-box-text">
+                                This motorcycle requires a <b>Category A</b> license.
+                            </div>
+                            <div className="policy-box-text">
+                                This motorcycle requires a <b>Category A2</b> license.
+                            </div>
+                            <div className="policy-box-text">
+                                This motorcycle requires a <b>Category A1</b> license.
+                            </div>
+                        </div>
+                        <div className="policy-box">
+                            <div className="policy-box-icon">
                                 <img src="/images/icons/policy/icons8-delivery-64.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                {" "}
-                                Услугите за доставка/прибиране за са{" "}
-                                <b>района на Варна и по преценка</b>.
+                                Delivery/pickup services are available <b>in the Varna area and upon request</b>.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -330,7 +338,7 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-earth-50.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Не е позволено преминаване в <b>друга държава</b>.
+                                Crossing <b>into another country</b> is not allowed.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -338,7 +346,7 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-more-50.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Включеното в цената и платените добавки зависят от наличността.
+                                Included services and paid extras are subject to availability.
                             </div>
                         </div>
                         <div className="policy-box">
@@ -346,107 +354,18 @@ export default function MotorcycleRent() {
                                 <img src="/images/icons/policy/icons8-call-50.png" alt="" />
                             </div>
                             <div className="policy-box-text">
-                                Ако имате въпроси и някакви изисквания, обърнете се към{" "}
-                                <a href="/about.php">"Контакти"</a>{" "}
+                                If you have any questions or specific requirements, please visit our{" "}
+                                <a href="/about.php">"Contact"</a> page.
                             </div>
                         </div>
+
                         <div className="clearfix" />
                     </section>
                     {/* End section for policy rental */}
                     <hr />
-                    {/* Start section for comments */}
-                    <section className="comment">
-                        <div className="subtitle">
-                            <h2>Последни отзиви</h2>
-                            <h3>ОТ НАШИТЕ КЛИЕНТИ.</h3>
-                        </div>
-                        <br />
-                        <div className="comment-box">
-                            <div className="comment-name">Daniel</div>
-                            <div className="comment-date"> - 03 March 2025 - </div>
-                            <div className="comment-rating">
-                                <img src="/images/ratings/rating-5.png" alt="" />
-                            </div>
-                            <div className="comment-text">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto
-                                exercitationem nulla ea, aliquam dolor nihil dolores quidem quos
-                                commodi esse eum animi nostrum distinctio molestias temporibus
-                                possimus vero. Dolor, sit?
-                            </div>
-                        </div>
-                        {/* Form for new comments */}
-                        <form id="form-comment" action="" method="post" />
-                        <div className="review-form">
-                            <div className="subtitle">
-                                <h2>Оставете вашия отзив</h2>
-                                <h3>НИЕ ЦЕНИМ ВАШЕТО МНЕНИЕ.</h3>
-                            </div>
-                            <label htmlFor="name">Имена:</label>
-                            <input
-                                form="form-comment"
-                                type="text"
-                                id="name"
-                                name="name"
-                                required=""
-                            />
-                            <br />
-                            <label htmlFor="email">E-mail:</label>
-                            <input
-                                form="form-comment"
-                                type="email"
-                                id="email"
-                                name="email"
-                                required=""
-                            />
-                            <br />
-                            <label htmlFor="rating">Оценка:</label>
-                            <div className="rating">
-                                <span className="star">
-                                    ★
-                                </span>
-                                <span className="star">
-                                    ★
-                                </span>
-                                <span className="star">
-                                    ★
-                                </span>
-                                <span className="star">
-                                    ★
-                                </span>
-                                <span className="star">
-                                    ★
-                                </span>
-                                <input
-                                    form="form-comment"
-                                    type="hidden"
-                                    defaultValue={0}
-                                    className="rating-input"
-                                    name="rating"
-                                    required=""
-                                />
-                            </div>
-                            <br />
-                            <label htmlFor="comment">Отзив:</label>
-                            <textarea
-                                form="form-comment"
-                                id="comment"
-                                name="comment"
-                                rows={4}
-                                cols={50}
-                                required=""
-                                defaultValue={""}
-                            />
-                            <br />
-                            <input
-                                form="form-comment"
-                                type="submit"
-                                defaultValue="Изпрати"
-                                name="submit-comment"
-                                className="btn btn-secondary"
-                            />
-                        </div>
-                    </section>
-                    {/* End section for comments */}
+                    
+                    <Comments />
+
                 </div>
                 {/* Start rent box */}
                 <div className="page-box-right text-center" id="page-box-right">
@@ -456,7 +375,7 @@ export default function MotorcycleRent() {
                             alt=""
                         />
                     </div>
-                    <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
+                    <div className="rent-for-days js-rent-for-days">Rent for 1 day</div>
                     <input
                         form="form-reservation"
                         type="hidden"
@@ -464,7 +383,7 @@ export default function MotorcycleRent() {
                         defaultValue={1}
                         className="js-rent-for-days-input"
                     />
-                    <div className="rent-per-day js-rent-per-day">(70.00 лв. на ден)</div>
+                    <div className="rent-per-day js-rent-per-day">(70.00 lv. / day)</div>
                     <input
                         form="form-reservation"
                         type="hidden"
@@ -472,7 +391,7 @@ export default function MotorcycleRent() {
                         defaultValue={70.0}
                         className="js-rent-per-day-input"
                     />
-                    <div className="rent-price-sum js-rent-price-sum">70 лв.</div>
+                    <div className="rent-price-sum js-rent-price-sum">70.00 lv.</div>
                     <input
                         form="form-reservation"
                         type="hidden"
@@ -491,7 +410,7 @@ export default function MotorcycleRent() {
                     <hr />
 
                     <div className="start-rent" id="start-rent">
-                        <p>Дата на наемане </p>
+                        <p>Rental date</p>
                         <DatePicker
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
@@ -500,7 +419,7 @@ export default function MotorcycleRent() {
                         />
                     </div>
                     <div className="end-rent">
-                        <p>Дата на отдаване </p>
+                        <p>Return date</p>
                         <DatePicker
                             selected={endDate}
                             onChange={(date) => setEndDate(date)}
@@ -516,7 +435,7 @@ export default function MotorcycleRent() {
                                 name="submit_check_button"
                                 id="submit_check_button"
                             >
-                                Продължи
+                                Next
                             </button>
                         </Link>
 
@@ -525,18 +444,18 @@ export default function MotorcycleRent() {
                     <div className="more-rent">
                         <div className="more-rent-item">
                             <img src="/images/icons/icons8-check-48.png" alt="" />
-                            <div>Гъвкаво анулиране</div>
+                            <div>Flexible cancellation</div>
                         </div>
                         <div className="more-rent-item">
                             <img src="/images/icons/icons8-check-48.png" alt="" />
-                            <div>Безплатна корекция</div>
+                            <div>Free correction</div>
                         </div>
                     </div>
 
                 </div>
                 <div className="page-box-right-mobile text-center" id="mobile-box">
-                    <div className="rent-for-days js-rent-for-days-mobile">Наем за 1 ден</div>
-                    <div className="rent-price-sum js-rent-price-sum-mobile">70 лв.</div>
+                    <div className="rent-for-days js-rent-for-days-mobile">Rent for 1 day</div>
+                    <div className="rent-price-sum js-rent-price-sum-mobile">70.00 lv.</div>
                     <div className="next-button-mobile">
 
                         <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
@@ -558,130 +477,130 @@ export default function MotorcycleRent() {
             <div id="page-boxs-end" />
             {/* Small Modal */}
             {isOpen && (
-            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
-                <div
-                    id="small-modal"
-                    tabIndex={-1}
-                    className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
-                    aria-modal="true"
-                    role="dialog"
-                >
-                    <div className="relative w-full max-w-md max-h-full">
-                        {/* Modal content */}
-                        <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center" onClick={(e) => e.stopPropagation()}>
-                            {/* Modal header */}
-                            <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                                    Наем на Honda CBR 600RR
-                                </h3>
-                                <button
-                                    type="button"
-                                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    <svg
-                                        className="w-3 h-3"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 14 14"
+                <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+                    <div
+                        id="small-modal"
+                        tabIndex={-1}
+                        className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
+                        aria-modal="true"
+                        role="dialog"
+                    >
+                        <div className="relative w-full max-w-md max-h-full">
+                            {/* Modal content */}
+                            <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md text-center" onClick={(e) => e.stopPropagation()}>
+                                {/* Modal header */}
+                                <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+                                        Rent a Honda CBR 600RR
+                                    </h3>
+                                    <button
+                                        type="button"
+                                        className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        onClick={() => setIsOpen(false)}
                                     >
-                                        <path
-                                            stroke="currentColor"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                        />
-                                    </svg>
-                                    <span className="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            {/* Modal body */}
-                            <div className="p-4 md:p-1 space-y-4">
-
-                                <div className="rent-for-days js-rent-for-days">Наем за 1 ден</div>
-                                <input
-                                    form="form-reservation"
-                                    type="hidden"
-                                    name="rent-days"
-                                    defaultValue={1}
-                                    className="js-rent-for-days-input"
-                                />
-                                <div className="rent-per-day js-rent-per-day">(70.00 лв. на ден)</div>
-                                <input
-                                    form="form-reservation"
-                                    type="hidden"
-                                    name="rent-per-day"
-                                    defaultValue={70.0}
-                                    className="js-rent-per-day-input"
-                                />
-                                <div className="rent-price-sum js-rent-price-sum">70 лв.</div>
-                                <input
-                                    form="form-reservation"
-                                    type="hidden"
-                                    name="moto-rent-price"
-                                    defaultValue={70.0}
-                                    className="js-moto-rent-price-input"
-                                />
-                                <input
-                                    form="form-reservation"
-                                    type="hidden"
-                                    name="rent-price-sum"
-                                    defaultValue={70.0}
-                                    className="js-rent-price-sum-input"
-                                />
-                                <hr />
-
-                                <div className="start-rent" id="start-rent">
-                                    <p>Дата на наемане </p>
-                                    <DatePicker
-                                        selected={startDate}
-                                        onChange={(date) => setStartDate(date)}
-                                        dateFormat="dd/MM/yyyy"
-                                        minDate={new Date()}
-                                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    />
-                                </div>
-                                <div className="end-rent">
-                                    <p>Дата на отдаване </p>
-                                    <DatePicker
-                                        selected={endDate}
-                                        onChange={(date) => setEndDate(date)}
-                                        dateFormat="dd/MM/yyyy"
-                                        minDate={startDate}
-                                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    />
-                                </div>
-                                <div className="check-button">
-                                    <Link to="/checkout/motorcycleId" onClick={() => setIsOpen(false)}>
-                                        <button
-                                            name="submit_check_button"
-                                            id="submit_check_button"
+                                        <svg
+                                            className="w-3 h-3"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 14 14"
                                         >
-                                            Продължи
-                                        </button>
-                                    </Link>
+                                            <path
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                            />
+                                        </svg>
+                                        <span className="sr-only">Close modal</span>
+                                    </button>
                                 </div>
-                            </div>
-                            {/* Modal footer */}
-                            <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <div className="more-rent">
-                                    <div className="more-rent-item">
-                                        <img src="/images/icons/icons8-check-48.png" alt="" />
-                                        <div>Гъвкаво анулиране</div>
+                                {/* Modal body */}
+                                <div className="p-4 md:p-1 space-y-4">
+
+                                    <div className="rent-for-days js-rent-for-days">Rent for 1 day</div>
+                                    <input
+                                        form="form-reservation"
+                                        type="hidden"
+                                        name="rent-days"
+                                        defaultValue={1}
+                                        className="js-rent-for-days-input"
+                                    />
+                                    <div className="rent-per-day js-rent-per-day">(70.00 lv./ day)</div>
+                                    <input
+                                        form="form-reservation"
+                                        type="hidden"
+                                        name="rent-per-day"
+                                        defaultValue={70.0}
+                                        className="js-rent-per-day-input"
+                                    />
+                                    <div className="rent-price-sum js-rent-price-sum">70.00 lv.</div>
+                                    <input
+                                        form="form-reservation"
+                                        type="hidden"
+                                        name="moto-rent-price"
+                                        defaultValue={70.0}
+                                        className="js-moto-rent-price-input"
+                                    />
+                                    <input
+                                        form="form-reservation"
+                                        type="hidden"
+                                        name="rent-price-sum"
+                                        defaultValue={70.0}
+                                        className="js-rent-price-sum-input"
+                                    />
+                                    <hr />
+
+                                    <div className="start-rent" id="start-rent">
+                                        <p>Rent date</p>
+                                        <DatePicker
+                                            selected={startDate}
+                                            onChange={(date) => setStartDate(date)}
+                                            dateFormat="dd/MM/yyyy"
+                                            minDate={new Date()}
+                                            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
                                     </div>
-                                    <div className="more-rent-item">
-                                        <img src="/images/icons/icons8-check-48.png" alt="" />
-                                        <div>Безплатна корекция</div>
+                                    <div className="end-rent">
+                                        <p>Return date</p>
+                                        <DatePicker
+                                            selected={endDate}
+                                            onChange={(date) => setEndDate(date)}
+                                            dateFormat="dd/MM/yyyy"
+                                            minDate={startDate}
+                                            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                    </div>
+                                    <div className="check-button">
+                                        <Link to="/checkout/motorcycleId" onClick={() => setIsOpen(false)}>
+                                            <button
+                                                name="submit_check_button"
+                                                id="submit_check_button"
+                                            >
+                                                Next
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                                {/* Modal footer */}
+                                <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                    <div className="more-rent">
+                                        <div className="more-rent-item">
+                                            <img src="/images/icons/icons8-check-48.png" alt="" />
+                                            <div>Flexible cancellation</div>
+                                        </div>
+                                        <div className="more-rent-item">
+                                            <img src="/images/icons/icons8-check-48.png" alt="" />
+                                            <div>Free correction</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
             )}
 
 
