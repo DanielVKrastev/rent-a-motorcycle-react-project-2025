@@ -5,7 +5,20 @@
 ...
 
   ## Install local project
-  First Run the following command to install all required dependencies:
-  <p><b><i>npm i</i></b></p>
-  Second start the development server using:
-  <p><b><i>npm run dev</i></b></p>
+  1. Clone the repository:
+  ```bash
+  git clone https://github.com/DanielVKrastev/rent-a-motorcycle-react-project-2025.git
+  cd rent-a-motorcycle-react-project-2025
+  ```
+  
+  2. Run the following command to install all required dependencies:
+  ```bash
+  npm i
+  ```
+  3. Start the development server using:
+  ```bash
+  npm run dev
+  ```
+  
+  4. Go to <a>http://localhost:5173</a> (or the displayed port) in your browser.
+
