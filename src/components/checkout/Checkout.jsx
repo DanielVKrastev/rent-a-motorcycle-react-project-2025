@@ -25,10 +25,10 @@ export default function Checkout() {
                     <div className="reservation-data-left" id="reservation-data-left">
                         {/* Start section for reservation for data driver */}
                         <section className="reservation-driver-section">
-                            <h1 className="text-2xl font-bold">Reservation details</h1>
+                            <h1 className="text-3xl font-bold">Reservation details</h1>
                             <br />
-                            <h2 className="text-1xl font-bold">Driver details</h2>
-                            <h3 className="text-1xl font-bold">This information will be used for rental confirmation.</h3>
+                            <h2 className="text-2xl font-bold">Driver details</h2>
+                            <h3 className="text-2xl font-bold">This information will be used for rental confirmation.</h3>
                             <div className="input-reservation-box">
                                 <label htmlFor="first-name">Name *</label>
                                 <br />
@@ -85,8 +85,8 @@ export default function Checkout() {
                         <hr />
                         {/* Start section for Terms & Conditions */}
                         <section className="terms-section">
-                            <h2 className="text-1xl font-bold">Terms and conditions</h2>
-                            <h3 className="text-1xl font-bold">Accept the terms to continue</h3>
+                            <h2 className="text-2xl font-bold">Terms and conditions</h2>
+                            <h3 className="text-2xl font-bold">Accept the terms to continue</h3>
                             <div className="terms-box">
                                 <div className="terms-checkbox text-center">
                                     <input
