@@ -16,14 +16,12 @@ export default {
         if(user){
             throw new Error('User already exists');
         }
+        
+        const createdUser = await User.create({...userData, role: 'User'});
+        const token = generateToken(createdUser);
+        const userAddToken = await User.findByIdAndUpdate(createdUser._id, {accessToken: token}, { runValidators: true })
 
-        let userDataRole = {...userData, role: 'User'};
-
-        const token = generateToken(userDataRole);
-
-        const createdUser = await User.create({...userDataRole, accessToken: token});
-
-        return { _id: createdUser._id, accessToken: createdUser.accessToken, email: createdUser.email, username: createdUser.username};
+        return { _id: userAddToken._id, accessToken: token, email: userAddToken.email, username: userAddToken.username};
     },
     async login(email, password){
         const user = await User.findOne({email});
