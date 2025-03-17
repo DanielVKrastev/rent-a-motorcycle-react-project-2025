@@ -1,6 +1,27 @@
 import { Link } from "react-router";
 
+import userService from "../../services/userService";
+import { getErrorMessage } from "../../utils/error-unitls";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
+
 export default function Login() {
+    const { userLoginHandler } = useContext(UserContext);
+
+    async function submitActionLogin(formData){
+        const {email, password} = Object.fromEntries(formData);
+        
+        try{
+            const userData = await userService.login(email, password);
+            console.log(userData);
+            userLoginHandler(userData);
+        }catch(err){
+            const error = getErrorMessage(err);
+            console.log(error);
+        }
+
+    }
+
     return (
         <>
 <section
@@ -20,7 +41,7 @@ export default function Login() {
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                     Sign in to your account
                 </h1>
-                <form className="space-y-4 md:space-y-6" action="#">
+                <form className="space-y-4 md:space-y-6" action={submitActionLogin}>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                             Your email
@@ -64,9 +85,6 @@ export default function Login() {
                                 </label>
                             </div>
                         </div>
-                        <a href="#" className="text-sm font-medium text-blue-600 hover:underline">
-                            Forgot password?
-                        </a>
                     </div>
                     <button
                         type="submit"
