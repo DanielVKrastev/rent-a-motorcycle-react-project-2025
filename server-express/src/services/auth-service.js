@@ -17,10 +17,13 @@ export default {
             throw new Error('User already exists');
         }
 
-        const createdUser = await User.create({...userData, role: 'User'});
+        let userDataRole = {...userData, role: 'User'};
 
-        const token = generateToken(createdUser);
-        return { _id: createdUser._id, accessToken: token, email: createdUser.email, username: createdUser.username};
+        const token = generateToken(userDataRole);
+
+        const createdUser = await User.create({...userDataRole, accessToken: token});
+
+        return { _id: createdUser._id, accessToken: createdUser.accessToken, email: createdUser.email, username: createdUser.username};
     },
     async login(email, password){
         const user = await User.findOne({email});
@@ -33,8 +36,7 @@ export default {
             throw new Error('Invalid email');
         }
 
-        const token = generateToken(user);
-        return { _id: user._id, accessToken: token, email: user.email, username: user.username};
+        return { _id: user._id, accessToken: user.accessToken, email: user.email, username: user.username};
     },
     async getAll(){
         const users = await User.find();

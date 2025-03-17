@@ -13,13 +13,11 @@ export default function Login() {
         
         try{
             const userData = await userService.login(email, password);
-            console.log(userData);
             userLoginHandler(userData);
         }catch(err){
             const error = getErrorMessage(err);
             console.log(error);
         }
-
     }
 
     return (

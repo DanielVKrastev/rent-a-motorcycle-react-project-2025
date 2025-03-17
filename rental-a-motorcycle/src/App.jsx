@@ -24,8 +24,9 @@ import PageNotFound from './components/page-not-found/PageNotFound';
 
 import { UserContext } from './contexts/UserContext';
 import { useState } from 'react';
-import { saveUserData } from './utils/userUtils';
+import { getUserData, saveUserData } from './utils/userUtils';
 import PrivateGuard from './guards/PrivateGuard';
+import PrivateAdminGuard from './guards/PrivateAdminGuard';
 
 function App() {
   const [user, setUser] = useState([]);
@@ -35,8 +36,14 @@ function App() {
     saveUserData(userData);
   }
 
+  useState(() => {
+    const localUserData = getUserData();
+    if(localUserData._id && localUserData._id !== undefined){
+      setUser(localUserData);
+    }
+  }, [user]);
+
   console.log(user);
-  
 
   return (
     <>
@@ -56,12 +63,14 @@ function App() {
 
               <Route element={<PrivateGuard />}>
                 <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
-                <Route path="/admin" element={<AdminDashboard />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="users" element={<UserTable />} />
-                    <Route path="motorcycle" element={<MotorcycleTable />} />
-                    <Route path="reservation" element={<Reservation />} />
-                </Route>
+                <Route element={<PrivateAdminGuard />}>
+                  <Route path="/admin" element={<AdminDashboard />}>
+                      <Route index element={<Dashboard />} />
+                      <Route path="users" element={<UserTable />} />
+                      <Route path="motorcycle" element={<MotorcycleTable />} />
+                      <Route path="reservation" element={<Reservation />} />
+                  </Route>
+                  </Route>
                 <Route path="/user-settings" element={<UserSettings />} />
               </Route>
 

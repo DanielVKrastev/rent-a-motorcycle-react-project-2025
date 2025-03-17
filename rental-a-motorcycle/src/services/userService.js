@@ -9,6 +9,9 @@ export default{
     login(email, password) {
         return request('POST', `${baseUrl}/login`, { email, password });
     },
+    getOne(userId) {
+        return request('GET', `${baseUrl}/users/${userId}`);
+    },
     logout() {
         request('GET', `${baseUrl}/logout`);
     }

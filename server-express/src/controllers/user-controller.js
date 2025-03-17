@@ -13,7 +13,7 @@ userController.get('/', checkAuthorizationToken, async (req, res) => {
     }
 });
 
-userController.get('/:userId', checkAuthorizationToken, async (req, res) => {
+userController.get('/:userId', async (req, res) => {
     const userId = req.params.userId;
     try {
         const user = await authService.getOne(userId);

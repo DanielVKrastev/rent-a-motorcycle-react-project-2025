@@ -19,6 +19,10 @@ const userScema = new Schema({
         required: true,
         minLength: 4,
     },
+    accessToken: {
+        type: String,
+        required: true,
+    },
     role: {
         type: String,
         required: true
