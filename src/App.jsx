@@ -20,6 +20,7 @@ import ContactsHeader from './components/partials/contacts-header/ContactsHeader
 import Navbar from './components/partials/navbar/Navbar';
 import Footer from './components/partials/footer/Footer';
 import UserSettings from './components/admin/user-settings/UserSettings';
+import PageNotFound from './components/page-not-found/PageNotFound';
 
 function App() {
     return (
@@ -45,6 +46,7 @@ function App() {
                         <Route path="reservation" element={<Reservation />} />
                 </Route>
                 <Route path="/user-settings" element={<UserSettings />} />
+                <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
 
           <Footer />
