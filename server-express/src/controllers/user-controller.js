@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authService from "../services/auth-service.js";
 import checkAuthorizationToken from "../middlewares/checkAuthorizationToken.js";
+import mongoose from "mongoose";
 
 const userController = Router();
 
@@ -23,14 +24,23 @@ userController.get('/:userId', async (req, res) => {
     }
 });
 
-userController.patch('/:userId', checkAuthorizationToken, async (req, res) => {
+userController.patch('/:userId', async (req, res) => {
     const userId = req.params.userId;
     const userUpdateData = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return res.status(400).json({ error: 'Invalid userId' });
+    }
+
     try {
-        const updateUser = await authService.update(userId, userUpdateData);
-        res.status(200).json(updateUser);
+        const updatedUser = await authService.update(userId, userUpdateData);
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.status(200).json(updatedUser);
     } catch (error) {
-        res.status(400).json(error.message);
+        console.error(error);
+        res.status(400).json({ error: 'Error updating user' });
     }
 });
 

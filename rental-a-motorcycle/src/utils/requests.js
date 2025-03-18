@@ -38,7 +38,6 @@ const request = async (method, url, data, options = {}) => {
 
 export default {
     get: request.bind(null, 'GET'),
-    // get: (...params) => request('GET', ...params)
     post: request.bind(null, 'POST'),
     put: request.bind(null, 'PUT'),
     patch: request.bind(null, 'PATCH'),
