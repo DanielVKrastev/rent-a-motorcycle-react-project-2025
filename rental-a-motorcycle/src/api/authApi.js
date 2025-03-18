@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import requests from "../utils/requests";
+import request from "../utils/requests";
 import { UserContext } from "../contexts/UserContext";
 import { clearUserData } from "../utils/userUtils";
 
@@ -9,7 +9,7 @@ export const useLogin = () => {
     // const abortRef = useRef(new AbortController());
 
     const login = async (email, password) =>
-        requests.post(
+        request.post(
             `${baseUrl}/login`,
             { email, password },
             // { signal: abortRef.current.signal }
@@ -28,7 +28,7 @@ export const useLogin = () => {
 
 export const useRegister = () => {
     const register = (email, username, password, rePassword) =>
-        requests.post(`${baseUrl}/register`, { email, username, password, rePassword });
+        request.post(`${baseUrl}/register`, { email, username, password, rePassword });
 
     return {
         register,
@@ -51,7 +51,7 @@ export const useLogout = () => {
             }
         };
 
-        requests.post(`${baseUrl}/logout`, null, options)
+        request.post(`${baseUrl}/logout`, null, options)
             .then(() => {
                 userLogoutHandler();
                 clearUserData();
