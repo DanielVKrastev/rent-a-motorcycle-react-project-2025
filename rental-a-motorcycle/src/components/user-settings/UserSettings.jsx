@@ -41,7 +41,7 @@ export default function UserSettings() {
       console.log('Edit success'); 
       
     }catch(err){
-      console.log(err);
+      console.log(err.message);
     }
   }
 

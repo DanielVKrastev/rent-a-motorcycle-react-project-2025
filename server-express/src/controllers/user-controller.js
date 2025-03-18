@@ -39,8 +39,7 @@ userController.patch('/:userId', async (req, res) => {
         }
         res.status(200).json(updatedUser);
     } catch (error) {
-        console.error(error);
-        res.status(400).json({ error: 'Error updating user' });
+        res.status(400).json({ error: error.message });
     }
 });
 

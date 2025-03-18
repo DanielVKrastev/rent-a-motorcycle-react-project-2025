@@ -43,13 +43,22 @@ export default {
         return users;
     },
     async getOne(userId){
-        const users = await User.findOne({ _id: userId});
-        return users;
+        const user = await User.findOne({ _id: userId});
+        return user;
     },
     async delete(userId){
         return await User.findByIdAndDelete(userId);
     },
     async update(userId, updateData){
+        const user = await this.getOne(userId);
+        
+        if(updateData.email !== user.email){
+            const userEmail = await User.find({email: updateData.email});
+            
+            if(userEmail.length > 0){
+                throw new Error('This email is already taken');
+            }
+        }
         const updatedUser = await User.findByIdAndUpdate(userId, updateData, { runValidators: true });
         return this.getOne(userId);
     },

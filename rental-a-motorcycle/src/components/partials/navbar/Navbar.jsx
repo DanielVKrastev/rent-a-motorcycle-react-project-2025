@@ -6,7 +6,7 @@ import { UserContext, useUserContext } from "../../../contexts/UserContext";
 
 export default function Navbar() {
     const [openMobileNav, setOpenMobileNav] = useState(true);
-    const { accessToken, role } = useUserContext();
+    const { accessToken, role, email } = useUserContext();
 
     function closeOpenHandlerMobileMenu() {
         setOpenMobileNav(state => !state);
@@ -106,7 +106,9 @@ export default function Navbar() {
                             </svg>
                         </button>
                     </div>
-
+                <div>
+                    
+                </div>
                     <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse" hidden={!accessToken}>
                         <button
                             type="button"
@@ -129,10 +131,10 @@ export default function Navbar() {
                         >
                             <div className="px-4 py-3">
                                 <span className="block text-sm text-gray-900 dark:text-white">
-                                    Admin
+                                    {role}
                                 </span>
                                 <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                                    admin@motokrastev.com
+                                    {email}
                                 </span>
                             </div>
                             <ul className="py-2" aria-labelledby="user-menu-button">
