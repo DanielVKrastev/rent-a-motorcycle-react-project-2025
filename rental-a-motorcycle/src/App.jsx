@@ -48,8 +48,6 @@ function App() {
     }
   }, [authData]);
 
-  console.log(authData);
-
   return (
     <>
       <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}} >

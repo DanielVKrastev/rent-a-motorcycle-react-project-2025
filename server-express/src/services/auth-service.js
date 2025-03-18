@@ -21,7 +21,7 @@ export default {
         const token = generateToken(createdUser);
         const userAddToken = await User.findByIdAndUpdate(createdUser._id, {accessToken: token}, { runValidators: true })
 
-        return { _id: userAddToken._id, accessToken: token, email: userAddToken.email, username: userAddToken.username};
+        return { _id: userAddToken._id, accessToken: token, email: userAddToken.email, username: userAddToken.username, role: userAddToken.role};
     },
     async login(email, password){
         const user = await User.findOne({email});
@@ -36,7 +36,7 @@ export default {
             throw new Error('Invalid email');
         }
 
-        return { _id: user._id, accessToken: accessToken, email: user.email, username: user.username};
+        return { _id: user._id, accessToken: accessToken, email: user.email, username: user.username, role: user.role};
     },
     async getAll(){
         const users = await User.find();
