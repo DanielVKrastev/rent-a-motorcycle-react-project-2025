@@ -36,7 +36,7 @@ authController.post('/logout', async (req, res) => {
 
     try {
         jwt.verify(token, JWT_SECRET);
-        res.status(200); 
+        res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
         res.status(400).json({ error: 'Invalid token' });
     }

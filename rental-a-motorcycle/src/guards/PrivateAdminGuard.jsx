@@ -9,7 +9,7 @@ const PrivateAdminGuard = () => {
     console.log(user._id);
     
 
-    return (user.length !== 0) ? <Outlet /> : <Navigate to="/" replace />;
+    return (user == {}) ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 export default PrivateAdminGuard;

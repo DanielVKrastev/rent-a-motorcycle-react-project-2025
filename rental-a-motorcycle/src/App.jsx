@@ -27,27 +27,32 @@ import { useState } from 'react';
 import { getUserData, saveUserData } from './utils/userUtils';
 import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
+import Logout from './components/logout/Logout';
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [authData, setAuthData] = useState({});
 
   const userLoginHandler = (userData) => {
-    setUser(userData);
+    setAuthData(userData);
     saveUserData(userData);
   }
+
+  const userLogoutHandler = () => {
+    setAuthData({});
+};
 
   useState(() => {
     const localUserData = getUserData();
     if(localUserData._id && localUserData._id !== undefined){
-      setUser(localUserData);
+      setAuthData(localUserData);
     }
-  }, [user]);
+  }, [authData]);
 
-  console.log(user);
+  console.log(authData);
 
   return (
     <>
-      <UserContext.Provider value={{userLoginHandler, user}} >
+      <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}} >
           <ContactsHeader />
 
           <Navbar />
@@ -60,6 +65,7 @@ function App() {
               <Route path="/rent-a-motorcycle/motorcycle" element={<MotorcycleRent />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/register" element={<Register />}></Route>
+              <Route path="/logout" element={<Logout />}></Route>
 
               <Route element={<PrivateGuard />}>
                 <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>

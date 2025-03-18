@@ -5,7 +5,7 @@ import { useUserContext } from "../contexts/UserContext";
 const PrivateGuard = () => {
     const { user } = useUserContext();
 
-    return user.length !== 0 ? <Outlet /> : <Navigate to="/login" replace />;
+    return user == {} ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default PrivateGuard;
