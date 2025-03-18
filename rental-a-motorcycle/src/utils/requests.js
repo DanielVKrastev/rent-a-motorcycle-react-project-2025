@@ -14,20 +14,25 @@ const request = async (method, url, data, options = {}) => {
         }
     }
 
-    const response = await fetch(url, options);
-    const responseContentType = response.headers.get('Content-Type');
-    if (!responseContentType) {
-        return;
-    }
+    try{
+        const response = await fetch(url, options);
+        const responseContentType = response.headers.get('Content-Type');
+        if (!responseContentType) {
+            return;
+        }
+        
+        const result = await response.json();
+        
+        if(! response.ok){
+            throw new Error(result.error);
+        }
     
-    const result = await response.json();
-
-    if(! response.ok){
-        throw new Error(result);
+        return result;
+    }catch(err){
+        console.error("Fetch error:", err); 
+        throw err;
     }
-    
 
-    return result;
 
 };
 

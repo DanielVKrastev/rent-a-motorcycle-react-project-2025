@@ -9,7 +9,7 @@ export default function Home() {
 
             fetch('http://localhost:3000/users/67d85e0044e2a24a157c827d')
                         .then(response => (response.json())
-                        .then(res => console.log(res)
+                        .then(//res => console.log(res)
                         )
                         );
         

@@ -12,7 +12,7 @@ authController.post('/register', async (req, res) => {
         const createdUser = await authService.register(userData);
         res.status(201).json(createdUser);
     }catch(err){
-        res.status(400).json(err.message);
+        res.status(400).json({error: err.message});
     }
 });
 
@@ -23,7 +23,7 @@ authController.post('/login', async (req, res) => {
         const user = await authService.login(email, password);
         res.status(201).json(user);
     }catch(err){
-        res.status(400).json(err.message);
+        res.status(400).json({error: err.message});
     }
 });
 
@@ -36,9 +36,11 @@ authController.post('/logout', async (req, res) => {
 
     try {
         jwt.verify(token, JWT_SECRET);
-        res.status(200).json({ message: 'Logged out successfully' });
+        return res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
-        res.status(400).json({ error: 'Invalid token' });
+        console.log(token);
+        
+        return res.status(400).json({ error: 'Invalid token' });
     }
 });
 

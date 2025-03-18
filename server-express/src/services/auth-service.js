@@ -29,12 +29,14 @@ export default {
             throw new Error('Invalid email');
         }
 
+        const accessToken = generateToken(user);
+
         const isValid = await bcrypt.compare(password, user.password);
         if(! isValid){
             throw new Error('Invalid email');
         }
 
-        return { _id: user._id, accessToken: user.accessToken, email: user.email, username: user.username};
+        return { _id: user._id, accessToken: accessToken, email: user.email, username: user.username};
     },
     async getAll(){
         const users = await User.find();
