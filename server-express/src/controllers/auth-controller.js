@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authService from "../services/auth-service.js";
-import checkAuthorizationToken from "../middlewares/checkAuthorizationToken.js";
+import { JWT_SECRET } from "../constants-config.js";
+import jwt from 'jsonwebtoken';
 
 const authController = Router();
 
@@ -25,5 +26,21 @@ authController.post('/login', async (req, res) => {
         res.status(400).json(err.message);
     }
 });
+
+authController.post('/logout', async (req, res) => {
+    const token = req.header('X-Authorization');
+
+    if (!token) {
+        return res.status(401).json({ error: 'No token, access denied' });
+    }
+
+    try {
+        jwt.verify(token, JWT_SECRET);
+        res.status(200); 
+    } catch (error) {
+        res.status(400).json({ error: 'Invalid token' });
+    }
+});
+
 
 export default authController;
