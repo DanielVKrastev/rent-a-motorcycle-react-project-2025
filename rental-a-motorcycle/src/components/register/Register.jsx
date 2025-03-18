@@ -1,6 +1,27 @@
-import { Link } from "react-router";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router";
+import { useRegister } from "../../api/authApi";
+import { getErrorMessage } from "../../utils/error-unitls";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Register() {
+    const navigate = useNavigate();
+    const { userLoginHandler } = useContext(UserContext);
+    const { register } = useRegister();
+
+    async function submitActionRegister(formData){
+        const {email, username, password, rePassword} = Object.fromEntries(formData);
+        
+        try{
+            const authData = await register(email, username, password, rePassword);
+            userLoginHandler(authData);
+            navigate('/');
+        }catch(err){
+            const error = getErrorMessage(err);
+            console.log(error);
+        }
+
+    }
     return (
         <>
             <section
@@ -20,7 +41,7 @@ export default function Register() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Sign in to your account
                             </h1>
-                            <form className="space-y-4 md:space-y-6" action="#">
+                            <form className="space-y-4 md:space-y-6" action={submitActionRegister}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                                         Your email
@@ -31,6 +52,19 @@ export default function Register() {
                                         id="email"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="name@company.com"
+                                        required=""
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">
+                                        Username
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        id="username"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="Ivan"
                                         required=""
                                     />
                                 </div>
@@ -49,15 +83,15 @@ export default function Register() {
                                 </div>
                                 <div>
                                     <label
-                                        htmlFor="confirm-password"
+                                        htmlFor="rePassword"
                                         className="block mb-2 text-sm font-medium text-gray-900"
                                     >
                                         Confirm password
                                     </label>
                                     <input
-                                        type="confirm-password"
-                                        name="confirm-password"
-                                        id="confirm-password"
+                                        type="password"
+                                        name="rePassword"
+                                        id="rePassword"
                                         placeholder="••••••••"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required=""

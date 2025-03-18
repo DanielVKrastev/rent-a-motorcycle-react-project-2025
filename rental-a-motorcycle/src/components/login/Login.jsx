@@ -1,19 +1,24 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
-import userService from "../../services/userService";
 import { getErrorMessage } from "../../utils/error-unitls";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { useLogin } from "../../api/authApi";
 
 export default function Login() {
+    const navigate = useNavigate();
     const { userLoginHandler } = useContext(UserContext);
+    const { login } = useLogin();
 
     async function submitActionLogin(formData){
         const {email, password} = Object.fromEntries(formData);
         
         try{
-            const userData = await userService.login(email, password);
-            userLoginHandler(userData);
+            const authData = await login(email, password);
+            console.log('auth login');
+            
+            userLoginHandler(authData);
+            navigate('/');
         }catch(err){
             const error = getErrorMessage(err);
             console.log(error);
