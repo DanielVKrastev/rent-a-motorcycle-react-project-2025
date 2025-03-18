@@ -9,7 +9,7 @@ export default function Navbar() {
     const [openMobileNav, setOpenMobileNav] = useState(true);
     const { accessToken } = useUserContext();
     console.log(accessToken);
-    
+
 
     function closeOpenHandlerMobileMenu() {
         setOpenMobileNav(state => !state);
@@ -110,56 +110,59 @@ export default function Navbar() {
                         </button>
                     </div>
 
-                    <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                        <button
-                            type="button"
-                            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                            id="user-menu-button"
-                            aria-expanded="false"
-                            data-dropdown-toggle="user-dropdown"
-                            data-dropdown-placement="bottom"
-                        >
-                            <span className="sr-only">Open user menu</span>
-                            <img className="w-8 h-8 rounded-full" src="/images/icons/icons8-user-60.png" alt="user photo"
-                            />
-                        </button>
-                        {/* Dropdown menu */}
-                        <div
-                            className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
-                            id="user-dropdown"
-                        >
-                            <div className="px-4 py-3">
-                                <span className="block text-sm text-gray-900 dark:text-white">
-                                    Admin
-                                </span>
-                                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                                    admin@motokrastev.com
-                                </span>
+                    {accessToken &&
+                        <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                            <button
+                                type="button"
+                                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                id="user-menu-button"
+                                aria-expanded="false"
+                                data-dropdown-toggle="user-dropdown"
+                                data-dropdown-placement="bottom"
+                            >
+                                <span className="sr-only">Open user menu</span>
+                                <img className="w-8 h-8 rounded-full" src="/images/icons/icons8-user-60.png" alt="user photo"
+                                />
+                            </button>
+                            {/* Dropdown menu */}
+                            <div
+                                className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600"
+                                id="user-dropdown"
+                            >
+                                <div className="px-4 py-3">
+                                    <span className="block text-sm text-gray-900 dark:text-white">
+                                        Admin
+                                    </span>
+                                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                                        admin@motokrastev.com
+                                    </span>
+                                </div>
+                                <ul className="py-2" aria-labelledby="user-menu-button">
+                                    <li>
+                                        <Link to="/admin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                            Admin Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/user-settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
+                                            Settings
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/logout" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                            Sign out
+                                        </Link>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul className="py-2" aria-labelledby="user-menu-button">
-                                <li>
-                                    <Link to="/admin" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
-                                        Admin Dashboard
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
-                                        Dashboard
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/user-settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" >
-                                        Settings
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/logout" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                        Sign out
-                                    </Link>
-                                </li>
-                            </ul>
                         </div>
-                    </div>
+                    }
+
 
                     <div
                         className={openMobileNav ?
@@ -212,24 +215,29 @@ export default function Navbar() {
                                     Rent a Moto
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    to="/login"
-                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
-                                    onClick={closeOpenHandlerMobileMenu}
-                                >
-                                    Login
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/register"
-                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
-                                    onClick={closeOpenHandlerMobileMenu}
-                                >
-                                    Register
-                                </Link>
-                            </li>
+                            {!accessToken && <>
+                                <li>
+                                    <Link
+                                        to="/login"
+                                        className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                        onClick={closeOpenHandlerMobileMenu}
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/register"
+                                        className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                        onClick={closeOpenHandlerMobileMenu}
+                                    >
+                                        Register
+                                    </Link>
+                                </li>
+                            </>
+
+                            }
+
                             <li>
                                 <Link
                                     to="/about"
