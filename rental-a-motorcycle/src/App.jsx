@@ -19,7 +19,7 @@ import Register from './components/register/Register';
 import ContactsHeader from './components/partials/contacts-header/ContactsHeader';
 import Navbar from './components/partials/navbar/Navbar';
 import Footer from './components/partials/footer/Footer';
-import UserSettings from './components/admin/user-settings/UserSettings';
+import UserSettings from './components/user-settings/UserSettings';
 import PageNotFound from './components/page-not-found/PageNotFound';
 
 import { UserContext } from './contexts/UserContext';
