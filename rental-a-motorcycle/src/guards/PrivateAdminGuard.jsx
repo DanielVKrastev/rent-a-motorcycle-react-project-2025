@@ -1,15 +1,20 @@
+import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useUserContext } from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
+import { useUserRole } from "../api/authApi";
 
 
 const PrivateAdminGuard = () => {
-    const { user } = useUserContext();
+    const { accessToken } = useContext(UserContext);
+    const isAuth = !!accessToken;
 
+    const { userRole, isLoading } = useUserRole();
 
-    console.log(user._id);
-    
+    if (isLoading) {
+        return <div>Loading...</div>; //some spinner
+    }
 
-    return (user == {}) ? <Outlet /> : <Navigate to="/" replace />;
+    return isAuth && userRole === 'Admin' ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 export default PrivateAdminGuard;

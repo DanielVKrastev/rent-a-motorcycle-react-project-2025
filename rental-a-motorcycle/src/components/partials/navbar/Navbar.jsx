@@ -7,8 +7,6 @@ import { UserContext, useUserContext } from "../../../contexts/UserContext";
 export default function Navbar() {
     const [openMobileNav, setOpenMobileNav] = useState(true);
     const { accessToken } = useUserContext();
-    console.log(accessToken);
-
 
     function closeOpenHandlerMobileMenu() {
         setOpenMobileNav(state => !state);

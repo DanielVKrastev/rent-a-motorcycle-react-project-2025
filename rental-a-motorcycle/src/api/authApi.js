@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import requests from "../utils/requests";
 import { UserContext } from "../contexts/UserContext";
 import { clearUserData } from "../utils/userUtils";
@@ -64,4 +64,45 @@ export const useLogout = () => {
     return {
         isLoggedOut: !!accessToken,
     };
+};
+
+export const useUserRole = () => {
+    const [userRole, setUserRole] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); 
+    const { accessToken } = useContext(UserContext);
+
+    const isAuth = !!accessToken; 
+
+    async function fetchUserData() {
+        try {
+            const response = await fetch('http://localhost:3000/auth/me', {
+                method: 'GET',
+                headers: {
+                    'X-Authorization': localStorage.getItem('accessToken'),
+                },
+            });
+
+            if (response.ok) {
+                const user = await response.json();
+                setUserRole(user.role); 
+            } else {
+                setUserRole(null); 
+            }
+        } catch (error) {
+            console.error('Error fetching user role:', error);
+            setUserRole(null); 
+        } finally {
+            setIsLoading(false); 
+        }
+    }
+
+    useEffect(() => {
+        if (isAuth) {
+            fetchUserData();
+        } else {
+            setIsLoading(false);
+        }
+    }, [isAuth]);
+
+    return { userRole, isLoading };
 };

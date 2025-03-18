@@ -1,11 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useUserContext } from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 
 
 const PrivateGuard = () => {
-    const { user } = useUserContext();
+    const { accessToken } = useContext(UserContext);
+    const isAuth = !!accessToken;
 
-    return user == {} ? <Outlet /> : <Navigate to="/login" replace />;
+    return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default PrivateGuard;
