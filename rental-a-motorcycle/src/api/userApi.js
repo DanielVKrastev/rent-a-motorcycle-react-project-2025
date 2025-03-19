@@ -4,6 +4,24 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3000/users';
 
+export const useUsers = () => {
+    const [users, setUsers] = useState({});
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        request.get(`${baseUrl}`)
+            .then(result => { 
+                setUsers(result);
+                setIsLoading(false);
+            });
+    }, [])
+
+    return {
+        users,
+        isLoading
+    };
+};
+
 export const useUser = (userId) => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true); 

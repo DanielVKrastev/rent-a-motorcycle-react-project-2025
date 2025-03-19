@@ -2,11 +2,22 @@ import { useEffect, useState } from "react";
 import CreateUserModal from "../create-user/CreateUserModal";
 import EditUserModal from "../edit-user/EditUserModal";
 import DeleteUserModal from "../delete-user/DeleteUserModal";
+import { useUsers } from "../../../../api/userApi";
 
 const MotorcycleTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
+    const [ showUsers, setShowUsers] = useState([]);
+
+    const { users, isLoading } = useUsers();
+
+    useEffect(() => {
+        if (!isLoading) {
+        setShowUsers(users);
+        }
+      }, [users, isLoading])
+    
 
     useEffect(() => {
         if (isOpenCreate) {
@@ -32,31 +43,19 @@ const MotorcycleTable = () => {
         };
     }, [isOpenCreate, isOpenEdit, isOpenDelete]);
 
-
-    const [users, setUsers] = useState([
-        { id: 1, name: "John Doe", email: "johndoe@gmail.com", role: "Admin" },
-        { id: 2, name: "Jane Smith", email: "janesmith@yahoo.com", role: "User" },
-        { id: 3, name: "Bob Johnson", email: "bobjohnson@outlook.com", role: "User" },
-        { id: 4, name: "Alice Williams", email: "alice@gmail.com", role: "Admin" },
-        { id: 5, name: "Charlie Brown", email: "charlie@yahoo.com", role: "User" },
-        { id: 6, name: "David Davis", email: "daviddavis@outlook.com", role: "Admin" },
-        { id: 7, name: "Eva White", email: "evawhite@gmail.com", role: "User" },
-        { id: 8, name: "Frank Harris", email: "frankharris@yahoo.com", role: "User" },
-        { id: 9, name: "Grace Lewis", email: "gracelewis@outlook.com", role: "Admin" },
-        { id: 10, name: "Hank Young", email: "hankyoung@gmail.com", role: "User" },
-    ]);
-
+    
     const handleDelete = (id) => {
-        setUsers(users.filter(user => user.id !== id));
+        setShowUsers(users.filter(user => user.id !== id));
     };
-
+    
+    let sn = 0;
 
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 5;
 
     const totalPages = Math.ceil(users.length / usersPerPage);
     const startIndex = (currentPage - 1) * usersPerPage;
-    const currentUsers = users.slice(startIndex, startIndex + usersPerPage);
+    const currentUsers = showUsers.slice(startIndex, startIndex + usersPerPage);
 
     const handlePagination = (page) => {
         setCurrentPage(page);
@@ -87,9 +86,9 @@ const MotorcycleTable = () => {
                         <tbody>
 
                             {currentUsers.map((user) => (
-                                <tr key={user.id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
-                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.id}</td>
-                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.name}</td>
+                                <tr key={user._id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{sn++}</td>
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.username}</td>
                                     <td className="px-6 py-4" scope="row">{user.email}</td>
                                     <td className="px-6 py-4" scope="row">{user.role}</td>
                                     <td className="px-6 py-4" scope="row">

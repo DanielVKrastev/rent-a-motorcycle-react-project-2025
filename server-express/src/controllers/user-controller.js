@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 
 const userController = Router();
 
-userController.get('/', checkAuthorizationToken, async (req, res) => {
+userController.get('/', async (req, res) => {
     try {
         const users = await authService.getAll();
         res.status(200).json(users);
