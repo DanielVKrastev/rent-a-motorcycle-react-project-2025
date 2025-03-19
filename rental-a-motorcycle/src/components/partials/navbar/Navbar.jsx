@@ -12,7 +12,7 @@ export default function Navbar() {
         setIsOpenProfile(false);
     }, [])
 
-    const { accessToken, role, email } = useUserContext();
+    const { accessToken, username, role, email } = useUserContext();
 
     function closeOpenHandlerMobileMenu() {
         setOpenMobileNav(state => !state);
@@ -32,7 +32,6 @@ export default function Navbar() {
                             alt="MotoKrastev Logo"
                         />
                     </Link>
-
                     <div className="flex md:order-2">
                         <button
                             type="button"
@@ -190,7 +189,6 @@ export default function Navbar() {
                                     <li>
                                         <button
                                             onClick={() => setIsOpenProfile(!isOpenProfile)}
-                                            data-dropdown-toggle="dropdownNavbar"
                                             className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-red-400 md:p-0 md:w-auto dark:text-white md:dark:hover:text-red-400 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                                         >
                                             Profile
@@ -201,6 +199,10 @@ export default function Navbar() {
 
                                         {isOpenProfile && (
                                             <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-44 divide-y divide-gray-500 rounded-lg shadow-sm dark:bg-gray-700">
+                                                <div className="px-4 py-3">
+                                                    <span className="block text-sm text-gray-900 dark:text-white">{username}</span>
+                                                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{email}</span>
+                                                </div>
                                                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                                                     <li>
                                                         <Link to="/" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
@@ -216,15 +218,15 @@ export default function Navbar() {
                                         )}
                                     </li>
                                     {role === "Admin" && (
-                                    <li>
-                                    <Link
-                                        to="/admin"
-                                        className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
-                                        onClick={closeOpenHandlerMobileMenu}
-                                    >
-                                        Admin Panel
-                                    </Link>
-                                </li>
+                                        <li>
+                                            <Link
+                                                to="/admin"
+                                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                                onClick={closeOpenHandlerMobileMenu}
+                                            >
+                                                Admin Panel
+                                            </Link>
+                                        </li>
                                     )}
                                 </>
                             }
