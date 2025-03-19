@@ -4,20 +4,28 @@ import EditUserModal from "../edit-user/EditUserModal";
 import DeleteUserModal from "../delete-user/DeleteUserModal";
 import { useUsers } from "../../../../api/userApi";
 
-const MotorcycleTable = () => {
+const UserTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
+    const [newUser, setNewUser] = useState(null);
+
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
-    const [ showUsers, setShowUsers] = useState([]);
+    const [showUsers, setShowUsers] = useState([]);
 
     const { users, isLoading } = useUsers();
 
     useEffect(() => {
-        if (!isLoading) {
-        setShowUsers(users);
+        if (!isLoading  && users.length > 0) {
+            setShowUsers(users);
         }
-      }, [users, isLoading])
-    
+    }, [users, isLoading])
+
+    useEffect(() => {
+        if(newUser){
+            setShowUsers(state => [...state, newUser]);
+        }
+    }, [newUser]);
+
 
     useEffect(() => {
         if (isOpenCreate) {
@@ -43,12 +51,10 @@ const MotorcycleTable = () => {
         };
     }, [isOpenCreate, isOpenEdit, isOpenDelete]);
 
-    
+
     const handleDelete = (id) => {
         setShowUsers(users.filter(user => user.id !== id));
     };
-    
-    let sn = 0;
 
     const [currentPage, setCurrentPage] = useState(1);
     const usersPerPage = 5;
@@ -83,11 +89,11 @@ const MotorcycleTable = () => {
                                 <th className="px-6 py-3 text-left" scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody key={'asd'}>
 
-                            {currentUsers.map((user) => (
+                            {currentUsers.map((user, index) => (
                                 <tr key={user._id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
-                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{sn++}</td>
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{startIndex + index + 1}</td>
                                     <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.username}</td>
                                     <td className="px-6 py-4" scope="row">{user.email}</td>
                                     <td className="px-6 py-4" scope="row">{user.role}</td>
@@ -123,7 +129,7 @@ const MotorcycleTable = () => {
             </div>
 
             {/* Create Motorcycle */}
-            {isOpenCreate && <CreateUserModal setIsOpen={setIsOpenCreate} />}
+            {isOpenCreate && <CreateUserModal setIsOpen={setIsOpenCreate} setNewUser={setNewUser} />}
 
             {/* Edit Motorcycle */}
             {isOpenEdit && <EditUserModal setIsOpen={setIsOpenEdit} />}
@@ -134,4 +140,4 @@ const MotorcycleTable = () => {
     );
 };
 
-export default MotorcycleTable;
+export default UserTable;

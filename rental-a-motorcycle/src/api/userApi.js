@@ -8,17 +8,27 @@ export const useUsers = () => {
     const [users, setUsers] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
 
-    useEffect(() => {
+    const refetch = () => {
+        setIsLoading(true);
         request.get(`${baseUrl}`)
-            .then(result => { 
+            .then(result => {
                 setUsers(result);
                 setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
             });
-    }, [])
+    };
+
+    useEffect(() => {
+        refetch();
+    }, []);
 
     return {
         users,
-        isLoading
+        isLoading,
+        refetch
     };
 };
 
