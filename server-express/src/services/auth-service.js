@@ -59,7 +59,13 @@ export default {
                 throw new Error('This email is already taken');
             }
         }
-        const accessToken = generateToken({_id: userId, ...updateData, role: user.role});
+
+        let newRole = user.role;
+        if(updateData.role === "Admin"){
+            newRole = "Admin";
+        }
+
+        const accessToken = generateToken({_id: userId, ...updateData, role: newRole});
         const updatedUser = await User.findByIdAndUpdate(userId, {...updateData, accessToken}, {new: true, runValidators: true });
         
         return this.getOne(updatedUser);

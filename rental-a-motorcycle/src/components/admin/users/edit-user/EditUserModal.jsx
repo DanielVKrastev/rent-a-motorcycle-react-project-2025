@@ -1,6 +1,41 @@
+import { useEffect, useState } from "react";
+import { useEditUser, useUser } from "../../../../api/userApi";
+
 export default function EditUserModal({
+    userId,
+    setEditUser,
     setIsOpen,
 }) {
+    const { user, isLoading } = useUser(userId);
+
+     const { edit } = useEditUser();
+     const [selectedValue, setSelectedValue] = useState(user?.role || ''); 
+
+     // For select value
+     useEffect(() => {
+        if (!isLoading && user) {
+          setSelectedValue(user.role);
+        }
+      }, [user, isLoading]);
+
+     const handleChangeSelect = (e) => {
+        setSelectedValue(e.target.value);
+      };
+    
+     const editActionHandle = async (formData) => {
+        const { email, username, role } = Object.fromEntries(formData);
+        try {
+        console.log(email, username, role);
+        
+          const editUser = await edit(userId, { email, username, role });
+          setEditUser(editUser);
+          console.log('Edit success');
+          setIsOpen(false);
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
@@ -37,189 +72,63 @@ export default function EditUserModal({
                                     <span className="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form>
+                            <form action={editActionHandle}>
                                 <div className="p-4 md:p-5 space-y-4">
 
-                                    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">
-                                        <div className="mb-3 text-gray-500 dark:text-gray-400">
+                                    <div className="grid grid-cols-1 gap-10 sm:grid-cols-1 max-w-2xl mx-auto p-5 mt-0">
+                                        <div className="text-gray-500 dark:text-gray-400">
                                             <div className="mb-5">
-                                                <label htmlFor="brand" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Brand
+                                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                                                    Email
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                    placeholder="example@example.com"
+                                                    defaultValue={user.email}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="mb-5">
+                                                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">
+                                                    Username
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    id="brand"
+                                                    id="username"
+                                                    name="username"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="Honda"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="model" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Model
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="model"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="CB 1000"
+                                                    placeholder="Ivan"
+                                                    defaultValue={user.username}
                                                     required
                                                 />
                                             </div>
 
                                             <div className="mb-5">
                                                 <label
-                                                    htmlFor="type"
+                                                    htmlFor="role"
                                                     className="block mb-2 text-sm font-medium text-gray-900"
                                                 >
-                                                    Select Type
+                                                    Select Role
                                                 </label>
                                                 <select
-                                                    id="type"
+                                                    id="role"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    name="type"
+                                                    name="role"
+                                                    value={selectedValue}
+                                                    onChange={handleChangeSelect}
                                                 >
-                                                    <option value="Sport">Sport</option>
-                                                    <option value="Touring">Touring</option>
-                                                    <option value="Chopper">Chopper</option>
+                                                    <option value="User">User</option>
+                                                    <option value="Admin">Admin</option>
                                                 </select>
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="engine" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Engine (cc)
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="engine"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="1000"
-                                                    min="1"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="power" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Power (h.p)
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="power"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="125"
-                                                    min="1"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="max_speed" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Max speed (km/h)
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="max_speed"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="285"
-                                                    min="1"
-                                                    required
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div className="mb-3 text-gray-500 dark:text-gray-400">
-
-                                            <div className="mb-5">
-                                                <label htmlFor="weight" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Weight (k.g)
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="weight"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="205"
-                                                    min="1"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label
-                                                    htmlFor="category"
-                                                    className="block mb-2 text-sm font-medium text-gray-900"
-                                                >
-                                                    Select your category
-                                                </label>
-                                                <select
-                                                    id="category"
-                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    name="category"
-                                                >
-                                                    <option value="A">A</option>
-                                                    <option value="A1">A1</option>
-                                                    <option value="A2">A2</option>
-                                                </select>
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="year" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Year
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="year"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="2024"
-                                                    min="1900"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label htmlFor="tank" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    Tank (L)
-                                                </label>
-                                                <input
-                                                    type="number"
-                                                    id="tank"
-                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                    placeholder="18"
-                                                    min="1"
-                                                    required
-                                                />
-                                            </div>
-
-                                            <div className="mb-5">
-                                                <label
-                                                    className="block mb-2 text-sm font-medium text-gray-900"
-                                                    htmlFor="moto_image"
-                                                >
-                                                    Upload Moto Image
-                                                </label>
-                                                <input
-                                                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
-                                                    aria-describedby="moto_image_help"
-                                                    id="moto_image"
-                                                    type="file"
-                                                />
-                                            </div>
-
-                                            <div className="mt-14">
-                                                <label className="inline-flex items-center mb-5 cursor-pointer">
-                                                    <input type="checkbox" value="active" className="sr-only peer" defaultChecked />
-                                                    <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
-                                                    <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                        Active in site
-                                                    </span>
-                                                </label>
                                             </div>
 
                                         </div>
 
                                     </div>
-
 
                                 </div>
                                 <div className="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b">
