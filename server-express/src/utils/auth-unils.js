@@ -9,7 +9,7 @@ export const generateToken = (user) => {
         role: user.role
     };
 
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '2h' });
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '8h' });
 
     return token;
 }

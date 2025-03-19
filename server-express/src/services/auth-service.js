@@ -59,7 +59,9 @@ export default {
                 throw new Error('This email is already taken');
             }
         }
-        const updatedUser = await User.findByIdAndUpdate(userId, updateData, { runValidators: true });
-        return this.getOne(userId);
+        const accessToken = generateToken({_id: userId, ...updateData, role: user.role});
+        const updatedUser = await User.findByIdAndUpdate(userId, {...updateData, accessToken}, {new: true, runValidators: true });
+        
+        return this.getOne(updatedUser);
     },
 }
