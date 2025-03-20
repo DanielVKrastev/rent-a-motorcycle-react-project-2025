@@ -19,7 +19,7 @@ export default {
         
         const createdUser = await User.create({...userData, role: 'User'});
         const token = generateToken(createdUser);
-        const userAddToken = await User.findByIdAndUpdate(createdUser._id, {accessToken: token}, { runValidators: true })
+        const userAddToken = await User.findByIdAndUpdate(createdUser._id, { runValidators: true })
 
         return { _id: userAddToken._id, accessToken: token, email: userAddToken.email, username: userAddToken.username, role: userAddToken.role};
     },
