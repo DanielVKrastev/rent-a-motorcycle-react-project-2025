@@ -43,6 +43,9 @@ const motorcycleSchema = new Schema({
     image: {
         type: String,
     },
+    reservationCount: {
+        type: Number
+    },
     active: {
         type: String,
     },

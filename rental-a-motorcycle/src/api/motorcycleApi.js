@@ -4,15 +4,15 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3000/motorcycle';
 
-export const useUsers = () => {
-    const [users, setUsers] = useState({});
+export const useMotorcycles = () => {
+    const [motorcycles, setMotorcycles] = useState([]);
     const [isLoading, setIsLoading] = useState(true); 
 
     const refetch = () => {
         setIsLoading(true);
         request.get(`${baseUrl}`)
             .then(result => {
-                setUsers(result);
+                setMotorcycles(result);
                 setIsLoading(false);
             })
             .catch((error) => {
@@ -26,7 +26,7 @@ export const useUsers = () => {
     }, []);
 
     return {
-        users,
+        motorcycles,
         isLoading,
         refetch
     };
@@ -52,7 +52,7 @@ export const useUser = (userId) => {
 
 export const useCreateMotorcycle = () => {
     const createMotorcycle = (motorcycleData) =>
-        request.post(`${baseUrl}/`, motorcycleData);
+        request.post(`${baseUrl}/`, {reservationCount: 0, ...motorcycleData});
 
     return {
         createMotorcycle,

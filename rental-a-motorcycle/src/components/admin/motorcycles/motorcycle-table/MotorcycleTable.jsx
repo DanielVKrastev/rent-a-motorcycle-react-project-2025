@@ -2,11 +2,31 @@ import { useEffect, useState } from "react";
 import CreateMotorcycleModal from "../create-motorcycle/CreateMotorcycleModal";
 import EditMotorcycleModal from "../edit-motorcycle/EditMotorcycleModal";
 import DeleteMotorcycleModal from "../delete-motorcycle/DeleteMotorcycleModal";
+import { useMotorcycles } from "../../../../api/motorcycleApi";
 
 const MotorcycleTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
+    const [newMotorcycle, setNewMotorcycle] = useState(null);
+
     const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
+
+    const [showMotorcycles, setShowMotorcycles] = useState([]);
+
+    const { motorcycles, isLoading } = useMotorcycles();
+
+    useEffect(() => {
+        if (!isLoading && motorcycles.length > 0) {
+            setShowMotorcycles(motorcycles);
+        }
+    }, [motorcycles, isLoading])
+
+    // Update locale motorcycle
+    useEffect(() => {
+        if (newMotorcycle) {
+            setShowMotorcycles(state => [...state, newMotorcycle]);
+        }
+    }, [newMotorcycle]);
 
     useEffect(() => {
         if (isOpenCreate) {
@@ -32,31 +52,17 @@ const MotorcycleTable = () => {
         };
     }, [isOpenCreate, isOpenEdit, isOpenDelete]);
 
-
-    const [users, setUsers] = useState([
-        { id: 1, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 2, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 3, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 4, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 5, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 6, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 7, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 8, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 9, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-        { id: 10, name: "Honda CBR600RR", email: "Sport", role: "600cc" },
-    ]);
-
     const handleDelete = (id) => {
-        setUsers(users.filter(user => user.id !== id));
+        setShowMotorcycles(showMotorcycles.filter(motorcycle => motorcycle._id !== id));
     };
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const usersPerPage = 5;
+    const motorcyclePerPage = 5;
 
-    const totalPages = Math.ceil(users.length / usersPerPage);
-    const startIndex = (currentPage - 1) * usersPerPage;
-    const currentUsers = users.slice(startIndex, startIndex + usersPerPage);
+    const totalPages = Math.ceil(showMotorcycles.length / motorcyclePerPage);
+    const startIndex = (currentPage - 1) * motorcyclePerPage;
+    const currentMotorcycles = showMotorcycles.slice(startIndex, startIndex + motorcyclePerPage);
 
     const handlePagination = (page) => {
         setCurrentPage(page);
@@ -65,7 +71,7 @@ const MotorcycleTable = () => {
     return (
         <>
             <div className="w-full overflow-x-auto">
-            <h2 className="text-3xl font-semibold mb-6">Motorcycles data</h2>
+                <h2 className="text-3xl font-semibold mb-6">Motorcycles data</h2>
                 <button
                     onClick={() => setIsOpenCreate(true)}
                     className="mb-4 flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
@@ -94,20 +100,20 @@ const MotorcycleTable = () => {
                         </thead>
                         <tbody>
 
-                            {currentUsers.map((user) => (
-                                <tr key={user.id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
-                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.id}</td>
-                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{user.name}</td>
-                                    <td className="px-6 py-4" scope="row">{user.email}</td>
-                                    <td className="px-6 py-4" scope="row">{user.role}</td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
-                                    <td className="px-6 py-4" scope="row"></td>
+                            {currentMotorcycles.map((motorcycle, index) => (
+                                <tr key={motorcycle._id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{startIndex + index + 1}</td>
+                                    <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{motorcycle.brand} {motorcycle.model}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.type}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.engine}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.power}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.weight}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.category}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.year}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.tank}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.image}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.reservationCount}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.active}</td>
                                     <td className="px-6 py-4" scope="row">
                                         <button type="button" onClick={() => { setIsOpenEdit(true); }} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
                                         <button type="button" onClick={() => setIsOpenDelete(true)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
@@ -140,7 +146,10 @@ const MotorcycleTable = () => {
             </div>
 
             {/* Create Motorcycle */}
-            {isOpenCreate && <CreateMotorcycleModal setIsOpen={setIsOpenCreate} />}
+            {isOpenCreate && <CreateMotorcycleModal 
+                            setIsOpen={setIsOpenCreate} 
+                            setNewMotorcycle={setNewMotorcycle}
+                            />}
 
             {/* Edit Motorcycle */}
             {isOpenEdit && <EditMotorcycleModal setIsOpen={setIsOpenEdit} />}
