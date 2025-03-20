@@ -1,9 +1,28 @@
+import { useCreateMotorcycle } from "../../../../api/motorcycleApi";
+import { getErrorMessage } from "../../../../utils/error-unitls";
+
 export default function CreateMotorcycleModal({
     setIsOpen,
 }) {
+        const { createMotorcycle } = useCreateMotorcycle();
+        async function submitActionAddMotorcycle(formData){
+            const {image, ...motorcycleData} = Object.fromEntries(formData);
+            const imageName = image.name;
+            
+            try{
+                const newMotorcycle = await createMotorcycle({...motorcycleData, imageName});
+                console.log(newMotorcycle);
+                
+                setIsOpen(false);
+            }catch(err){
+                const error = getErrorMessage(err.message);
+                console.log(error);
+            }
+    
+        }
     return (
         <>
-            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
@@ -37,7 +56,7 @@ export default function CreateMotorcycleModal({
                                     <span className="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form>
+                            <form action={submitActionAddMotorcycle}>
                                 <div className="p-4 md:p-5 space-y-4">
 
                                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">
@@ -49,6 +68,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="text"
                                                     id="brand"
+                                                    name="brand"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="Honda"
                                                     required
@@ -62,6 +82,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="text"
                                                     id="model"
+                                                    name="model"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="CB 1000"
                                                     required
@@ -93,6 +114,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="engine"
+                                                    name="engine"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="1000"
                                                     min="1"
@@ -107,6 +129,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="power"
+                                                    name="power"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="125"
                                                     min="1"
@@ -121,6 +144,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="max_speed"
+                                                    name="maxSpeed"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="285"
                                                     min="1"
@@ -138,6 +162,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="weight"
+                                                    name="weight"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="205"
                                                     min="1"
@@ -170,6 +195,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="year"
+                                                    name="year"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="2024"
                                                     min="1900"
@@ -184,6 +210,7 @@ export default function CreateMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="tank"
+                                                    name="tank"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="18"
                                                     min="1"
@@ -202,13 +229,14 @@ export default function CreateMotorcycleModal({
                                                     className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                                     aria-describedby="moto_image_help"
                                                     id="moto_image"
+                                                    name="image"
                                                     type="file"
                                                 />
                                             </div>
 
                                             <div className="mt-14">
                                                 <label className="inline-flex items-center mb-5 cursor-pointer">
-                                                    <input type="checkbox" value="active" className="sr-only peer" defaultChecked />
+                                                    <input type="checkbox" value="yes" name="active" className="sr-only peer" defaultChecked />
                                                     <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
                                                     <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                         Active in site
