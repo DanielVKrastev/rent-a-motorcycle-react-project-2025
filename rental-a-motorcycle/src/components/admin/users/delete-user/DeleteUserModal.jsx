@@ -1,7 +1,27 @@
+import { useDeleteUser } from "../../../../api/userApi";
+import useAuth from "../../../../hooks/useAuth";
+
 export default function DeleteUserModal({
+    user: userDel,
     setIsOpen,
-    handleDelete,
+    handleDeleteLocal,
 }) {
+    const { _id: userId } = useAuth();
+    const { deleteUser } = useDeleteUser();
+    async function deleteUserHandler(){
+        try{
+            if(userDel._id === userId){
+                throw new Error("You can't delete this account!")
+            }
+
+            await deleteUser(userDel._id);
+            handleDeleteLocal(userDel._id);
+            console.log('delete');
+            }catch(err){
+            console.log(err.message);
+        }
+    }
+
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
@@ -54,7 +74,7 @@ export default function DeleteUserModal({
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                                 data-modal-hide="popup-modal"
                                 type="button"
-                                onClick={() => handleDelete()}>
+                                onClick={() => {deleteUserHandler(); setIsOpen(false)}}>
                                 Yes, I'm sure
                             </button>
                             <button

@@ -52,7 +52,7 @@ export const useUser = (userId) => {
 
 export const useEditUser = () => {
     const { request } = useAuth();
-    const { accessToken, _id } = useAuth();
+    const { accessToken } = useAuth();
 
     const options = {
         headers: {
@@ -67,3 +67,22 @@ export const useEditUser = () => {
         edit,
     }
 };
+
+export const useDeleteUser = () => {
+    const { request } = useAuth();
+    const { accessToken } = useAuth();
+
+    const options = {
+        headers: {
+            'X-Authorization': accessToken,
+        }
+    };
+
+    const deleteUser = (userId) =>
+        request.delete(`${baseUrl}/${userId}`, null, options);
+
+    return {
+        deleteUser,
+    }
+};
+

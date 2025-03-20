@@ -43,13 +43,13 @@ userController.patch('/:userId', async (req, res) => {
     }
 });
 
-userController.delete('/:userId', checkAuthorizationToken, async (req, res) => {
+userController.delete('/:userId', async (req, res) => {
     const userId = req.params.userId;
     try {
         await authService.delete(userId);
         res.status(200).json({});
     } catch (error) {
-        res.status(400).json(error.message);
+        res.status(400).json({ error: error.message});
     }
 });
 
