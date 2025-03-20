@@ -70,21 +70,13 @@ export const useEditMotorcycle = () => {
     }
 };
 
-export const useDeleteUser = () => {
+export const useDeleteMotorcycle = () => {
     const { request } = useAuth();
-    const { accessToken } = useAuth();
-
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        }
-    };
-
-    const deleteUser = (userId) =>
-        request.delete(`${baseUrl}/${userId}`, null, options);
+    const deleteMotorcycle = (motorcycleId) =>
+        request.delete(`${baseUrl}/${motorcycleId}`);
 
     return {
-        deleteUser,
+        deleteMotorcycle,
     }
 };
 

@@ -1,7 +1,22 @@
+import { useDeleteMotorcycle } from "../../../../api/motorcycleApi";
+
 export default function DeleteMotorcycleModal({
+    motorcycle,
     setIsOpen,
-    handleDelete,
+    handleDeleteLocal,
 }) {
+    const { deleteMotorcycle } = useDeleteMotorcycle();
+    async function deleteMotorcycleHandler(){
+        try{
+
+            await deleteMotorcycle(motorcycle._id);
+            handleDeleteLocal(motorcycle._id);
+            console.log('delete');
+            }catch(err){
+            console.log(err.message);
+        }
+    }
+
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
@@ -48,13 +63,13 @@ export default function DeleteMotorcycleModal({
                                 />
                             </svg>
                             <h3 className="mb-5 text-lg font-normal text-gray-500">
-                                Are you sure you want to delete this product?
+                                Are you sure you want to delete {motorcycle.brand} {motorcycle.model}?
                             </h3>
                             <button
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                                 data-modal-hide="popup-modal"
                                 type="button"
-                                onClick={() => handleDelete()}>
+                                onClick={() => { deleteMotorcycleHandler(); setIsOpen(false)}}>
                                 Yes, I'm sure
                             </button>
                             <button

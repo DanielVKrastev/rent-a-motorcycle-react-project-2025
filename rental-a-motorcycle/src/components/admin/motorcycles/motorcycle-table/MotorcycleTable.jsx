@@ -12,6 +12,7 @@ const MotorcycleTable = () => {
     const [editMotorcycle, setEditMotorcycle] = useState(null);
 
     const [isOpenDelete, setIsOpenDelete] = useState(false);
+    const [deleteMotorcycle, setDeleteMotorcycle] = useState(null);
 
     const [showMotorcycles, setShowMotorcycles] = useState([]);
 
@@ -126,7 +127,7 @@ const MotorcycleTable = () => {
                                     <td className="px-6 py-4" scope="row">{motorcycle.active}</td>
                                     <td className="px-6 py-4" scope="row">
                                         <button type="button" onClick={() => { setIsOpenEdit(true); setEditMotorcycle(motorcycle)}} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
-                                        <button type="button" onClick={() => setIsOpenDelete(true)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                                        <button type="button" onClick={() => { setIsOpenDelete(true); setDeleteMotorcycle(motorcycle)}} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -169,7 +170,11 @@ const MotorcycleTable = () => {
                 />}
 
             {/* Delete Motorcycle */}
-            {isOpenDelete && <DeleteMotorcycleModal setIsOpen={setIsOpenDelete} handleDelete={handleDelete} />}
+            {isOpenDelete && <DeleteMotorcycleModal
+                motorcycle={deleteMotorcycle}
+                setIsOpen={setIsOpenDelete} 
+                handleDeleteLocal={handleDelete} 
+            />}
         </>
     );
 };
