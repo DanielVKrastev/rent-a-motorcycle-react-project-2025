@@ -9,6 +9,8 @@ const MotorcycleTable = () => {
     const [newMotorcycle, setNewMotorcycle] = useState(null);
 
     const [isOpenEdit, setIsOpenEdit] = useState(false);
+    const [editMotorcycle, setEditMotorcycle] = useState(null);
+
     const [isOpenDelete, setIsOpenDelete] = useState(false);
 
     const [showMotorcycles, setShowMotorcycles] = useState([]);
@@ -27,6 +29,14 @@ const MotorcycleTable = () => {
             setShowMotorcycles(state => [...state, newMotorcycle]);
         }
     }, [newMotorcycle]);
+
+    // Update locale edit motorcycle
+    
+    useEffect(() => {
+        if (editMotorcycle) {
+            setShowMotorcycles(state => state.map(motorcycle => motorcycle._id === editMotorcycle._id ? editMotorcycle : motorcycle));
+        }
+    }, [editMotorcycle]);
 
     useEffect(() => {
         if (isOpenCreate) {
@@ -115,7 +125,7 @@ const MotorcycleTable = () => {
                                     <td className="px-6 py-4" scope="row">{motorcycle.reservationCount}</td>
                                     <td className="px-6 py-4" scope="row">{motorcycle.active}</td>
                                     <td className="px-6 py-4" scope="row">
-                                        <button type="button" onClick={() => { setIsOpenEdit(true); }} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
+                                        <button type="button" onClick={() => { setIsOpenEdit(true); setEditMotorcycle(motorcycle)}} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
                                         <button type="button" onClick={() => setIsOpenDelete(true)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                                     </td>
                                 </tr>
@@ -146,13 +156,17 @@ const MotorcycleTable = () => {
             </div>
 
             {/* Create Motorcycle */}
-            {isOpenCreate && <CreateMotorcycleModal 
-                            setIsOpen={setIsOpenCreate} 
-                            setNewMotorcycle={setNewMotorcycle}
-                            />}
+            {isOpenCreate && <CreateMotorcycleModal
+                setIsOpen={setIsOpenCreate}
+                setNewMotorcycle={setNewMotorcycle}
+            />}
 
             {/* Edit Motorcycle */}
-            {isOpenEdit && <EditMotorcycleModal setIsOpen={setIsOpenEdit} />}
+            {isOpenEdit && <EditMotorcycleModal 
+                setIsOpen={setIsOpenEdit}
+                motorcycleId={editMotorcycle._id}
+                setEditMotorcycle={setEditMotorcycle}
+                />}
 
             {/* Delete Motorcycle */}
             {isOpenDelete && <DeleteMotorcycleModal setIsOpen={setIsOpenDelete} handleDelete={handleDelete} />}

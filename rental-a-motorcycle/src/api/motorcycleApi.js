@@ -32,20 +32,20 @@ export const useMotorcycles = () => {
     };
 };
 
-export const useUser = (userId) => {
-    const [user, setUser] = useState({});
+export const useMotorcycle = (motorcycleId) => {
+    const [motorcycle, setMotorcycle] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
 
     useEffect(() => {
-        request.get(`${baseUrl}/${userId}`)
+        request.get(`${baseUrl}/${motorcycleId}`)
             .then(result => { 
-                setUser(result);
+                setMotorcycle(result);
                 setIsLoading(false);
             });
-    }, [userId])
+    }, [motorcycleId])
 
     return {
-        user,
+        motorcycle,
         isLoading
     };
 };
@@ -59,18 +59,11 @@ export const useCreateMotorcycle = () => {
     }
 };
 
-export const useEditUser = () => {
+export const useEditMotorcycle = () => {
     const { request } = useAuth();
-    const { accessToken } = useAuth();
 
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        }
-    };
-
-    const edit = (userId, userData) =>
-        request.patch(`${baseUrl}/${userId}`, { ...userData }, options);
+    const edit = (motorcycleId, motorcycleData) =>
+        request.patch(`${baseUrl}/${motorcycleId}`, { ...motorcycleData });
 
     return {
         edit,

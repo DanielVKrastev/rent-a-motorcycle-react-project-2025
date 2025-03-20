@@ -1,9 +1,69 @@
+import { useEffect, useState } from "react";
+import { getErrorMessage } from "../../../../utils/error-unitls";
+import { useEditMotorcycle, useMotorcycle } from "../../../../api/motorcycleApi";
+
 export default function EditMotorcycleModal({
+    motorcycleId,
     setIsOpen,
+    setEditMotorcycle,
 }) {
+    const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
+
+    const [selectedValueType, setSelectedValueType] = useState(motorcycle?.type || '');
+    const [selectedValueCategory, setSelectedValueCategory] = useState(motorcycle?.category || '');
+    const [isActive, setIsActive] = useState(true);
+
+
+    const { edit } = useEditMotorcycle();
+
+    // For select value
+    useEffect(() => {
+        if (!isLoading && motorcycle) {
+            setSelectedValueType(motorcycle.type);
+            setSelectedValueCategory(motorcycle.category);
+            setIsActive(motorcycle?.active === 'no'? false : true);
+        }
+    }, [motorcycle, isLoading]);
+
+    const handleChangeSelectType = (e) => {
+        setSelectedValueType(e.target.value);
+    };
+
+    const handleChangeSelectCategory = (e) => {
+        setSelectedValueCategory(e.target.value);
+    };
+
+    const handleCheckboxChange = (e) => {
+        setIsActive(e.target.checked);
+    };
+
+    async function submitActionAddMotorcycle(formData) {
+        const { image, ...motorcycleData } = Object.fromEntries(formData);
+        const imageName = image.name;
+
+        try {
+            const active = isActive ? "yes" : "no";
+
+            let transformData;
+            if(imageName === ''){
+                transformData = {active, ...motorcycleData};
+            }else{
+                transformData = {image: imageName, active, ...motorcycleData};
+            }
+
+            const editMotorcycle = await edit(motorcycleId, transformData);
+            setEditMotorcycle(editMotorcycle);
+            setIsOpen(false);
+        } catch (err) {
+            const error = getErrorMessage(err.message);
+            console.log(error);
+        }
+
+    }
+
     return (
         <>
-            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40">
+            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
@@ -37,7 +97,7 @@ export default function EditMotorcycleModal({
                                     <span className="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form>
+                            <form action={submitActionAddMotorcycle}>
                                 <div className="p-4 md:p-5 space-y-4">
 
                                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">
@@ -49,8 +109,10 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="text"
                                                     id="brand"
+                                                    name="brand"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="Honda"
+                                                    defaultValue={motorcycle.brand}
                                                     required
                                                 />
                                             </div>
@@ -62,8 +124,10 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="text"
                                                     id="model"
+                                                    name="model"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="CB 1000"
+                                                    defaultValue={motorcycle.model}
                                                     required
                                                 />
                                             </div>
@@ -79,6 +143,8 @@ export default function EditMotorcycleModal({
                                                     id="type"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     name="type"
+                                                    value={selectedValueType}
+                                                    onChange={handleChangeSelectType}
                                                 >
                                                     <option value="Sport">Sport</option>
                                                     <option value="Touring">Touring</option>
@@ -93,9 +159,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="engine"
+                                                    name="engine"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="1000"
                                                     min="1"
+                                                    defaultValue={motorcycle.engine}
                                                     required
                                                 />
                                             </div>
@@ -107,9 +175,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="power"
+                                                    name="power"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="125"
                                                     min="1"
+                                                    defaultValue={motorcycle.power}
                                                     required
                                                 />
                                             </div>
@@ -121,9 +191,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="max_speed"
+                                                    name="maxSpeed"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="285"
                                                     min="1"
+                                                    defaultValue={motorcycle.maxSpeed}
                                                     required
                                                 />
                                             </div>
@@ -138,9 +210,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="weight"
+                                                    name="weight"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="205"
                                                     min="1"
+                                                    defaultValue={motorcycle.weight}
                                                     required
                                                 />
                                             </div>
@@ -156,6 +230,8 @@ export default function EditMotorcycleModal({
                                                     id="category"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     name="category"
+                                                    value={selectedValueCategory}
+                                                    onChange={handleChangeSelectCategory}
                                                 >
                                                     <option value="A">A</option>
                                                     <option value="A1">A1</option>
@@ -170,9 +246,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="year"
+                                                    name="year"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="2024"
                                                     min="1900"
+                                                    defaultValue={motorcycle.year}
                                                     required
                                                 />
                                             </div>
@@ -184,9 +262,11 @@ export default function EditMotorcycleModal({
                                                 <input
                                                     type="number"
                                                     id="tank"
+                                                    name="tank"
                                                     className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                     placeholder="18"
                                                     min="1"
+                                                    defaultValue={motorcycle.tank}
                                                     required
                                                 />
                                             </div>
@@ -202,13 +282,14 @@ export default function EditMotorcycleModal({
                                                     className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                                                     aria-describedby="moto_image_help"
                                                     id="moto_image"
+                                                    name="image"
                                                     type="file"
                                                 />
                                             </div>
 
                                             <div className="mt-14">
                                                 <label className="inline-flex items-center mb-5 cursor-pointer">
-                                                    <input type="checkbox" value="active" className="sr-only peer" defaultChecked />
+                                                    <input type="checkbox" className="sr-only peer" checked={isActive} onChange={handleCheckboxChange} />
                                                     <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
                                                     <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                         Active in site
@@ -223,14 +304,16 @@ export default function EditMotorcycleModal({
 
                                 </div>
                                 <div className="flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b">
+
                                     <button
                                         type="submit"
                                         className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         data-modal-hide="large-modal"
                                     >
                                         <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
-                                        Edit motorcycle
+                                        Edit new motorcycle
                                     </button>
+
                                     <button
                                         className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                                         data-modal-hide="large-modal"
@@ -238,6 +321,7 @@ export default function EditMotorcycleModal({
                                         onClick={() => setIsOpen(false)}>
                                         Decline
                                     </button>
+
                                 </div>
                             </form>
                         </div>
