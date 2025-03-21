@@ -4,13 +4,17 @@ const request = async (method, url, data, options = {}) => {
     }
 
     if (data) {
-        options = {
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
-            body: JSON.stringify(data),
+        if (data instanceof FormData) {
+            options.body = data;
+        } else {
+            options = {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers,
+                },
+                body: JSON.stringify(data),
+            };
         }
     }
 
