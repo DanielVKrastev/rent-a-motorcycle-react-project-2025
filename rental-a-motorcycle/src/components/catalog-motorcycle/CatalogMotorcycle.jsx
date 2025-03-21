@@ -5,7 +5,7 @@ import { useMotorcycles } from "../../api/motorcycleApi";
 import { useState } from "react";
 
 export default function CatalogMotorcycle() {
-    const { motorcycles, isLoading } = useMotorcycles();
+    const { motorcycles } = useMotorcycles();
 
     const [currentPage, setCurrentPage] = useState(1);
     const motorcyclePerPage = 3;
@@ -26,9 +26,9 @@ export default function CatalogMotorcycle() {
             <section className="rent-moto">
                 <div className="container">
                     {currentMotorcycles.map(motorcycle =>
-                        <Link key={motorcycle._id} to="/rent-a-motorcycle/motorcycle">
+                        <Link key={motorcycle._id} to={`/rent-a-motorcycle/${motorcycle._id}`}>
                             <div className="frequently-box-3 float-container">
-                                <img src="/images/honda_cbr.png" alt={`${motorcycle.brand} ${motorcycle.model}`} />
+                                <img src={motorcycle.image? motorcycle.image : "/images/motorcycle_default.jpg"} alt={`${motorcycle.brand} ${motorcycle.model}`} />
                                 <div className="moto-info">
                                     <h4 className="text-center">{`${motorcycle.brand} ${motorcycle.model}`}</h4>
                                     <br />
