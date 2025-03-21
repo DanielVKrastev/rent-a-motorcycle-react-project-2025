@@ -37,9 +37,7 @@ export const useRegister = () => {
 
 export const useLogout = () => {
     const { accessToken, userLogoutHandler } = useContext(UserContext);
-    console.log(accessToken);
     
-
     useEffect(() => {
         if (!accessToken) {
             return;
@@ -53,8 +51,8 @@ export const useLogout = () => {
 
         request.post(`${baseUrl}/logout`, null, options)
             .then(() => {
-                userLogoutHandler();
                 clearUserData();
+                userLogoutHandler();
             })
             .catch(err => console.log(err.message)
             );

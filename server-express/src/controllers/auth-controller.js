@@ -32,17 +32,10 @@ authController.post('/logout', async (req, res) => {
     const token = req.header('X-Authorization');
 
     if (!token) {
-        return res.status(401).json({ error: 'No token, access denied' });
+        return res.status(200).json({ message: 'Logged out successfully' });
     }
 
-    try {
-        jwt.verify(token, JWT_SECRET);
-        return res.status(200).json({ message: 'Logged out successfully' });
-    } catch (error) {
-        console.log(token);
-        
-        return res.status(400).json({ error: 'Invalid token' });
-    }
+    return res.status(200).json({ message: 'Logged out successfully' });
 });
 
 authController.get('/me', async (req, res) => {
