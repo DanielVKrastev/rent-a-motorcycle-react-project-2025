@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useCreateMotorcycle } from "../../../../api/motorcycleApi";
-import { getErrorMessage } from "../../../../utils/error-unitls";
 
 export default function CreateMotorcycleModal({
     setIsOpen,
@@ -13,19 +12,19 @@ export default function CreateMotorcycleModal({
     };
 
     const { createMotorcycle } = useCreateMotorcycle();
-    async function submitActionAddMotorcycle(formData) {
-        const { image, ...motorcycleData } = Object.fromEntries(formData);
-        const imageName = image.name;
+    async function submitActionAddMotorcycle(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+    
+        const active = isActive ? "yes" : "no";
+        formData.append("active", active);
 
         try {
-            const active = isActive ? "yes" : "no";
-            
-            const newMotorcycle = await createMotorcycle({ image: imageName, ...motorcycleData, active});
+            const newMotorcycle = await createMotorcycle(formData);
             setNewMotorcycle(newMotorcycle);
             setIsOpen(false);
         } catch (err) {
-            const error = getErrorMessage(err.message);
-            console.log(error);
+            console.log(err);
         }
 
     }
@@ -66,7 +65,8 @@ export default function CreateMotorcycleModal({
                                     <span className="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form action={submitActionAddMotorcycle}>
+                            <form onSubmit={submitActionAddMotorcycle}>
+                                <input type="hidden" name="reservationCount" value="0" />
                                 <div className="p-4 md:p-5 space-y-4">
 
                                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">

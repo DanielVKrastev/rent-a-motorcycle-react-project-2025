@@ -1,8 +1,12 @@
 import { Router } from "express";
 import mongoose from "mongoose";
+import multer from "multer";
+import { uploadFile } from "../../config/googleDrive.js";
 import motorcycleService from "../services/motorcycle-service.js";
 
 const motorcycleController = Router();
+
+const upload = multer({dest: 'uploads/'});
 
 motorcycleController.get('/', async (req, res) => {
     try {
@@ -19,14 +23,21 @@ motorcycleController.get('/:motorcycleId', async (req, res) => {
         const motorcycle = await motorcycleService.getOne(motorcycleId);
         res.status(200).json(motorcycle);
     } catch (error) {
-        res.status(400).json(error.message);
+        res.status(400).json({error: err.message});
     }
 });
 
-motorcycleController.post('/', async (req, res) => {
-    const motorcycleData = req.body;
-
+motorcycleController.post('/', upload.single('image'), async (req, res) => {
     try{
+        const motorcycleData = req.body;
+
+        if (req.file) {
+            const uploadedImageUrl = await uploadFile(req.file.path, req.file.originalname);
+            console.log(uploadedImageUrl);
+            
+            motorcycleData.image = uploadedImageUrl; // Save public link in database
+        }
+
         const createdMotorcycle = await motorcycleService.create(motorcycleData);
         res.status(201).json(createdMotorcycle);
     }catch(err){
@@ -34,12 +45,19 @@ motorcycleController.post('/', async (req, res) => {
     }
 });
 
-motorcycleController.patch('/:motorcycleId', async (req, res) => {
+motorcycleController.patch('/:motorcycleId', upload.single('image'), async (req, res) => {
     const motorcycleId = req.params.motorcycleId;
     const motorcycleUpdateData = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(motorcycleId)) {
         return res.status(400).json({ error: 'Invalid motorcycleId' });
+    }
+
+    if (req.file) {
+        const uploadedImageUrl = await uploadFile(req.file.path, req.file.originalname);
+        console.log(uploadedImageUrl);
+        
+        motorcycleUpdateData.image = uploadedImageUrl; // Save public link in database
     }
 
     try {

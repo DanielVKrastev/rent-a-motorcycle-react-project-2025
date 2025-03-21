@@ -52,7 +52,7 @@ export const useMotorcycle = (motorcycleId) => {
 
 export const useCreateMotorcycle = () => {
     const createMotorcycle = (motorcycleData) =>
-        request.post(`${baseUrl}/`, {reservationCount: 0, ...motorcycleData});
+        request.post(`${baseUrl}/`, motorcycleData);
 
     return {
         createMotorcycle,
@@ -63,7 +63,7 @@ export const useEditMotorcycle = () => {
     const { request } = useAuth();
 
     const edit = (motorcycleId, motorcycleData) =>
-        request.patch(`${baseUrl}/${motorcycleId}`, { ...motorcycleData });
+        request.patch(`${baseUrl}/${motorcycleId}`, motorcycleData );
 
     return {
         edit,

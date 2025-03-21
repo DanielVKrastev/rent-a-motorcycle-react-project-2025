@@ -37,21 +37,15 @@ export default function EditMotorcycleModal({
         setIsActive(e.target.checked);
     };
 
-    async function submitActionAddMotorcycle(formData) {
-        const { image, ...motorcycleData } = Object.fromEntries(formData);
-        const imageName = image.name;
+    async function submitActionAddMotorcycle(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+    
+        const active = isActive ? "yes" : "no";
+        formData.append("active", active);
 
         try {
-            const active = isActive ? "yes" : "no";
-
-            let transformData;
-            if(imageName === ''){
-                transformData = {active, ...motorcycleData};
-            }else{
-                transformData = {image: imageName, active, ...motorcycleData};
-            }
-
-            const editMotorcycle = await edit(motorcycleId, transformData);
+            const editMotorcycle = await edit(motorcycleId, formData);
             setEditMotorcycle(editMotorcycle);
             setIsOpen(false);
         } catch (err) {
@@ -97,7 +91,7 @@ export default function EditMotorcycleModal({
                                     <span className="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <form action={submitActionAddMotorcycle}>
+                            <form onSubmit={submitActionAddMotorcycle}>
                                 <div className="p-4 md:p-5 space-y-4">
 
                                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">
