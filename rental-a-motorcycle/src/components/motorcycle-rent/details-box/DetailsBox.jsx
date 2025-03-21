@@ -1,60 +1,62 @@
 import Comments from "../comments/Comments";
 
-export default function DetailsBox() {
+export default function DetailsBox({
+    motorcycle,
+}) {
     return (
         <>
             <div className="page-box-left" id="page-box-left">
                 <div className="moto-img">
-                    <img src="/images/honda_cbr.png" alt="" />
+                    <img src={motorcycle.image? motorcycle.image : "/images/motorcycle_default.jpg"} alt={`${motorcycle.brand} ${motorcycle.model}`} />
                 </div>
                 <div className="moto-title">
-                    <h2>Honda CBR 600RR </h2>
+                    <h2>{motorcycle.brand} {motorcycle.model}</h2>
                 </div>
                 <div className="moto-type">
-                    <h3>Sport</h3>
+                    <h3>{motorcycle.type}</h3>
                 </div>
                 <div className="moto-specs">
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-moto-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">600 cc</div>
+                        <div className="moto-specs-text">{motorcycle.engine} cc</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-horse-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">115 hp</div>
+                        <div className="moto-specs-text">{motorcycle.power} hp</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-speed-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">266 km/h</div>
+                        <div className="moto-specs-text">{motorcycle.maxSpeed} km/h</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-calendar-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">2009 year</div>
+                        <div className="moto-specs-text">{motorcycle.year} year</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-weight-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">210 kg</div>
+                        <div className="moto-specs-text">{motorcycle.weight} kg</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-fuel-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">20 L</div>
+                        <div className="moto-specs-text">{motorcycle.tank} L</div>
                     </div>
                     <div className="moto-specs-box">
                         <div className="moto-specs-icons">
                             <img src="/images/icons/icons8-certificate-50.png" alt="" />
                         </div>
-                        <div className="moto-specs-text">A</div>
+                        <div className="moto-specs-text">{motorcycle.category}</div>
                     </div>
                 </div>
                 <hr />
@@ -262,34 +264,48 @@ export default function DetailsBox() {
                         <div className="policy-box-icon">
                             <img src="/images/icons/policy/icons8-man-50.png" alt="" />
                         </div>
-                        <div className="policy-box-text">
-                            You must be <b>at least 21 years old</b> and have 12 months of driving experience.
-                        </div>
-                        {/*}
+                        {motorcycle.category === "A" && (
+                            <div className="policy-box-text">
+                                You must be <b>at least 21 years old</b> and have 12 months of driving experience.
+                            </div>
+                        )}
+
+                        {motorcycle.category === "A2" && (
                             <div className="policy-box-text">
                                 You must be <b>at least 19 years old</b> and have 12 months of driving experience.
                             </div>
+
+                        )}
+                        {motorcycle.category === "A1" && (
                             <div className="policy-box-text">
                                 You must be <b>at least 17 years old</b> and have 12 months of driving experience.
                             </div>
-                            {/*}
 
+                        )}
+
+                    </div>
+                    <div className="policy-box">
+                        <div className="policy-box-icon">
+                            <img src="/images/icons/policy/icons8-book-48.png" alt="" />
                         </div>
-                        <div className="policy-box">
-                            <div className="policy-box-icon">
-                                <img src="/images/icons/policy/icons8-book-48.png" alt="" />
-                            </div>
+                        {motorcycle.category === "A" && (
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A</b> license.
                             </div>
-                            {/*}
+                        )}
+
+                        {motorcycle.category === "A2" && (
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A2</b> license.
                             </div>
+                        )}
+
+                        {motorcycle.category === "A1" && (
                             <div className="policy-box-text">
                                 This motorcycle requires a <b>Category A1</b> license.
                             </div>
-                            {*/}
+                        )}
+
                     </div>
                     <div className="policy-box">
                         <div className="policy-box-icon">

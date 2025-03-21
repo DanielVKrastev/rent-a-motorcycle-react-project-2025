@@ -7,11 +7,16 @@ import MostRented from "../most-rented/MostRented";
 import DetailsBox from "./details-box/DetailsBox";
 import RentalBox from "./rental-box/RentalBox";
 import RentalMobileModal from "./rental-box/rental-mobile-modal/RentalMobileModalBox";
+import { useParams } from "react-router";
+import { useMotorcycle } from "../../api/motorcycleApi";
 
 export default function MotorcycleRent() {
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    
+    const { motorcycleId } = useParams();
+    const { motorcycle } = useMotorcycle(motorcycleId);
 
     useEffect(() => {
         if (isOpen) {
@@ -29,7 +34,7 @@ export default function MotorcycleRent() {
         <>
             <div className="page-2-boxs">
 
-                <DetailsBox />
+                <DetailsBox motorcycle={motorcycle}/>
 
                 <RentalBox
                     startDate={startDate}
