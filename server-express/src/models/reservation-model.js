@@ -38,17 +38,17 @@ const reservationSchema = new Schema({
     delivery: {
         type: String,
         enum: [
-            'от офис',
-            'от летище',
-            'от офис',
+            'from Office',
+            'from Airport',
+            'from a Hotel',
         ],
     },
     bringBack: {
         type: String,
         enum: [
-            'от офис',
-            'от летище',
-            'от офис',
+            'from Office',
+            'from Airport',
+            'from a Hotel',
         ],
     },
     passengerEquipment: {
