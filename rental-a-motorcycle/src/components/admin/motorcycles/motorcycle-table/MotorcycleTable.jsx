@@ -105,6 +105,7 @@ const MotorcycleTable = () => {
                                 <th className="px-6 py-3 text-left" scope="col">Tank</th>
                                 <th className="px-6 py-3 text-left" scope="col">Image</th>
                                 <th className="px-6 py-3 text-left" scope="col">Reserv</th>
+                                <th className="px-6 py-3 text-left" scope="col">Price/day/</th>
                                 <th className="px-6 py-3 text-left" scope="col">Active</th>
                                 <th className="px-6 py-3 text-left" scope="col">Action</th>
                             </tr>
@@ -122,8 +123,9 @@ const MotorcycleTable = () => {
                                     <td className="px-6 py-4" scope="row">{motorcycle.category}</td>
                                     <td className="px-6 py-4" scope="row">{motorcycle.year}</td>
                                     <td className="px-6 py-4" scope="row">{motorcycle.tank}</td>
-                                    <td className="px-6 py-4" scope="row">{motorcycle.image}</td>
+                                    <td className="px-6 py-4" scope="row"><img className="max-w-35" src={motorcycle.image} alt={`${motorcycle.brand} ${motorcycle.model}`}/></td>
                                     <td className="px-6 py-4" scope="row">{motorcycle.reservationCount}</td>
+                                    <td className="px-6 py-4" scope="row">{motorcycle.pricePerDay}</td>
                                     <td className="px-6 py-4" scope="row">{motorcycle.active}</td>
                                     <td className="px-6 py-4" scope="row">
                                         <button type="button" onClick={() => { setIsOpenEdit(true); setEditMotorcycle(motorcycle)}} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>

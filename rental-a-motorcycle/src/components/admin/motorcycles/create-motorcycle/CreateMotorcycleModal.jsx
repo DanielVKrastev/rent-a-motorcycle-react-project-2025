@@ -161,6 +161,17 @@ export default function CreateMotorcycleModal({
                                                     required
                                                 />
                                             </div>
+
+                                            
+                                            <div className="mt-4">
+                                                <label className="inline-flex items-center mb-5 cursor-pointer">
+                                                    <input type="checkbox" className="sr-only peer" checked={isActive} onChange={handleCheckboxChange} />
+                                                    <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
+                                                    <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        Active in site
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
 
                                         <div className="mb-3 text-gray-500 dark:text-gray-400">
@@ -229,6 +240,21 @@ export default function CreateMotorcycleModal({
                                             </div>
 
                                             <div className="mb-5">
+                                                <label htmlFor="pricePerDay" className="block mb-2 text-sm font-medium text-gray-900">
+                                                    Price (per day)
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    id="pricePerDay"
+                                                    name="pricePerDay"
+                                                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                    placeholder="50"
+                                                    min="0"
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="mb-5">
                                                 <label
                                                     className="block mb-2 text-sm font-medium text-gray-900"
                                                     htmlFor="moto_image"
@@ -242,16 +268,6 @@ export default function CreateMotorcycleModal({
                                                     name="image"
                                                     type="file"
                                                 />
-                                            </div>
-
-                                            <div className="mt-14">
-                                                <label className="inline-flex items-center mb-5 cursor-pointer">
-                                                    <input type="checkbox" className="sr-only peer" checked={isActive} onChange={handleCheckboxChange} />
-                                                    <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600" />
-                                                    <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                        Active in site
-                                                    </span>
-                                                </label>
                                             </div>
 
                                         </div>

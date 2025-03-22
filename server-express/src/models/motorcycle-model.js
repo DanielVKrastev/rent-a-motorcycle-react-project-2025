@@ -46,6 +46,10 @@ const motorcycleSchema = new Schema({
     reservationCount: {
         type: Number
     },
+    pricePerDay: {
+        type: Number,
+        required: true,
+    },
     active: {
         type: String,
     },
