@@ -23,30 +23,22 @@ import UserSettings from './components/user-settings/UserSettings';
 import PageNotFound from './components/page-not-found/PageNotFound';
 
 import { UserContext } from './contexts/UserContext';
-import { useState } from 'react';
-import { getUserData, saveUserData } from './utils/userUtils';
 import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
 import Logout from './components/logout/Logout';
 
+import usePersistedState from './hooks/usePersistedState';
+
 function App() {
-  const [authData, setAuthData] = useState({});
+  const [authData, setAuthData] = usePersistedState({});
 
   const userLoginHandler = (userData) => {
     setAuthData(userData);
-    saveUserData(userData);
   }
 
   const userLogoutHandler = () => {
-    setAuthData({});
+    setAuthData(null);
 };
-
-  useState(() => {
-    const localUserData = getUserData();
-    if(localUserData._id && localUserData._id !== undefined){
-      setAuthData(localUserData);
-    }
-  }, [authData]);
 
   return (
     <>
