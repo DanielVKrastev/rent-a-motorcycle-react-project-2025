@@ -7,6 +7,7 @@ import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMo
 import { useLocation, useParams } from "react-router";
 import { useMotorcycle } from "../../api/motorcycleApi";
 import useAuth from "../../hooks/useAuth";
+import { useCreateReservation } from "../../api/reservationApi";
 
 export default function Checkout() {
     const location = useLocation();
@@ -17,6 +18,8 @@ export default function Checkout() {
     const { motorcycle } = useMotorcycle(motorcycleId);
 
     const { username, email, _id: userId } = useAuth();
+
+    const { createReservation } = useCreateReservation();
     
     useEffect(() => {
         if (isOpen) {
@@ -32,35 +35,39 @@ export default function Checkout() {
 
     const reservationData = location.state;    
 
-    function submitCreateReservation(e){
+    async function submitCreateReservation(e){
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const rentData = Object.fromEntries(formData);
 
-        rentData.username = username;
-        rentData.email = email;
-        rentData.userId = userId;
- 
-        const dateOrder = new Date().toJSON();
-        const startDate = new Date(rentData.startDate).toJSON();
-        const endDate = new Date(rentData.endDate).toJSON();
-        const birthday = new Date(rentData.birthday).toJSON();
-
-        rentData.dateOrder = dateOrder;
-        rentData.startDate = startDate;
-        rentData.endDate = endDate;
-        rentData.birthday = birthday;
-
-        const passengerEquipment = reservationData.passengerEquipment;
-        const passengerHelmet = reservationData.passengerHelmet;
-        const emptyTank = reservationData.emptyTank;
-
-        rentData.passengerEquipment = passengerEquipment? 'yes' : 'no';
-        rentData.passengerHelmet = passengerHelmet? 'yes' : 'no';
-        rentData.emptyTank = emptyTank? 'yes' : 'no';
-
-        console.log(rentData);
+        try{
+            rentData.username = username;
+            rentData.email = email;
+            rentData.userId = userId;
+     
+            const dateOrder = new Date().toJSON();
+            const startDate = new Date(rentData.startDate).toJSON();
+            const endDate = new Date(rentData.endDate).toJSON();
+            const birthday = new Date(rentData.birthday).toJSON();
+    
+            rentData.dateOrder = dateOrder;
+            rentData.startDate = startDate;
+            rentData.endDate = endDate;
+            rentData.birthday = birthday;
+    
+            const passengerEquipment = reservationData.passengerEquipment;
+            const passengerHelmet = reservationData.passengerHelmet;
+            const emptyTank = reservationData.emptyTank;
+    
+            rentData.passengerEquipment = passengerEquipment? 'yes' : 'no';
+            rentData.passengerHelmet = passengerHelmet? 'yes' : 'no';
+            rentData.emptyTank = emptyTank? 'yes' : 'no';
+            const newReservation = await createReservation(rentData);
+            console.log(newReservation);
+        }catch(err){
+            console.log(err);
+        }
         
     }
 

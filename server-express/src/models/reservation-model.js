@@ -61,13 +61,13 @@ const reservationSchema = new Schema({
         type: String,
     },
     paid: {
-        type: String,
+        type: Number,
     },
     afterpay: {
-        type: String,
+        type: Number,
     },
     totalPrice: {
-        type: String,
+        type: Number,
         required: true
     },
     motorcycleId: {
