@@ -1,6 +1,6 @@
 import { Router } from "express";
 import mongoose from "mongoose";
-import reservationService from "../services/reservation-service";
+import reservationService from "../services/reservation-service.js";
 
 const reservationContoller = Router();
 

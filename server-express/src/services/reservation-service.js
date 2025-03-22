@@ -1,4 +1,4 @@
-import Reservation from "../models/reservation-model";
+import Reservation from "../models/reservation-model.js";
 
 export default {
     async create(reservationData) {
