@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useCreateMotorcycle } from "../../../../api/motorcycleApi";
+import useAuth from "../../../../hooks/useAuth";
 
 export default function CreateMotorcycleModal({
     setIsOpen,
     setNewMotorcycle,
 }) {
     const [isActive, setIsActive] = useState(true);
+    const { _id: userId } = useAuth();
 
     const handleCheckboxChange = (e) => {
         setIsActive(e.target.checked);
@@ -67,6 +69,7 @@ export default function CreateMotorcycleModal({
                             </div>
                             <form onSubmit={submitActionAddMotorcycle}>
                                 <input type="hidden" name="reservationCount" value="0" />
+                                <input type="hidden" name="owner" value={userId} />
                                 <div className="p-4 md:p-5 space-y-4">
 
                                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 max-w-2xl mx-auto p-5 mt-0">
