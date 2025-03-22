@@ -13,23 +13,23 @@ export default function DriverDetails() {
                         <label htmlFor="telephone">Telephone *</label>
                         <br />
                         <input
-                            type="number"
+                            type="text"
                             name="telephone"
                             defaultValue={+359}
-                            required=""
+                            required
                         />
                     </div>
                     <div className="input-reservation-box">
                         <label htmlFor="licenseCategory">Category *</label>
                         <br />
-                        <select name="licenseCategory" required="">
+                        <select name="licenseCategory" required>
                             <option value="A">A</option>
                             <option value="A2">A2</option>
                             <option value="A1">A1</option>
                             <option value="AM">AM</option>
                         </select>
                     </div>
-                    <div className="input-reservation-box" required="">
+                    <div className="input-reservation-box" required>
                         <label htmlFor="birthday">Date of birth *</label>
                         <br />
                         <input type="date" name="birthday" />
