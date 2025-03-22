@@ -18,8 +18,8 @@ export default function RentalBox({
         differenceInDays += 1;
     }
 
-    let pricePerDayAddOns = sumAddOptions / differenceInDays;
-    let pricePerDayMoto = motorcycle.pricePerDay;
+    let pricePerDayAddOns = Number(sumAddOptions / differenceInDays);
+    let pricePerDayMoto = Number(motorcycle.pricePerDay);
 
     if(differenceInDays > 5) {
         pricePerDayMoto = (pricePerDayMoto - 5);
@@ -28,7 +28,7 @@ export default function RentalBox({
         pricePerDayMoto = (pricePerDayMoto - 5);
     }
     
-    const totalSum = (differenceInDays * (pricePerDayMoto + pricePerDayAddOns)).toFixed(2);
+    const totalSum = Number(differenceInDays * (Number(pricePerDayMoto.toFixed(2)) + Number(pricePerDayAddOns.toFixed(2)))).toFixed(2);
 
     return (
         <>
