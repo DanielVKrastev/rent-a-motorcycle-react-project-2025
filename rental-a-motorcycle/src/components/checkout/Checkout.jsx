@@ -4,8 +4,11 @@ import './Checkout.css';
 import DriverDetails from "./driver-details/DriverDetails";
 import CheckoutBox from "./checkout-box/CheckoutBox";
 import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMobileModal";
+import { useLocation } from "react-router";
 
 export default function Checkout() {
+    const location = useLocation();
+
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -19,6 +22,9 @@ export default function Checkout() {
             document.body.style.overflow = "auto";
         };
     }, [isOpen]);
+
+    const resevationData = location.state;
+    console.log(resevationData);
 
     return (
         <>

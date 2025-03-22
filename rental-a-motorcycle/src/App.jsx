@@ -47,7 +47,7 @@ function App() {
               <Route path="/logout" element={<Logout />}></Route>
 
               <Route element={<PrivateGuard />}>
-                <Route path="/checkout/motorcycleId" element={<Checkout />}></Route>
+                <Route path="/checkout/:motorcycleId" element={<Checkout />}></Route>
                 <Route element={<PrivateAdminGuard />}>
                   <Route path="/admin" element={<AdminDashboard />}>
                       <Route index element={<Dashboard />} />

@@ -7,10 +7,13 @@ import MostRented from "../most-rented/MostRented";
 import DetailsBox from "./details-box/DetailsBox";
 import RentalBox from "./rental-box/RentalBox";
 import RentalMobileModal from "./rental-box/rental-mobile-modal/RentalMobileModalBox";
+import { useNavigate, useParams } from "react-router";
 import { useMotorcycle } from "../../api/motorcycleApi";
 import formatDate from "../../utils/formatDate";
 
 export default function MotorcycleRent() {
+    const navigate = useNavigate();
+
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -19,8 +22,6 @@ export default function MotorcycleRent() {
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
     const [sumAddOptions, setSumAddOptions] = useState(0);
-
-    const [reservationData, setReservationData] = useState({});
 
     useEffect(() => {
         if (isOpen) {
@@ -37,15 +38,14 @@ export default function MotorcycleRent() {
     function submitRentMotorcycle(e) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData);
+        const reservationData = Object.fromEntries(formData);
 
         const startDateFormatted = formatDate(startDate);
         const endDateFormatted = formatDate(endDate);
-        data.startDate = startDateFormatted;
-        data.endDate = endDateFormatted;
+        reservationData.startDate = startDateFormatted;
+        reservationData.endDate = endDateFormatted;
 
-        setReservationData(data);
-
+        navigate(`/checkout/${motorcycleId}`, { state: reservationData});
     }
     
     return !isLoading ?
