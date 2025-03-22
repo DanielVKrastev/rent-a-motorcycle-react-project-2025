@@ -35,7 +35,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-airport-64.png" alt="" />
                                     from Airport
-                                    <input type="hidden" name="delivery" defaultValue="от летище" />
+                                    <input type="hidden" name="delivery" defaultValue="from Airport" />
                                 </>
                             }
 
@@ -43,7 +43,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
                                     from a Hotel
-                                    <input type="hidden" name="delivery" defaultValue="от хотел" />
+                                    <input type="hidden" name="delivery" defaultValue="from a Hotel" />
                                 </>
                             }
 
@@ -51,7 +51,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-office-50.png" alt="" />
                                     from Office
-                                    <input type="hidden" name="delivery" defaultValue="от офис" />
+                                    <input type="hidden" name="delivery" defaultValue="from Office" />
                                 </>
                             }
 
@@ -69,7 +69,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-airport-64.png" alt="" />
                                     from Airport
-                                    <input type="hidden" name="bringBack" defaultValue="от летище" />
+                                    <input type="hidden" name="bringBack" defaultValue="from Airport" />
                                 </>
                             }
 
@@ -77,7 +77,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-5-star-hotel-64.png" alt="" />
                                     from a Hotel
-                                    <input type="hidden" name="bringBack" defaultValue="от хотел" />
+                                    <input type="hidden" name="bringBack" defaultValue="from a Hotel" />
                                 </>
                             }
 
@@ -85,7 +85,7 @@ export default function CheckoutBox({
                                 <>
                                     <img src="/images/icons/icons8-office-50.png" alt="" />
                                     from Office
-                                    <input type="hidden" name="bringBack" defaultValue="от офис" />
+                                    <input type="hidden" name="bringBack" defaultValue="from Office" />
                                 </>
                             }
                         </div>
