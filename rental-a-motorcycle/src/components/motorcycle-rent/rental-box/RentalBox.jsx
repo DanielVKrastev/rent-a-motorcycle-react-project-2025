@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import DatePicker from "react-datepicker";
 
 export default function RentalBox({
+    motorcycle,
     startDate,
     endDate,
     setIsOpen,
@@ -27,7 +28,7 @@ export default function RentalBox({
                     defaultValue={1}
                     className="js-rent-for-days-input"
                 />
-                <div className="rent-per-day js-rent-per-day">(70.00 lv. / day)</div>
+                <div className="rent-per-day js-rent-per-day">({(motorcycle.pricePerDay).toFixed(2)} lv. / day)</div>
                 <input
                     form="form-reservation"
                     type="hidden"
@@ -35,7 +36,7 @@ export default function RentalBox({
                     defaultValue={70.0}
                     className="js-rent-per-day-input"
                 />
-                <div className="rent-price-sum js-rent-price-sum">70.00 lv.</div>
+                <div className="rent-price-sum js-rent-price-sum">{(motorcycle.pricePerDay).toFixed(2)} lv.</div>
                 <input
                     form="form-reservation"
                     type="hidden"

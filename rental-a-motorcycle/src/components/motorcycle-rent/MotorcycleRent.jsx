@@ -14,9 +14,9 @@ export default function MotorcycleRent() {
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    
+
     const { motorcycleId } = useParams();
-    const { motorcycle } = useMotorcycle(motorcycleId);
+    const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
     useEffect(() => {
         if (isOpen) {
@@ -30,13 +30,29 @@ export default function MotorcycleRent() {
         };
     }, [isOpen]);
 
-    return (
-        <>
-            <div className="page-2-boxs">
+    return !isLoading ?
+            <>
+                <div className="page-2-boxs">
 
-                <DetailsBox motorcycle={motorcycle}/>
+                    <DetailsBox motorcycle={motorcycle} />
 
-                <RentalBox
+                    <RentalBox
+                        motorcycle={motorcycle}
+                        startDate={startDate}
+                        endDate={endDate}
+                        setIsOpen={setIsOpen}
+                        setStartDate={setStartDate}
+                        setEndDate={setEndDate}
+                    />
+
+                </div>
+
+                <div className="clearfix" />
+
+                <div id="page-boxs-end" />
+
+                <RentalMobileModal
+                    isOpen={isOpen}
                     startDate={startDate}
                     endDate={endDate}
                     setIsOpen={setIsOpen}
@@ -44,23 +60,10 @@ export default function MotorcycleRent() {
                     setEndDate={setEndDate}
                 />
 
-            </div>
+                <MostRented />
 
-            <div className="clearfix" />
-
-            <div id="page-boxs-end" />
-
-            <RentalMobileModal
-                isOpen={isOpen}
-                startDate={startDate}
-                endDate={endDate}
-                setIsOpen={setIsOpen}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-            />
-
-            <MostRented />
-
-        </>
-    );
+            </>
+            :
+            <div>Loading...</div>
+            ;
 }
