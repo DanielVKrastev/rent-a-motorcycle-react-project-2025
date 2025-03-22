@@ -6,10 +6,28 @@ export default function RentalBox({
     motorcycle,
     startDate,
     endDate,
-    setIsOpen,
+    sumAddOptions,
     setStartDate,
     setEndDate
 }) {
+    let differenceInTime = endDate.getTime() - startDate.getTime();
+
+    //calc. the no. of days between 2 dates
+    let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
+    if(differenceInDays === 0){
+        differenceInDays += 1;
+    }
+
+    let pricePerDayWithAddOns = (motorcycle.pricePerDay + sumAddOptions / differenceInDays).toFixed(2);
+    if(differenceInDays > 5) {
+        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+    }
+    if(differenceInDays > 7){
+        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+    }
+    
+    const totalSum = (differenceInDays * pricePerDayWithAddOns).toFixed(2);
+
     return (
         <>
             {/* Start rent box */}
@@ -20,32 +38,36 @@ export default function RentalBox({
                         alt=""
                     />
                 </div>
-                <div className="rent-for-days">Rent for 1 day</div>
+                <div className="rent-for-days">Rent for {differenceInDays} day</div>
                 <input
                     form="form-reservation"
                     type="hidden"
                     name="rentDays"
-                    defaultValue={1}
+                    defaultValue={differenceInDays}
                 />
-                <div className="rent-per-day">({(motorcycle.pricePerDay).toFixed(2)} lv. / day)</div>
+                <div className="rent-per-day">
+                    ({pricePerDayWithAddOns} lv. / day)
+                </div>
                 <input
                     form="form-reservation"
                     type="hidden"
                     name="rentPricePerDay"
-                    defaultValue={70.0}
+                    defaultValue={pricePerDayWithAddOns}
                 />
-                <div className="rent-price-sum">{(motorcycle.pricePerDay).toFixed(2)} lv.</div>
                 <input
                     form="form-reservation"
                     type="hidden"
                     name="motoRentPrice"
-                    defaultValue={70.0}
+                    defaultValue={motorcycle.pricePerDay}
                 />
+                <div className="rent-price-sum">
+                    {totalSum} lv.
+                </div>
                 <input
                     form="form-reservation"
                     type="hidden"
-                    name="rentSum"
-                    defaultValue={70.0}
+                    name="totalSum"
+                    defaultValue={totalSum}
                 />
 
                 <hr />
@@ -89,25 +111,6 @@ export default function RentalBox({
                     </div>
                 </div>
 
-            </div>
-
-            <div className="page-box-right-mobile text-center" id="mobile-box">
-                <div className="rent-for-days js-rent-for-days-mobile">Rent for 1 day</div>
-                <div className="rent-price-sum js-rent-price-sum-mobile">70.00 lv.</div>
-                <div className="next-button-mobile">
-
-                    <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
-                        {/* Modal toggle */}
-                        <button
-                            onClick={() => setIsOpen(true)}
-                            className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            type="button"
-                        >
-                            Напред
-                        </button>
-                    </div>
-
-                </div>
             </div>
             {/* End rent box */}
         </>

@@ -18,6 +18,8 @@ export default function MotorcycleRent() {
     const { motorcycleId } = useParams();
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
+    const [sumAddOptions, setSumAddOptions] = useState(0);
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
@@ -43,13 +45,16 @@ export default function MotorcycleRent() {
             <form onSubmit={submitRentMotorcycle} id="form-reservation">
                 <div className="page-2-boxs">
 
-                    <DetailsBox motorcycle={motorcycle} />
+                    <DetailsBox 
+                        motorcycle={motorcycle} 
+                        setAddOptions={setSumAddOptions}
+                    />
 
                     <RentalBox
                         motorcycle={motorcycle}
                         startDate={startDate}
                         endDate={endDate}
-                        setIsOpen={setIsOpen}
+                        sumAddOptions={sumAddOptions}
                         setStartDate={setStartDate}
                         setEndDate={setEndDate}
                     />
@@ -61,13 +66,16 @@ export default function MotorcycleRent() {
                 <div id="page-boxs-end" />
 
                 <RentalMobileModal
+                    motorcycle={motorcycle}
                     isOpen={isOpen}
                     startDate={startDate}
                     endDate={endDate}
+                    sumAddOptions={sumAddOptions}
                     setIsOpen={setIsOpen}
                     setStartDate={setStartDate}
                     setEndDate={setEndDate}
                 />
+                
             </form>
 
                 <MostRented />

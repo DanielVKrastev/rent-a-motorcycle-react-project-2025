@@ -2,7 +2,14 @@ import Comments from "../comments/Comments";
 
 export default function DetailsBox({
     motorcycle,
+    setAddOptions
 }) {
+    function addHandlerPrice(event, amount){
+        const isChecked = event.target.checked;
+       
+        setAddOptions(prev => isChecked ? prev + amount : prev - amount);
+    }
+
     return (
         <>
             <div className="page-box-left" id="page-box-left">
@@ -123,9 +130,8 @@ export default function DetailsBox({
                                 form="form-reservation"
                                 type="checkbox"
                                 name="passengerEquipment"
-                                defaultValue={25.0}
-                                data-amount={25.0}
-
+                                defaultValue={25}
+                                onChange={(e) => addHandlerPrice(e, 25)}
                             />
                             Passenger equipment <b>+ 25 lv.</b>
                         </div>
@@ -139,8 +145,8 @@ export default function DetailsBox({
                                 form="form-reservation"
                                 type="checkbox"
                                 name="passengerHelmet"
-                                defaultValue={20.0}
-                                data-amount={20.0}
+                                defaultValue={20}
+                                onChange={(e) => addHandlerPrice(e, 20)}
 
                             />
                             Passenger helmet <b>+ 20 lv.</b>
@@ -155,8 +161,8 @@ export default function DetailsBox({
                                 form="form-reservation"
                                 type="checkbox"
                                 name="emptyTank"
-                                defaultValue={60.0}
-                                data-amount={60.0}
+                                defaultValue={60}
+                                onChange={(e) => addHandlerPrice(e, 60)}
 
                             />
                             Return with an empty tank <b>+ 60 lv.</b>
@@ -172,7 +178,7 @@ export default function DetailsBox({
                                 type="checkbox"
                                 name="deliveryAirport"
                                 defaultValue={25.0}
-                                data-amount={25.0}
+                                onChange={(e) => addHandlerPrice(e, 25)}
 
                             />
                             Take on /Airport/ <b>+ 25 lv.</b>
@@ -188,7 +194,7 @@ export default function DetailsBox({
                                 type="checkbox"
                                 name="returnAirport"
                                 defaultValue={25.0}
-                                data-amount={25.0}
+                                onChange={(e) => addHandlerPrice(e, 25)}
 
                             />
                             Return /Airport/ <b>+ 25 lv.</b>
@@ -204,7 +210,7 @@ export default function DetailsBox({
                                 type="checkbox"
                                 name="deliveryHotel"
                                 defaultValue={20.0}
-                                data-amount={20.0}
+                                onChange={(e) => addHandlerPrice(e, 20)}
 
                             />
                             Take on /Hotel/ <b>+ 20 lv.</b>
@@ -220,7 +226,7 @@ export default function DetailsBox({
                                 type="checkbox"
                                 name="returnHotel"
                                 defaultValue={20.0}
-                                data-amount={20.0}
+                                onChange={(e) => addHandlerPrice(e, 20)}
 
                             />
                             Return /Hotel/ <b>+ 20 lv.</b>

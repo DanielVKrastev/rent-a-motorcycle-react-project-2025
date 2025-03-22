@@ -1,15 +1,32 @@
-import { Link } from "react-router";
-
 import DatePicker from "react-datepicker";
 
 export default function RentalMobileModal({
-    isOpen,
+    motorcycle,
+    sumAddOptions,
     startDate,
     endDate,
+    isOpen,
     setIsOpen,
     setStartDate,
     setEndDate
 }) {
+    let differenceInTime = endDate.getTime() - startDate.getTime();
+
+    //calc. the no. of days between 2 dates
+    let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
+    if (differenceInDays === 0) {
+        differenceInDays += 1;
+    }
+
+    let pricePerDayWithAddOns = (motorcycle.pricePerDay + sumAddOptions / differenceInDays).toFixed(2);
+    if (differenceInDays > 5) {
+        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+    }
+    if (differenceInDays > 7) {
+        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+    }
+
+    const totalSum = (differenceInDays * pricePerDayWithAddOns).toFixed(2);
     return (
         <>
             {/* Small Modal */}
@@ -56,47 +73,47 @@ export default function RentalMobileModal({
                                 {/* Modal body */}
                                 <div className="p-4 md:p-1 space-y-4">
 
-                                    <div className="rent-for-days js-rent-for-days">Rent for 1 day</div>
+                                    <div className="rent-for-days">Rent for {differenceInDays} day</div>
                                     <input
                                         form="form-reservation"
                                         type="hidden"
-                                        name="rent-days"
-                                        defaultValue={1}
-                                        className="js-rent-for-days-input"
+                                        name="rentDays"
+                                        defaultValue={differenceInDays}
                                     />
-                                    <div className="rent-per-day js-rent-per-day">(70.00 lv./ day)</div>
+                                    <div className="rent-per-day">
+                                        ({pricePerDayWithAddOns} lv. / day)
+                                    </div>
                                     <input
                                         form="form-reservation"
                                         type="hidden"
-                                        name="rent-per-day"
-                                        defaultValue={70.0}
-                                        className="js-rent-per-day-input"
-                                    />
-                                    <div className="rent-price-sum js-rent-price-sum">70.00 lv.</div>
-                                    <input
-                                        form="form-reservation"
-                                        type="hidden"
-                                        name="moto-rent-price"
-                                        defaultValue={70.0}
-                                        className="js-moto-rent-price-input"
+                                        name="rentPricePerDay"
+                                        defaultValue={pricePerDayWithAddOns}
                                     />
                                     <input
                                         form="form-reservation"
                                         type="hidden"
-                                        name="rent-price-sum"
-                                        defaultValue={70.0}
-                                        className="js-rent-price-sum-input"
+                                        name="motoRentPrice"
+                                        defaultValue={motorcycle.pricePerDay}
                                     />
+                                    <div className="rent-price-sum">
+                                        {totalSum} lv.
+                                    </div>
+                                    <input
+                                        form="form-reservation"
+                                        type="hidden"
+                                        name="totalSum"
+                                        defaultValue={totalSum}
+                                    />
+
                                     <hr />
 
                                     <div className="start-rent" id="start-rent">
-                                        <p>Rent date</p>
+                                        <p>Rental date</p>
                                         <DatePicker
                                             selected={startDate}
                                             onChange={(date) => setStartDate(date)}
                                             dateFormat="dd/MM/yyyy"
                                             minDate={new Date()}
-                                            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
                                     <div className="end-rent">
@@ -106,18 +123,17 @@ export default function RentalMobileModal({
                                             onChange={(date) => setEndDate(date)}
                                             dateFormat="dd/MM/yyyy"
                                             minDate={startDate}
-                                            className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         />
                                     </div>
                                     <div className="check-button">
-                                        <Link to="/checkout/motorcycleId" onClick={() => setIsOpen(false)}>
-                                            <button
-                                                name="submit_check_button"
-                                                id="submit_check_button"
-                                            >
-                                                Next
-                                            </button>
-                                        </Link>
+                                        <button
+                                            form="form-reservation"
+                                            type="submit"
+                                            id="submit_check_button"
+                                        >
+                                            Next
+                                        </button>
+
                                     </div>
                                 </div>
                                 {/* Modal footer */}
@@ -139,6 +155,25 @@ export default function RentalMobileModal({
                     </div>
                 </div>
             )}
+
+            <div className="page-box-right-mobile text-center" id="mobile-box">
+                <div className="rent-for-days js-rent-for-days-mobile">Rent for {differenceInDays} day</div>
+                <div className="rent-price-sum js-rent-price-sum-mobile">{pricePerDayWithAddOns} lv.</div>
+                <div className="next-button-mobile">
+
+                    <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+                        {/* Modal toggle */}
+                        <button
+                            onClick={() => setIsOpen(true)}
+                            className="block w-full md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="button"
+                        >
+                            Next
+                        </button>
+                    </div>
+
+                </div>
+            </div>
         </>
     );
 }
