@@ -24,7 +24,6 @@ export default function Comments() {
                             </div>
                         </div>
                         {/* Form for new comments */}
-                        <form id="form-comment" action="" method="post" />
                         <div className="review-form">
                             <div className="subtitle">
                                 <h2  className="text-2xl font-bold">Leave your review</h2>

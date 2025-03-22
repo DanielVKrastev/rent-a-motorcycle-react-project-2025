@@ -30,9 +30,7 @@ import UserProvider from './providers/UserProvider';
 
 function App() {
 
-
   return (
-    <>
       <UserProvider>
           <ContactsHeader />
 
@@ -66,7 +64,6 @@ function App() {
 
           <Footer />
       </UserProvider>
-    </>
   )
 }
 

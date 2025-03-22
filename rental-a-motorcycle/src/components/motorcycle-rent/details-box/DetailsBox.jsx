@@ -122,7 +122,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-equipment"
+                                name="passengerEquipment"
                                 defaultValue={25.0}
                                 data-amount={25.0}
 
@@ -138,7 +138,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-helmet"
+                                name="passengerHelmet"
                                 defaultValue={20.0}
                                 data-amount={20.0}
 
@@ -154,7 +154,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-tank"
+                                name="emptyTank"
                                 defaultValue={60.0}
                                 data-amount={60.0}
 
@@ -170,7 +170,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-delivery-airport"
+                                name="deliveryAirport"
                                 defaultValue={25.0}
                                 data-amount={25.0}
 
@@ -186,7 +186,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-return-airport"
+                                name="returnAirport"
                                 defaultValue={25.0}
                                 data-amount={25.0}
 
@@ -202,7 +202,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-delivery-hotel"
+                                name="deliveryHotel"
                                 defaultValue={20.0}
                                 data-amount={20.0}
 
@@ -218,7 +218,7 @@ export default function DetailsBox({
                             <input
                                 form="form-reservation"
                                 type="checkbox"
-                                name="add-options-return-hotel"
+                                name="returnHotel"
                                 defaultValue={20.0}
                                 data-amount={20.0}
 

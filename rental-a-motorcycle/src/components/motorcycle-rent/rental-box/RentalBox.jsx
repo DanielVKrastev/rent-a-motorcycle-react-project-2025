@@ -20,36 +20,32 @@ export default function RentalBox({
                         alt=""
                     />
                 </div>
-                <div className="rent-for-days js-rent-for-days">Rent for 1 day</div>
+                <div className="rent-for-days">Rent for 1 day</div>
                 <input
                     form="form-reservation"
                     type="hidden"
-                    name="rent-days"
+                    name="rentDays"
                     defaultValue={1}
-                    className="js-rent-for-days-input"
                 />
-                <div className="rent-per-day js-rent-per-day">({(motorcycle.pricePerDay).toFixed(2)} lv. / day)</div>
+                <div className="rent-per-day">({(motorcycle.pricePerDay).toFixed(2)} lv. / day)</div>
                 <input
                     form="form-reservation"
                     type="hidden"
-                    name="rent-per-day"
+                    name="rentPricePerDay"
                     defaultValue={70.0}
-                    className="js-rent-per-day-input"
                 />
-                <div className="rent-price-sum js-rent-price-sum">{(motorcycle.pricePerDay).toFixed(2)} lv.</div>
+                <div className="rent-price-sum">{(motorcycle.pricePerDay).toFixed(2)} lv.</div>
                 <input
                     form="form-reservation"
                     type="hidden"
-                    name="moto-rent-price"
+                    name="motoRentPrice"
                     defaultValue={70.0}
-                    className="js-moto-rent-price-input"
                 />
                 <input
                     form="form-reservation"
                     type="hidden"
-                    name="rent-price-sum"
+                    name="rentSum"
                     defaultValue={70.0}
-                    className="js-rent-price-sum-input"
                 />
 
                 <hr />
@@ -73,17 +69,13 @@ export default function RentalBox({
                     />
                 </div>
                 <div className="check-button">
-                    <Link to="/checkout/motorcycleId">
-                        <button
-                            form="form-reservation"
-                            type="submit"
-                            name="submit_check_button"
-                            id="submit_check_button"
-                        >
-                            Next
-                        </button>
-                    </Link>
-
+                    <button
+                        form="form-reservation"
+                        type="submit"
+                        id="submit_check_button"
+                    >
+                        Next
+                    </button>
                 </div>
                 <hr />
                 <div className="more-rent">

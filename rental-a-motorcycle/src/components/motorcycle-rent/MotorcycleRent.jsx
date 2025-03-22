@@ -30,8 +30,17 @@ export default function MotorcycleRent() {
         };
     }, [isOpen]);
 
+    function submitRentMotorcycle(e) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+        
+    }
+
     return !isLoading ?
             <>
+            <form onSubmit={submitRentMotorcycle} id="form-reservation">
                 <div className="page-2-boxs">
 
                     <DetailsBox motorcycle={motorcycle} />
@@ -59,6 +68,7 @@ export default function MotorcycleRent() {
                     setStartDate={setStartDate}
                     setEndDate={setEndDate}
                 />
+            </form>
 
                 <MostRented />
 
