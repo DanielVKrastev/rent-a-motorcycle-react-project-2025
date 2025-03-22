@@ -12,7 +12,7 @@ routes.use('/motorcycle', motorcycleController);
 routes.use('/reservations', reservationContoller);
 
 routes.get('*', (req, res) => {
-    res.render('404');
+    res.send({});
 });
 
 export default routes;
