@@ -22,27 +22,18 @@ import Footer from './components/partials/footer/Footer';
 import UserSettings from './components/user-settings/UserSettings';
 import PageNotFound from './components/page-not-found/PageNotFound';
 
-import { UserContext } from './contexts/UserContext';
 import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
 import Logout from './components/logout/Logout';
+import UserProvider from './providers/UserProvider';
 
-import usePersistedState from './hooks/usePersistedState';
 
 function App() {
-  const [authData, setAuthData] = usePersistedState({});
 
-  const userLoginHandler = (userData) => {
-    setAuthData(userData);
-  }
-
-  const userLogoutHandler = () => {
-    setAuthData(null);
-};
 
   return (
     <>
-      <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}} >
+      <UserProvider>
           <ContactsHeader />
 
           <Navbar />
@@ -74,7 +65,7 @@ function App() {
           </Routes>
 
           <Footer />
-      </UserContext.Provider>
+      </UserProvider>
     </>
   )
 }
