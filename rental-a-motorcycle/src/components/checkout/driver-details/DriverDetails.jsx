@@ -8,45 +8,21 @@ export default function DriverDetails() {
                     <br />
                     <h2 className="text-2xl font-bold">Driver details</h2>
                     <h3 className="text-2xl font-bold">This information will be used for rental confirmation.</h3>
+
                     <div className="input-reservation-box">
-                        <label htmlFor="first-name">Name *</label>
-                        <br />
-                        <input type="text" name="first-name" placeholder="Ivan" required="" />
-                    </div>
-                    <div className="input-reservation-box">
-                        <label htmlFor="last-name">Last name *</label>
-                        <br />
-                        <input
-                            type="text"
-                            name="last-name"
-                            placeholder="Ivanov"
-                            required=""
-                        />
-                    </div>
-                    <div className="input-reservation-box">
-                        <label htmlFor="client_telephone">Telephone *</label>
+                        <label htmlFor="telephone">Telephone *</label>
                         <br />
                         <input
                             type="number"
-                            name="client_telephone"
+                            name="telephone"
                             defaultValue={+359}
                             required=""
                         />
                     </div>
                     <div className="input-reservation-box">
-                        <label htmlFor="email">E-mail *</label>
+                        <label htmlFor="licenseCategory">Category *</label>
                         <br />
-                        <input
-                            type="text"
-                            name="email"
-                            placeholder="email@email.com"
-                            required=""
-                        />
-                    </div>
-                    <div className="input-reservation-box">
-                        <label htmlFor="license_category">Category *</label>
-                        <br />
-                        <select name="license_category" required="">
+                        <select name="licenseCategory" required="">
                             <option value="A">A</option>
                             <option value="A2">A2</option>
                             <option value="A1">A1</option>
@@ -70,9 +46,7 @@ export default function DriverDetails() {
                         <div className="terms-checkbox text-center">
                             <input
                                 type="checkbox"
-                                name="terms"
-                                defaultValue="Accept"
-                                required=""
+                                required
                             />
                         </div>
                         <div className="terms-text">
@@ -81,7 +55,7 @@ export default function DriverDetails() {
                     </div>
                     <div className="terms-box">
                         <div className="terms-checkbox text-center">
-                            <input type="checkbox" name="subscribe-submit" defaultValue="Yes" />
+                            <input type="checkbox" name="subscribeSubmit" defaultValue="Yes" />
                         </div>
                         <div className="terms-text">
                             Subscribe to our newsletter and we will inform you about our new services.

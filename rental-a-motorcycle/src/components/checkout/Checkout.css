@@ -129,6 +129,8 @@
 .start-date-rent img,
 .end-date-rent img{
     width: 20px;
+    margin: 5px 5px 0px 0px;
+    display: inline-block;
 }
 
 .checkout-2-boxs .description,

@@ -18,15 +18,17 @@ export default function RentalBox({
         differenceInDays += 1;
     }
 
-    let pricePerDayWithAddOns = (motorcycle.pricePerDay + sumAddOptions / differenceInDays).toFixed(2);
+    let pricePerDayAddOns = sumAddOptions / differenceInDays;
+    let pricePerDayMoto = motorcycle.pricePerDay;
+
     if(differenceInDays > 5) {
-        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+        pricePerDayMoto = (pricePerDayMoto - 5);
     }
     if(differenceInDays > 7){
-        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
+        pricePerDayMoto = (pricePerDayMoto - 5);
     }
     
-    const totalSum = (differenceInDays * pricePerDayWithAddOns).toFixed(2);
+    const totalSum = (differenceInDays * (pricePerDayMoto + pricePerDayAddOns)).toFixed(2);
 
     return (
         <>
@@ -46,13 +48,13 @@ export default function RentalBox({
                     defaultValue={differenceInDays}
                 />
                 <div className="rent-per-day">
-                    ({pricePerDayWithAddOns} lv. / day)
+                    ({(pricePerDayMoto + pricePerDayAddOns).toFixed(2)} lv. / day)
                 </div>
                 <input
                     form="form-reservation"
                     type="hidden"
                     name="rentPricePerDay"
-                    defaultValue={pricePerDayWithAddOns}
+                    defaultValue={pricePerDayMoto.toFixed(2)}
                 />
                 <input
                     form="form-reservation"
