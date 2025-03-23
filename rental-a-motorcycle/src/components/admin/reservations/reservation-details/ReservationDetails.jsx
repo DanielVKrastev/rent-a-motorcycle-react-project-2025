@@ -1,13 +1,13 @@
 import { useEditReservation, useReservation } from "../../../../api/reservationApi";
 import MotorcycleInfo from "../reservations-table/MotorcycleInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ReservationDetails({
     reservationId,
     setIsOpen,
     setEditReservation,
 }) {
-    const { reservation } = useReservation(reservationId);
+    const { reservation, isLoading } = useReservation(reservationId);
 
     const { edit } = useEditReservation();
 
@@ -16,6 +16,13 @@ export default function ReservationDetails({
     const handleChangeSelectStatus = (e) => {
         setSelectedValueStatus(e.target.value);
     };
+
+    // For select value
+    useEffect(() => {
+        if (!isLoading && reservation) {
+            setSelectedValueStatus(reservation.status);
+        }
+    }, [reservation, isLoading]);
 
     async function submitActionAddMotorcycle(e) {
         e.preventDefault();
@@ -301,7 +308,7 @@ export default function ReservationDetails({
 
                                             <div className="mb-5">
                                                 <label htmlFor="passengerEquipment" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    passengerEquipment
+                                                    Passenger Equipment
                                                 </label>
                                                 <input
                                                     type="text"
@@ -317,7 +324,7 @@ export default function ReservationDetails({
 
                                             <div className="mb-5">
                                                 <label htmlFor="passengerHelmet" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    passengerHelmet
+                                                    Passenger Helmet
                                                 </label>
                                                 <input
                                                     type="text"
@@ -333,7 +340,7 @@ export default function ReservationDetails({
 
                                             <div className="mb-5">
                                                 <label htmlFor="emptyTank" className="block mb-2 text-sm font-medium text-gray-900">
-                                                    emptyTank
+                                                    Empty Tank
                                                 </label>
                                                 <input
                                                     type="text"
