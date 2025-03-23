@@ -6,7 +6,7 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import Dashboard from './components/admin/dashboard/Dashboard';
 import UserTable from './components/admin/users/user-table/UserTable';
 import MotorcycleTable from './components/admin/motorcycles/motorcycle-table/MotorcycleTable';
-import Reservation from './components/admin/reservation/Reservation';
+import Reservations from './components/admin/reservations/Reservations';
 import CatalogMotorcycle from './components/catalog-motorcycle/CatalogMotorcycle';
 
 import ScrollToTop from './utils/ScrollToTop';
@@ -53,7 +53,7 @@ function App() {
                       <Route index element={<Dashboard />} />
                       <Route path="users" element={<UserTable />} />
                       <Route path="motorcycle" element={<MotorcycleTable />} />
-                      <Route path="reservation" element={<Reservation />} />
+                      <Route path="reservation" element={<Reservations />} />
                   </Route>
                   </Route>
                 <Route path="/user-settings" element={<UserSettings />} />

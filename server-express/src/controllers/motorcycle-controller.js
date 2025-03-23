@@ -22,7 +22,7 @@ motorcycleController.get('/:motorcycleId', async (req, res) => {
     try {
         const motorcycle = await motorcycleService.getOne(motorcycleId);
         res.status(200).json(motorcycle);
-    } catch (error) {
+    } catch (err) {
         res.status(400).json({error: err.message});
     }
 });
