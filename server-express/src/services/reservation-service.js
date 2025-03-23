@@ -21,4 +21,30 @@ export default {
         
         return this.getOne(updateReservation);
     },
+    async revenue(){
+        try {
+            const revenue = await Reservation.aggregate([
+                {
+                    $match: {
+                        status: { $in: ['Completed', 'Confirmed'] },
+                    },
+                },
+                {
+                    $group: {
+                        _id: null, 
+                        totalRevenue: { $sum: '$totalPrice' }, 
+                    },
+                },
+            ]);
+
+            if (revenue.length === 0) {
+                return 0; 
+            }
+    
+            return revenue[0].totalRevenue;
+        } catch (error) {
+            console.error("Грешка при изчисляване на приходите:", error);
+            return error; 
+        }
+    },
 }

@@ -9,12 +9,32 @@ reservationContoller.get('/', async (req, res) => {
         const reservations = await reservationService.getAll();
         res.status(200).json(reservations);
     } catch (error) {
-        res.status(400).json(error.message);
+        res.status(400).json({error: err.message});
     }
 });
 
+reservationContoller.get('/revenue', async (req, res) => {
+    
+    try{
+        const revenue = await reservationService.revenue();
+        if (revenue !== null) {
+            res.json(revenue); 
+        } else {
+            res.status(400).json({ err: 'Error calculating revenue' });
+        }
+    }catch(err){
+        res.status(400).json({error: err.message});
+    }
+
+});
+
+
 reservationContoller.get('/:reservationId', async (req, res) => {
     const reservationId = req.params.reservationId;
+
+    if (!mongoose.Types.ObjectId.isValid(reservationId)) {
+        return res.status(400).json({ error: 'Invalid reservation ID' });
+    }
     try {
         const reservation = await reservationService.getOne(reservationId);
         res.status(200).json(reservation);
