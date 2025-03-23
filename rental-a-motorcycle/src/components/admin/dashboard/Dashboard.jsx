@@ -1,5 +1,6 @@
-import { useReservations, useRevenue } from "../../../api/reservationApi";
+import { useReservations, useReservationsLimit, useRevenue } from "../../../api/reservationApi";
 import { useUsers } from "../../../api/userApi";
+import MotorcycleInfo from "../reservations/reservations-table/MotorcycleInfo";
 
 export default function Dashboard() {
   const { users } = useUsers();
@@ -9,6 +10,8 @@ export default function Dashboard() {
   const numberOfReservations = reservations?.length;
 
   const { revenue } = useRevenue();
+
+  const { reservations: reservationsLimit } = useReservationsLimit(5);
 
   return (
     <div className="flex-1">
@@ -32,22 +35,25 @@ export default function Dashboard() {
         <table className="min-w-full table-auto">
           <thead>
             <tr className="border-b">
-              <th className="px-4 py-2 text-left">User</th>
-              <th className="px-4 py-2 text-left">Action</th>
-              <th className="px-4 py-2 text-left">Date</th>
+              <th className="px-4 py-2 text-left">Name</th>
+              <th className="px-4 py-2 text-left">Phone</th>
+              <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Motorcycle</th>
+              <th className="px-4 py-2 text-left">Date Order</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="px-4 py-2">John Doe</td>
-              <td className="px-4 py-2">Created a new post</td>
-              <td className="px-4 py-2">2025-03-12</td>
-            </tr>
-            <tr>
-              <td className="px-4 py-2">Jane Smith</td>
-              <td className="px-4 py-2">Updated profile</td>
-              <td className="px-4 py-2">2025-03-11</td>
-            </tr>
+            {reservationsLimit.map(reservation => (
+              <tr key={reservation._id}>
+                <td className="px-4 py-2">{reservation.username}</td>
+                <td className="px-4 py-2">{reservation.telephone}</td>
+                <td className="px-4 py-2">{reservation.email}</td>
+                <td className="px-4 py-2"><MotorcycleInfo motorcycleId={reservation.motorcycleId} /></td>
+                <td className="px-4 py-2">{new Date(reservation.dateOrder).toLocaleDateString("en-GB", { timeZone: "UTC" })}</td>
+              </tr>
+            ))}
+
+
           </tbody>
         </table>
       </div>

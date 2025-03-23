@@ -6,7 +6,7 @@ export default {
         return createdReservartion;
     },
     async getAll(){
-        const reservations = await Reservation.find();
+        const reservations = await Reservation.find().sort({ _id: -1 }) ;
         return reservations;
     },
     async getOne(reservationId){

@@ -6,7 +6,7 @@ export default {
         return createdMotorcycle;
     },
     async getAll(){
-        const motorcycles = await Motorcycle.find();
+        const motorcycles = await Motorcycle.find().sort({ _id: -1 });
         return motorcycles;
     },
     async getOne(motorcycleId){

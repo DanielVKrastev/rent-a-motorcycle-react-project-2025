@@ -39,7 +39,7 @@ export default {
         return { _id: user._id, accessToken: accessToken, email: user.email, username: user.username, role: user.role};
     },
     async getAll(){
-        const users = await User.find();
+        const users = await User.find().sort({ _id: -1 });
         return users;
     },
     async getOne(userId){

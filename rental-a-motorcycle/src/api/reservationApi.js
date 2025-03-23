@@ -32,6 +32,34 @@ export const useReservations = () => {
     };
 };
 
+export const useReservationsLimit = (limit) => {
+    const [reservations, setReservations] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    const refetch = () => {
+        setIsLoading(true);
+        request.get(`${baseUrl}?limit=${limit}`)
+            .then(result => {
+                setReservations(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    };
+
+    useEffect(() => {
+        refetch();
+    }, []);
+
+    return {
+        reservations,
+        isLoading,
+        refetch
+    };
+};
+
 export const useReservation = (reservationId) => {
     const [reservation, setReservation] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
