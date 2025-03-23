@@ -6,10 +6,18 @@ const reservationContoller = Router();
 
 reservationContoller.get('/', async (req, res) => {
     try {
-        const reservations = await reservationService.getAll();
+        let reservations;
+        if (req.query.limit) {
+            const limit = parseInt(req.query.limit);
+            reservations = await reservationService.latestReservation(limit);
+        } else {
+            reservations = await reservationService.getAll();
+        }
+
+
         res.status(200).json(reservations);
     } catch (error) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({error: error});
     }
 });
 
@@ -27,7 +35,6 @@ reservationContoller.get('/revenue', async (req, res) => {
     }
 
 });
-
 
 reservationContoller.get('/:reservationId', async (req, res) => {
     const reservationId = req.params.reservationId;

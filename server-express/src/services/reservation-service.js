@@ -43,8 +43,16 @@ export default {
     
             return revenue[0].totalRevenue;
         } catch (error) {
-            console.error("Грешка при изчисляване на приходите:", error);
             return error; 
         }
     },
+    async latestReservation(limit){
+        try {
+            return await Reservation.find()
+                .sort({ dateOrder: -1 })  
+                .limit(limit);           
+        } catch (error) {
+            throw error;
+        }
+    }
 }
