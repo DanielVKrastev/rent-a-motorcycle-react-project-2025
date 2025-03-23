@@ -80,3 +80,21 @@ export const useDeleteReservation = () => {
     }
 };
 
+export const useRevenue = () => {
+    const [revenue, setRevenue] = useState(0);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        request.get(`${baseUrl}/revenue`)
+            .then(result => { 
+                setRevenue(result);
+                setIsLoading(false);
+            });
+    }, [])
+
+    return {
+        revenue,
+        isLoading
+    };
+};
+
