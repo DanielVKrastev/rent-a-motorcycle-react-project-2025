@@ -123,7 +123,7 @@ export default function Sidebar({
             <Link
               onClick={() => { if (windowWidth < 780) closeOpenHandlerAdminMenu() }}
               className="flex items-center p-2 text-gray-900 rounded-lg light:text-white hover:bg-gray-300 light:hover:bg-gray-700 group"
-              to="/admin/reservation">
+              to="/admin/reservations">
               <svg
                 aria-hidden="true"
                 className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 light:text-gray-400 group-hover:text-gray-900 light:group-hover:text-white"

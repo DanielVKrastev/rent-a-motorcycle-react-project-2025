@@ -53,7 +53,7 @@ function App() {
                       <Route index element={<Dashboard />} />
                       <Route path="users" element={<UserTable />} />
                       <Route path="motorcycle" element={<MotorcycleTable />} />
-                      <Route path="reservation" element={<Reservations />} />
+                      <Route path="reservations" element={<Reservations />} />
                   </Route>
                   </Route>
                 <Route path="/user-settings" element={<UserSettings />} />

@@ -1,6 +1,7 @@
 import { useReservations, useReservationsLimit, useRevenue } from "../../../api/reservationApi";
 import { useUsers } from "../../../api/userApi";
 import MotorcycleInfo from "../reservations/reservations-table/MotorcycleInfo";
+import { Link } from "react-router";
 
 export default function Dashboard() {
   const { users } = useUsers();
@@ -17,18 +18,23 @@ export default function Dashboard() {
     <div className="flex-1">
       <h2 className="text-3xl font-semibold mb-6">Dashboard Overview</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="p-6 bg-white shadow-md rounded-lg">
-          <h3 className="text-xl font-semibold mb-3">Total Users</h3>
-          <p className="text-4xl">{numberOfUsers}</p>
-        </div>
+        <Link to="/admin/users">
+          <div className="p-6 bg-white shadow-md rounded-lg">
+            <h3 className="text-xl font-semibold mb-3">Total Users</h3>
+            <p className="text-4xl">{numberOfUsers}</p>
+          </div>
+        </Link>
+
         <div className="p-6 bg-white shadow-md rounded-lg">
           <h3 className="text-xl font-semibold mb-3">Revenue</h3>
           <p className="text-4xl">{revenue} lv.</p>
         </div>
-        <div className="p-6 bg-white shadow-md rounded-lg">
-          <h3 className="text-xl font-semibold mb-3">Reservations</h3>
-          <p className="text-4xl">{numberOfReservations}</p>
-        </div>
+        <Link to="/admin/reservations">
+          <div className="p-6 bg-white shadow-md rounded-lg">
+            <h3 className="text-xl font-semibold mb-3">Reservations</h3>
+            <p className="text-4xl">{numberOfReservations}</p>
+          </div>
+        </Link>
       </div>
       <div className="mt-8 bg-white p-6 shadow-md rounded-lg">
         <h3 className="text-2xl font-semibold mb-4">Recent Activity</h3>
