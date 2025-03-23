@@ -18,7 +18,7 @@ reservationContoller.get('/:reservationId', async (req, res) => {
     try {
         const reservation = await reservationService.getOne(reservationId);
         res.status(200).json(reservation);
-    } catch (error) {
+    } catch (err) {
         res.status(400).json({error: err.message});
     }
 });

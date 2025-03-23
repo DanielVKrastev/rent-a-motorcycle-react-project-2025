@@ -70,6 +70,18 @@ const reservationSchema = new Schema({
         type: Number,
         required: true
     },
+    status: {
+        type: String,
+        enum: [
+            'Pending',
+            'Confirmed ',
+            'In progress',
+            'Completed',
+            'Completed',
+            'Cancelled',
+            'Рejected',
+        ],
+    },
     motorcycleId: {
         type: Types.ObjectId,
         ref: 'Motorcycle',

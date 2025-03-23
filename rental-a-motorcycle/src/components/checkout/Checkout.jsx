@@ -63,6 +63,9 @@ export default function Checkout() {
             rentData.passengerEquipment = passengerEquipment? 'yes' : 'no';
             rentData.passengerHelmet = passengerHelmet? 'yes' : 'no';
             rentData.emptyTank = emptyTank? 'yes' : 'no';
+
+            rentData.status = 'Pending';
+            
             const newReservation = await createReservation(rentData);
             console.log(newReservation);
         }catch(err){
