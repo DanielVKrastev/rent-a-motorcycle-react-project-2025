@@ -1,5 +1,3 @@
-import { Link } from "react-router";
-
 import DatePicker from "react-datepicker";
 
 export default function RentalBox({
@@ -7,10 +5,29 @@ export default function RentalBox({
     startDate,
     endDate,
     sumAddOptions,
+    disabledDates,
     setStartDate,
     setEndDate
 }) {
     let differenceInTime = endDate.getTime() - startDate.getTime();
+    
+    console.log(disabledDates);
+    
+    const isDateInRange = (date) => {
+        return disabledDates.some(range => {
+            const startDate = new Date(range.start);
+            const endDate = new Date(range.end);
+            const currentDate = new Date(date);
+    
+            // Set the time to 00:00:00 so that only dates are compared
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+            currentDate.setHours(0, 0, 0, 0);
+    
+            return currentDate >= startDate && currentDate <= endDate;
+        });
+      };
+    
 
     //calc. the no. of days between 2 dates
     let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
@@ -78,7 +95,8 @@ export default function RentalBox({
                     <p>Rental date</p>
                     <DatePicker
                         selected={startDate}
-                        onChange={(date) => setStartDate(date)}
+                        filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
+                        onChange={(date) => {setStartDate(date); setEndDate(date) }}
                         dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
                     />
@@ -87,9 +105,10 @@ export default function RentalBox({
                     <p>Return date</p>
                     <DatePicker
                         selected={endDate}
+                        filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
                         onChange={(date) => setEndDate(date)}
                         dateFormat="dd/MM/yyyy"
-                        minDate={startDate}
+                        minDate={new Date(startDate)}
                     />
                 </div>
                 <div className="check-button">

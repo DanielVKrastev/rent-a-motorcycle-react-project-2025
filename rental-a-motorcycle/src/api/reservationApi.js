@@ -73,6 +73,29 @@ export const useReservationsLimit = (limit) => {
     };
 };
 
+export const useReservationsMotorcycleDates = (motorcycleId) => {
+    const [dates, setDates] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        setIsLoading(true);
+        request.get(`${baseUrl}/motorcycle/${motorcycleId}/dates`)
+            .then(result => {
+                setDates(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    }, []);
+
+    return {
+        dates,
+        isLoading,
+    };
+};
+
 export const useReservation = (reservationId) => {
     const [reservation, setReservation] = useState({});
     const [isLoading, setIsLoading] = useState(true); 

@@ -10,6 +10,7 @@ import RentalMobileModal from "./rental-box/rental-mobile-modal/RentalMobileModa
 import { useNavigate, useParams } from "react-router";
 import { useMotorcycle } from "../../api/motorcycleApi";
 import formatDate from "../../utils/formatDate";
+import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 
 export default function MotorcycleRent() {
     const navigate = useNavigate();
@@ -20,6 +21,13 @@ export default function MotorcycleRent() {
 
     const { motorcycleId } = useParams();
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
+    const { dates } = useReservationsMotorcycleDates(motorcycleId);
+
+    const disabledDates = dates.map(date => ({
+        "start": new Date(date.startDate),
+        "end": new Date(date.endDate)
+    }));
+    
 
     const [sumAddOptions, setSumAddOptions] = useState(0);
 
@@ -63,6 +71,7 @@ export default function MotorcycleRent() {
                         startDate={startDate}
                         endDate={endDate}
                         sumAddOptions={sumAddOptions}
+                        disabledDates={disabledDates}
                         setStartDate={setStartDate}
                         setEndDate={setEndDate}
                     />
