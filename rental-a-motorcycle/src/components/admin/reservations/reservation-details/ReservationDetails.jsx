@@ -28,9 +28,16 @@ export default function ReservationDetails({
         e.preventDefault();
         const formData = new FormData(e.target);
         const status = formData.get('status');
+        const editData = {
+            status: status,
+        }
+        if(status === 'Completed'){
+            editData.paid = reservation.totalPrice;
+            editData.afterpay = 0;
+        }
 
         try {
-            const editReservation = await edit(reservationId, { status });
+            const editReservation = await edit(reservationId, editData);
             setEditReservation(editReservation);
             setIsOpen(false);
         } catch (err) {
