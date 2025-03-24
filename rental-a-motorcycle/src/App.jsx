@@ -26,6 +26,7 @@ import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
 import Logout from './components/logout/Logout';
 import UserProvider from './providers/UserProvider';
+import UserDashboard from './components/user-dashboard/UserDashboard';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
                   </Route>
                   </Route>
                 <Route path="/user-settings" element={<UserSettings />} />
+                <Route path="/user-dashboard" element={<UserDashboard />} />
               </Route>
 
               <Route path="*" element={<PageNotFound />}></Route>

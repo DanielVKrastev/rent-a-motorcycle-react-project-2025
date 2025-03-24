@@ -4,13 +4,14 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3000/reservations';
 
-export const useReservations = () => {
+export const useReservations = (userId = false) => {
     const [reservations, setReservations] = useState([]);
     const [isLoading, setIsLoading] = useState(true); 
 
     const refetch = () => {
         setIsLoading(true);
-        request.get(`${baseUrl}`)
+        if(!userId){
+            request.get(`${baseUrl}`)
             .then(result => {
                 setReservations(result);
                 setIsLoading(false);
@@ -19,6 +20,18 @@ export const useReservations = () => {
                 setIsLoading(false);
                 console.error(error);
             });
+        }else{
+            request.get(`${baseUrl}?userId=${userId}`)
+            .then(result => {
+                setReservations(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+        }
+
     };
 
     useEffect(() => {
