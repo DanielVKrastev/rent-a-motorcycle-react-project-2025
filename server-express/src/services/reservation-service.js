@@ -13,6 +13,19 @@ export default {
         const reservation = await Reservation.findOne({ _id: reservationId});
         return reservation;
     },
+    async getMotorcycleDates(motorcycleId) {
+        try {
+            const reservations = await Reservation.find({ motorcycleId });
+    
+            const dates = reservations.map(reservation => ({
+                startDate: reservation.startDate,
+                endDate: reservation.endDate
+            }));
+            return dates; 
+        } catch (error) {
+            throw error;
+        }
+    },
     async delete(reservationId){
         return await Reservation.findByIdAndDelete(reservationId);
     },

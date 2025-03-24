@@ -54,6 +54,17 @@ reservationContoller.get('/:reservationId', async (req, res) => {
     }
 });
 
+reservationContoller.get('/motorcycle/:motorcycleId/dates', async (req, res) => {
+    const { motorcycleId } = req.params;
+
+    try {
+        const dates = await reservationService.getMotorcycleDates(motorcycleId);
+        res.status(200).json(dates);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 reservationContoller.post('/', async (req, res) => {
     try{
         const reservationData = req.body;
