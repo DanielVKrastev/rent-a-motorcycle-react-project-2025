@@ -10,7 +10,11 @@ reservationContoller.get('/', async (req, res) => {
         if (req.query.limit) {
             const limit = parseInt(req.query.limit);
             reservations = await reservationService.latestReservation(limit);
-        } else {
+        } else if(req.query.userId){
+            const userId = req.query.userId;
+            reservations = await reservationService.getAll({userId});
+        }
+        else {
             reservations = await reservationService.getAll();
         }
 

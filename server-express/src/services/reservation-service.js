@@ -5,8 +5,8 @@ export default {
         const createdReservartion = await Reservation.create(reservationData);
         return createdReservartion;
     },
-    async getAll(){
-        const reservations = await Reservation.find().sort({ _id: -1 }) ;
+    async getAll(userId = {}){
+        const reservations = await Reservation.find(userId).sort({ _id: -1 }) ;
         return reservations;
     },
     async getOne(reservationId){
