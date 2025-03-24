@@ -1,4 +1,4 @@
-import { useMotorcycle } from "../../api/motorcycleApi";
+import { useMotorcycle } from "../../../api/motorcycleApi";
 
 export function MotorcycleModelBrand( {motorcycleId} ) {
     const { motorcycle, loading } = useMotorcycle(motorcycleId);

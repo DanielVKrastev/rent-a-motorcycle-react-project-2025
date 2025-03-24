@@ -21,6 +21,9 @@ motorcycleController.get('/:motorcycleId', async (req, res) => {
     const motorcycleId = req.params.motorcycleId;
     try {
         const motorcycle = await motorcycleService.getOne(motorcycleId);
+        if (!motorcycle) {
+            return res.status(200).json({}); 
+        }
         res.status(200).json(motorcycle);
     } catch (err) {
         res.status(400).json({error: err.message});

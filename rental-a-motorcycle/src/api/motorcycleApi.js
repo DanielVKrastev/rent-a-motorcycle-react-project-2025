@@ -35,8 +35,14 @@ export const useMotorcycles = () => {
 export const useMotorcycle = (motorcycleId) => {
     const [motorcycle, setMotorcycle] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
-
+    
     useEffect(() => {
+        if(motorcycleId === undefined) {
+            setMotorcycle({});
+            setIsLoading(false);
+            return;
+        }
+
         request.get(`${baseUrl}/${motorcycleId}`)
             .then(result => { 
                 setMotorcycle(result);

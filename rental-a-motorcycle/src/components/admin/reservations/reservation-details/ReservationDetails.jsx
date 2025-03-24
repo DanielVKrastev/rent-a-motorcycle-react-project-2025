@@ -372,8 +372,8 @@ export default function ReservationDetails({
                                                     <option value="Confirmed">Confirmed</option>
                                                     <option value="In progress">In progress</option>
                                                     <option value="Completed">Completed</option>
-                                                    <option value="Cancelled">Cancelled</option>
-                                                    <option value="Рejected">Рejected</option>
+                                                    <option value="Canceled">Canceled</option>
+                                                    <option value="Rejected">Rejected</option>
                                                 </select>
                                             </div>
 

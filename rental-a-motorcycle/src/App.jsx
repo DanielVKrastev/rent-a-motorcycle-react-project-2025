@@ -26,46 +26,56 @@ import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
 import Logout from './components/logout/Logout';
 import UserProvider from './providers/UserProvider';
+import ReservationDetails from './components/user-dashboard/reservation-details/ReservationDetails';
+import UserReservations from './components/user-dashboard/user-reservations/UserReservations';
 import UserDashboard from './components/user-dashboard/UserDashboard';
 
 
 function App() {
 
   return (
-      <UserProvider>
-          <ContactsHeader />
+    <UserProvider>
+      <ContactsHeader />
 
-          <Navbar />
+      <Navbar />
 
-          <ScrollToTop />
-          <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/about" element={<About />}></Route>
-              <Route path="/rent-a-motorcycle" element={<CatalogMotorcycle />}></Route>
-              <Route path="/rent-a-motorcycle/:motorcycleId" element={<MotorcycleRent />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/logout" element={<Logout />}></Route>
+      <ScrollToTop />
+      <Routes>
+        {/* Public */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/rent-a-motorcycle" element={<CatalogMotorcycle />} />
+        <Route path="/rent-a-motorcycle/:motorcycleId" element={<MotorcycleRent />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
 
-              <Route element={<PrivateGuard />}>
-                <Route path="/checkout/:motorcycleId" element={<Checkout />}></Route>
-                <Route element={<PrivateAdminGuard />}>
-                  <Route path="/admin" element={<AdminDashboard />}>
-                      <Route index element={<Dashboard />} />
-                      <Route path="users" element={<UserTable />} />
-                      <Route path="motorcycle" element={<MotorcycleTable />} />
-                      <Route path="reservations" element={<Reservations />} />
-                  </Route>
-                  </Route>
-                <Route path="/user-settings" element={<UserSettings />} />
-                <Route path="/user-dashboard" element={<UserDashboard />} />
-              </Route>
+        {/* Privite */}
+        <Route element={<PrivateGuard />}>
+          <Route path="/checkout/:motorcycleId" element={<Checkout />} />
 
-              <Route path="*" element={<PageNotFound />}></Route>
-          </Routes>
+          {/* User Dashboard */}
+          <Route path="/user-dashboard" element={<UserDashboard />}>
+            <Route index element={<UserReservations />} />
+            <Route path="reservation-details/:reservationId" element={<ReservationDetails />} />
+          </Route>
 
-          <Footer />
-      </UserProvider>
+          <Route path="/user-settings" element={<UserSettings />} />
+
+          {/* Private Admin */}
+          <Route element={<PrivateAdminGuard />}>
+            <Route path="/admin" element={<AdminDashboard />}>
+              <Route index element={<Dashboard />} />
+              <Route path="users" element={<UserTable />} />
+              <Route path="motorcycles" element={<MotorcycleTable />} />
+              <Route path="reservations" element={<Reservations />} />
+            </Route>
+          </Route>
+        </Route>
+      </Routes>
+
+      <Footer />
+    </UserProvider>
   )
 }
 

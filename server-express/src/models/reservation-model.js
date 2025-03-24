@@ -77,8 +77,8 @@ const reservationSchema = new Schema({
             'Confirmed',
             'In progress',
             'Completed',
-            'Cancelled',
-            'Рejected',
+            'Canceled',
+            'Rejected',
         ],
     },
     motorcycleId: {
