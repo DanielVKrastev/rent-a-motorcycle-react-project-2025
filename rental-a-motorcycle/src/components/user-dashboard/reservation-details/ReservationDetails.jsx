@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
-import { useReservation } from "../../../api/reservationApi";
+import { useEditReservation, useReservation } from "../../../api/reservationApi";
 import { useMotorcycle } from "../../../api/motorcycleApi";
+import StatusBadge from "../StatusBadge";
 
 export default function ReservationDetails() {
     const { reservationId } = useParams();
@@ -10,7 +11,7 @@ export default function ReservationDetails() {
     const [showMorocycle, setShowMotorcycle] = useState(null);
     
     const { reservation } = useReservation(reservationId);
-    
+    const { edit } = useEditReservation();
     
     useEffect(() => {
         if (reservation) {
@@ -31,25 +32,21 @@ export default function ReservationDetails() {
         return <div className="text-center text-gray-600 mt-20">Loading reservation details...</div>;
     }
 
-    // Функция за цветово кодиране на статуса
-    const getStatusBadge = (status) => {
-        switch (status) {
-            case "Completed":
-                return <span className="text-green-600 flex items-center"><FaCheckCircle className="mr-1" /> Completed</span>;
-            case "In progress":
-                return <span className="text-green-400 flex items-center"><FaClock className="mr-1" /> In progress</span>;
-            case "Confirmed":
-                return <span className="text-yellow-500 flex items-center"><FaClock className="mr-1" /> Confirmed</span>
-            case "Pending":
-                return <span className="text-yellow-400 flex items-center"><FaClock className="mr-1" /> Pending</span>;
-            case "Canceled":
-                return <span className="text-red-600 flex items-center"><FaTimesCircle className="mr-1" /> Canceled</span>;
-            case "Rejected":
-                return <span className="text-red-600 flex items-center"><FaTimesCircle className="mr-1" /> Rejected</span>;
-            default:
-                return <span className="text-gray-600">Unknown</span>;
+    const handleEditReservation = async () => {
+        try {
+            const editData = {
+                status: 'Canceled',
+                paid: 0,
+                afterpay: 0,
+                totalPrice: 0,
+            }
+            const editReservation = await edit(reservationId, editData);
+            setShowReservation(editReservation);
+        } catch (err) {
+            console.log(err);
         }
-    };
+
+    }
 
     return (
 <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8">
@@ -67,7 +64,7 @@ export default function ReservationDetails() {
 
         <div className="bg-gray-50 p-4 rounded-lg shadow">
             <h3 className="text-lg font-semibold text-gray-800">Reservation Info</h3>
-            <p><strong>Status:</strong> {getStatusBadge(showReservation.status)}</p>
+            <p><strong>Status:</strong> <StatusBadge status={showReservation.status} /></p>
             <p><strong>Order Date:</strong> {new Date(showReservation.dateOrder).toLocaleDateString()}</p>
             <p><strong>Rental Period:</strong> {showReservation.days} days</p>
             <p><strong>Start Date:</strong> {new Date(showReservation.startDate).toLocaleDateString()}</p>
@@ -105,13 +102,12 @@ export default function ReservationDetails() {
 
     {showReservation.status === "Pending" && (
         <div className="mt-6 text-center">
-            <button className="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition">
+            <button onClick={handleEditReservation} className="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition">
                 Cancel Reservation
             </button>
         </div>
     )}
 
-    {/* Бутон за връщане назад */}
     <div className="mt-6 text-center">
         <Link to="/user-dashboard">
             <button className="px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition">

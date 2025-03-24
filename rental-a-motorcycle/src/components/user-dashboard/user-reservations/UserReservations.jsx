@@ -3,6 +3,7 @@ import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { MotorcycleImage, MotorcycleModelBrand } from "./MotorcycleInfo";
 import { useReservations } from "../../../api/reservationApi";
+import StatusBadge from "../StatusBadge";
 
 export default function UserReservations() {
     const { _id: userId } = useAuth();
@@ -43,8 +44,10 @@ export default function UserReservations() {
                                         <p><strong>Date Order:</strong> {new Date(reservation.dateOrder).toLocaleDateString("en-GB", { timeZone: "UTC" })}</p>
                                         <p><strong>Start Date:</strong> {new Date(reservation.startDate).toLocaleDateString("en-GB", { timeZone: "UTC" })}</p>
                                         <p><strong>End Date:</strong> {new Date(reservation.endDate).toLocaleDateString("en-GB", { timeZone: "UTC" })}</p>
+                                        <p><strong>Days:</strong> {reservation.days}</p>
                                         <p><strong>Paid:</strong> {reservation.paid} lv.</p>
                                         <p><strong>Total Price:</strong> {reservation.totalPrice} lv.</p>
+                                        <p className="flex"><strong>Status:</strong> <StatusBadge status={reservation.status}/></p>
                                     </div>
                                     <div className="mt-4 text-center">
                                         <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
