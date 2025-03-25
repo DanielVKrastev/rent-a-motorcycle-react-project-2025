@@ -39,7 +39,7 @@ export default {
             const revenue = await Reservation.aggregate([
                 {
                     $match: {
-                        status: { $in: ['Completed', 'Confirmed'] },
+                        status: { $in: ['Completed', 'Confirmed', 'In progress'] },
                     },
                 },
                 {
