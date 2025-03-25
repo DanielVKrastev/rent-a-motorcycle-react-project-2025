@@ -14,8 +14,6 @@ export default function RentalBox({
 
     let differenceInTime = endDate.getTime() - startDate.getTime();
     
-    console.log(disabledDates);
-    
     const isDateInRange = (date) => {
         return disabledDates.some(range => {
             const startDate = new Date(range.start);
