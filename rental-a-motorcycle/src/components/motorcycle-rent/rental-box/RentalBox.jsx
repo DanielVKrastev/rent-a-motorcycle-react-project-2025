@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 export default function RentalBox({
@@ -9,6 +10,8 @@ export default function RentalBox({
     setStartDate,
     setEndDate
 }) {
+    const [errorMessage, setErrorMessage] = useState("");
+
     let differenceInTime = endDate.getTime() - startDate.getTime();
     
     console.log(disabledDates);
@@ -26,10 +29,28 @@ export default function RentalBox({
     
             return currentDate >= startDate && currentDate <= endDate;
         });
-      };
-    
+    };
 
-    //calc. the no. of days between 2 dates
+    const isRangeBlocked = useCallback((start, end) => { // useCallback() - to cache a function definition between re-renders
+        return disabledDates.some(range => {
+            const rangeStart = new Date(range.start).setHours(0, 0, 0, 0);
+            const rangeEnd = new Date(range.end).setHours(23, 59, 59, 999); //end day
+            const selectedStart = new Date(start).setHours(0, 0, 0, 0);
+            const selectedEnd = new Date(end).setHours(23, 59, 59, 999); //end day
+
+            return selectedStart <= rangeEnd && selectedEnd >= rangeStart;
+        });
+    }, [disabledDates]);
+
+    useEffect(() => {
+        if (isRangeBlocked(startDate, endDate)) {
+            setErrorMessage("The selected period contains busy dates. Please choose another one");
+        } else {
+            setErrorMessage("");
+        }
+    }, [startDate, endDate, isRangeBlocked]);
+    
+    //calc. the № of days between 2 dates
     let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
     if(differenceInDays === 0){
         differenceInDays += 1;
@@ -96,7 +117,7 @@ export default function RentalBox({
                     <DatePicker
                         selected={startDate}
                         filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
-                        onChange={(date) => {setStartDate(date); setEndDate(date) }}
+                        onChange={(date) => {setStartDate(date); setEndDate(date); }}
                         dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
                     />
@@ -106,16 +127,21 @@ export default function RentalBox({
                     <DatePicker
                         selected={endDate}
                         filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
-                        onChange={(date) => setEndDate(date)}
+                        onChange={(date) => {setEndDate(date); }}
                         dateFormat="dd/MM/yyyy"
                         minDate={new Date(startDate)}
                     />
                 </div>
-                <div className="check-button">
+                {errorMessage && (
+                    <p style={{ color: "red", marginTop: "0px" }}>{errorMessage}</p>
+                )}
+
+                <div className={!errorMessage? "check-button" : "button-disabled"}>
                     <button
                         form="form-reservation"
                         type="submit"
                         id="submit_check_button"
+                        disabled={errorMessage}
                     >
                         Next
                     </button>
