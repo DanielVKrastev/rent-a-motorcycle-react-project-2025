@@ -8,15 +8,19 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useEditMotorcycle, useMotorcycle } from "../../api/motorcycleApi";
 import useAuth from "../../hooks/useAuth";
 import { useCreateReservation } from "../../api/reservationApi";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import MessageToast from "../messageToast/MessageToast";
 
 export default function Checkout() {
     const navigate = useNavigate();
     const location = useLocation();
 
     const [isOpen, setIsOpen] = useState(false);
+    const [showMessageToast, setMessageShowToast] = useState(false);
+    const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
 
     const { motorcycleId } = useParams();
-    const { motorcycle } = useMotorcycle(motorcycleId);
+    const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
     const { username, email, _id: userId } = useAuth();
 
@@ -39,6 +43,8 @@ export default function Checkout() {
 
     async function submitCreateReservation(e){
         e.preventDefault();
+
+        setIsLoadingCheckout(true);
 
         const formData = new FormData(e.currentTarget);
         const rentData = Object.fromEntries(formData);
@@ -74,15 +80,20 @@ export default function Checkout() {
             editMotorcycle(motorcycleId, { reservationCount });
             
             navigate("/success-reservation" ,{ state: { reservation: newReservation } });
-            console.log(newReservation);
+            setIsLoadingCheckout(false);
         }catch(err){
-            console.log(err);
+            setMessageShowToast({ type: 'error', content: err.message });
         }
         
     }
 
     return (
         <>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
+
+            {isLoading && <LoadingSpinner/>}
+            {isLoadingCheckout && <LoadingSpinner/>}
+
             <form onSubmit={submitCreateReservation}>
                 <div className="reservation-2-boxs">
                         <DriverDetails />
