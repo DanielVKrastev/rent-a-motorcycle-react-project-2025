@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import ErrorAlert from "../../errorAlert/ErrorAlert";
 
 export default function RentalBox({
     motorcycle,
@@ -130,9 +131,7 @@ export default function RentalBox({
                         minDate={new Date(startDate)}
                     />
                 </div>
-                {errorMessage && (
-                    <p style={{ color: "red", marginTop: "0px" }}>{errorMessage}</p>
-                )}
+                {errorMessage && <ErrorAlert error={errorMessage} /> }
 
                 <div className={!errorMessage? "check-button" : "button-disabled"}>
                     <button

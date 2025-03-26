@@ -30,6 +30,7 @@ import ReservationDetails from './components/user-dashboard/reservation-details/
 import UserReservations from './components/user-dashboard/user-reservations/UserReservations';
 import UserDashboard from './components/user-dashboard/UserDashboard';
 import PublicGuard from './guards/PublicGuard';
+import SuccessReservation from './components/checkout/success-reservation/SuccessReservation';
 
 
 function App() {
@@ -53,9 +54,10 @@ function App() {
         </Route>
         <Route path="/logout" element={<Logout />} />
 
-        {/* Privite */}
+        {/* Private */}
         <Route element={<PrivateGuard />}>
           <Route path="/checkout/:motorcycleId" element={<Checkout />} />
+          <Route path="/success-reservation" element={<SuccessReservation />} />
 
           {/* User Dashboard */}
           <Route path="/user-dashboard" element={<UserDashboard />}>

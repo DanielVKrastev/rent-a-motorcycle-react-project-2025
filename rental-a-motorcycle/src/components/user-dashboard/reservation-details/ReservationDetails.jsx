@@ -51,7 +51,7 @@ export default function ReservationDetails() {
             setMessageShowToast({ type: 'success', content: 'Successfully canceled the reservation!' });
             setShowReservation(editReservation);
         } catch (err) {
-            setMessageShowToast({ type: 'success', content: err.message });
+            setMessageShowToast({ type: 'error', content: err.message });
         }
 
     }

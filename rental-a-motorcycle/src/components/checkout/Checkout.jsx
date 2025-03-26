@@ -4,12 +4,13 @@ import './Checkout.css';
 import DriverDetails from "./driver-details/DriverDetails";
 import CheckoutBox from "./checkout-box/CheckoutBox";
 import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMobileModal";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useEditMotorcycle, useMotorcycle } from "../../api/motorcycleApi";
 import useAuth from "../../hooks/useAuth";
 import { useCreateReservation } from "../../api/reservationApi";
 
 export default function Checkout() {
+    const navigate = useNavigate();
     const location = useLocation();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -72,6 +73,7 @@ export default function Checkout() {
             const reservationCount = motorcycle.reservationCount + 1;
             editMotorcycle(motorcycleId, { reservationCount });
             
+            navigate("/success-reservation" ,{ state: { reservation: newReservation } });
             console.log(newReservation);
         }catch(err){
             console.log(err);
