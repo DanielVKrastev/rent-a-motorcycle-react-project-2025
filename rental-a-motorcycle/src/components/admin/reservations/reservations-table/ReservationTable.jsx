@@ -6,6 +6,7 @@ import { useReservations } from "../../../../api/reservationApi";
 import MotorcycleInfo from "./MotorcycleInfo";
 import DeleteReservationModal from "../reservation-delete/DeleteReservationModal";
 import ReservationDetails from "../reservation-details/ReservationDetails";
+import MessageToast from "../../../messageToast/MessageToast";
 
 const ReservationTable = () => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
@@ -15,6 +16,9 @@ const ReservationTable = () => {
     const [deleteReservation, setDeleteReservation] = useState(null);
 
     const [showReservations, setShowReservations] = useState([]);
+
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { reservations, isLoading } = useReservations();
 
     useEffect(() => {
@@ -25,11 +29,13 @@ const ReservationTable = () => {
 
     useEffect(() => {
         if (editReservation) {
+            setMessageShowToast({type: 'success', content: 'Reservation updated successfully!'});
             setShowReservations(state => state.map(reservation => reservation._id === editReservation._id ? editReservation : reservation));
         }
     }, [editReservation]);
 
     const handleDelete = (id) => {
+        setMessageShowToast({type: 'success', content: 'Reservation has been deleted!'});
         setShowReservations(showReservations.filter(reservation => reservation._id !== id));
     };
 
@@ -46,6 +52,8 @@ const ReservationTable = () => {
 
     return (
         <>
+        {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
+
             <div className="relative w-full overflow-x-auto block">
                 <table className="min-w-[1400px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-300 dark:text-gray-800">
