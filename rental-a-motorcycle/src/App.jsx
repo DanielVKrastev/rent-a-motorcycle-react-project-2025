@@ -29,6 +29,7 @@ import UserProvider from './providers/UserProvider';
 import ReservationDetails from './components/user-dashboard/reservation-details/ReservationDetails';
 import UserReservations from './components/user-dashboard/user-reservations/UserReservations';
 import UserDashboard from './components/user-dashboard/UserDashboard';
+import PublicGuard from './guards/PublicGuard';
 
 
 function App() {
@@ -46,8 +47,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/rent-a-motorcycle" element={<CatalogMotorcycle />} />
         <Route path="/rent-a-motorcycle/:motorcycleId" element={<MotorcycleRent />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route element={<PublicGuard />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
         <Route path="/logout" element={<Logout />} />
 
         {/* Privite */}
