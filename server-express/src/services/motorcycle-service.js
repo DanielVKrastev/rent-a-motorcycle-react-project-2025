@@ -24,7 +24,7 @@ export default {
     async latestReservation(limit){
         try {
             return await Motorcycle.find()
-                .sort({ _id: -1 })  
+                .sort({ reservationCount: -1 })  
                 .limit(limit);           
         } catch (error) {
             throw error;

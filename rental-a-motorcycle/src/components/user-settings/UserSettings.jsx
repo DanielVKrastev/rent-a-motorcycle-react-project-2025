@@ -41,7 +41,7 @@ export default function UserSettings() {
   return (
     <>
       <section
-        className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-no-repeat md:h-[calc(90vh-50px)] flex items-center justify-center"
+        className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-fixed bg-no-repeat md:h-[calc(90vh-50px)] flex items-center justify-center"
       >
         <div className="flex flex-col items-center justify-center px-1 py-8 mx-auto lg:py-0 mb-20 ">
           <div className="w-[95vw] bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow sm:max-w-md xl:p-0 mt-2 mb-16">

@@ -32,6 +32,29 @@ export const useMotorcycles = () => {
     };
 };
 
+export const useMostRentedMotorcyclesLimit = (limit) => {
+    const [motorcycles, setMotorcycles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        setIsLoading(true);
+        request.get(`${baseUrl}?limit=${limit}`)
+            .then(result => {
+                setMotorcycles(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    }, [limit])
+
+    return {
+        motorcycles,
+        isLoading,
+    };
+};
+
 export const useMotorcycle = (motorcycleId) => {
     const [motorcycle, setMotorcycle] = useState({});
     const [isLoading, setIsLoading] = useState(true); 

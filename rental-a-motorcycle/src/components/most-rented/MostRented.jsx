@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import './MostRented.css';
+import { useMostRentedMotorcyclesLimit } from "../../api/motorcycleApi";
 
 export default function MostRented() {
+    const { motorcycles } = useMostRentedMotorcyclesLimit(3);
+    
     return (
         <>
             {/* Start Most frequently rented moto section*/}
@@ -11,51 +14,25 @@ export default function MostRented() {
                     <br />
                     <h2 className="text-center text-4xl font-bold dark:text-white">Most Popular Motorcycles</h2>
                     <br />
-                    <Link to="/rent-a-motorcycle/motorcycle">
-                        <div className="frequently-box-3 float-container">
-                            <img src="/images/honda_cbr.png" alt="honda_cbr" />
-                            <div className="moto-info">
-                                <h4 className="text-center">HONDA CBR 600RR</h4>
-                                <br />
-                                <p>Type: Sport</p>
-                                <p>Engine: 600cc</p>
-                                <p>Power: 105hp.</p>
-                                <p>Weight: 190кг.</p>
-                                <p>Category: А</p>
+                    {motorcycles.map(motorcycle =>
+                        <Link key={motorcycle._id} to={`/rent-a-motorcycle/${motorcycle._id}`}>
+                            <div className="frequently-box-3 float-container">
+                                <img src={motorcycle.image? motorcycle.image : "/images/motorcycle_default.jpg"} alt={`${motorcycle.brand} ${motorcycle.model}`} />
+                                <div className="moto-info">
+                                    <h4 className="text-center">{`${motorcycle.brand} ${motorcycle.model}`}</h4>
+                                    <br />
+                                    <p>Type: {motorcycle.type}</p>
+                                    <p>Engine: {motorcycle.engine}cc</p>
+                                    <p>Power: {motorcycle.power}hp.</p>
+                                    <p>Weight: {motorcycle.weight}kg.</p>
+                                    <p>Category: {motorcycle.category}</p>
+                                    <p>Rented: {motorcycle.reservationCount}</p>
+                                </div>
+                                <input type="submit" name="submit" value="More Details" />
                             </div>
-                            <input type="submit" name="submit" value="More Details" />
-                        </div>
-                    </Link>
-                    <Link to="/rent-a-motorcycle/motorcycle">
-                        <div className="frequently-box-3 float-container">
-                            <img src="/images/honda_cbr.png" alt="honda_cbr" />
-                            <div className="moto-info">
-                                <h4 className="text-center">HONDA CBR 600RR</h4>
-                                <br />
-                                <p>Type: Sport</p>
-                                <p>Engine: 600cc</p>
-                                <p>Power: 105hp.</p>
-                                <p>Weight: 190кг.</p>
-                                <p>Category: А</p>
-                            </div>
-                            <input type="submit" name="submit" value="More Details" />
-                        </div>
-                    </Link>
-                    <Link to="/rent-a-motorcycle/motorcycle">
-                        <div className="frequently-box-3 float-container">
-                            <img src="/images/honda_cbr.png" alt="honda_cbr" />
-                            <div className="moto-info">
-                                <h4 className="text-center">HONDA CBR 600RR</h4>
-                                <br />
-                                <p>Type: Sport</p>
-                                <p>Engine: 600cc</p>
-                                <p>Power: 105hp.</p>
-                                <p>Weight: 190кг.</p>
-                                <p>Category: А</p>
-                            </div>
-                            <input type="submit" name="submit" value="More Details" />
-                        </div>
-                    </Link>
+                        </Link>
+
+                    )}
                     <div className="clearfix" />
                     <div className="text-center">
                         <br />

@@ -60,7 +60,7 @@ function App() {
             <Route path="reservation-details/:reservationId" element={<ReservationDetails />} />
           </Route>
 
-          <Route path="/user-settings" element={<UserSettings />} />
+          <Route path="user-settings" element={<UserSettings />} />
 
           {/* Private Admin */}
           <Route element={<PrivateAdminGuard />}>
