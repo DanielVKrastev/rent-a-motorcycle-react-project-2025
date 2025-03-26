@@ -4,13 +4,14 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3000/motorcycle';
 
-export const useMotorcycles = () => {
+export const useMotorcycles = (filter = undefined) => {
     const [motorcycles, setMotorcycles] = useState([]);
     const [isLoading, setIsLoading] = useState(true); 
 
-    const refetch = () => {
+    useEffect(() => {
         setIsLoading(true);
-        request.get(`${baseUrl}`)
+        const url = filter? `${baseUrl}?where=brand=${filter}` : baseUrl;
+        request.get(url)
             .then(result => {
                 setMotorcycles(result);
                 setIsLoading(false);
@@ -19,16 +20,11 @@ export const useMotorcycles = () => {
                 setIsLoading(false);
                 console.error(error);
             });
-    };
-
-    useEffect(() => {
-        refetch();
-    }, []);
+    }, [filter]);
 
     return {
         motorcycles,
         isLoading,
-        refetch
     };
 };
 

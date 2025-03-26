@@ -1,4 +1,16 @@
+import { useNavigate } from "react-router";
+
 export default function FilterMotorcycle() {
+    const navigate = useNavigate();
+
+    function handlerFilterMotorcycle(filter) {
+
+        if (filter === undefined) {
+           return navigate('/rent-a-motorcycle');
+        } 
+
+        navigate(`/rent-a-motorcycle?brand=${filter}`)
+    }
     return (
         <>
             {/* Start Filter section*/}
@@ -9,11 +21,11 @@ export default function FilterMotorcycle() {
                     <br />
                     <br />
                     <div className="filter-buttons">
-                        <div className="filter-box">All</div>
-                        <div className="filter-box">Honda</div>
-                        <div className="filter-box">Yamaha</div>
-                        <div className="filter-box">Suzuki</div>
-                        <div className="filter-box">BMW</div>
+                        <div onClick={() => handlerFilterMotorcycle(undefined)} className="filter-box">All</div>
+                        <div onClick={() => handlerFilterMotorcycle('Honda')} className="filter-box">Honda</div>
+                        <div onClick={() => handlerFilterMotorcycle('Yamaha')} className="filter-box">Yamaha</div>
+                        <div onClick={() => handlerFilterMotorcycle('Suzuki')} className="filter-box">Suzuki</div>
+                        <div onClick={() => handlerFilterMotorcycle('BMW')} className="filter-box">BMW</div>
                     </div>
                 </div>
             </section>
