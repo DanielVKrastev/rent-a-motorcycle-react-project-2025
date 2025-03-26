@@ -35,7 +35,7 @@ export default function UserSettings() {
       setName(editUser.username);
       setEmail(editUser.email);
       
-      setMessageShowToast('Edit success!');
+      setMessageShowToast({type: 'success', content: 'Edit success!'});
       setErrorMessage(false);
     } catch (err) {
       setErrorMessage(err.message);
