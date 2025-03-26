@@ -14,7 +14,7 @@ export default function DeleteMotorcycleModal({
 
             await deleteMotorcycle(motorcycle._id);
             handleDeleteLocal(motorcycle._id);
-            console.log('delete');
+            setIsOpen(false);
         }catch(err){
             setMessageShowToast({type: 'error', content: err.message});
         }
@@ -73,7 +73,7 @@ export default function DeleteMotorcycleModal({
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                                 data-modal-hide="popup-modal"
                                 type="button"
-                                onClick={() => { deleteMotorcycleHandler(); setIsOpen(false)}}>
+                                onClick={() => { deleteMotorcycleHandler(); }}>
                                 Yes, I'm sure
                             </button>
                             <button

@@ -20,6 +20,7 @@ export default function DeleteUserModal({
 
             await deleteUser(userDel._id);
             handleDeleteLocal(userDel._id);
+            setIsOpen(false);
         }catch(err){
             setMessageShowToast({type: 'error', content: err.message});
         }
@@ -78,7 +79,7 @@ export default function DeleteUserModal({
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                                 data-modal-hide="popup-modal"
                                 type="button"
-                                onClick={() => {deleteUserHandler(); setIsOpen(false)}}>
+                                onClick={() => {deleteUserHandler(); }}>
                                 Yes, I'm sure
                             </button>
                             <button

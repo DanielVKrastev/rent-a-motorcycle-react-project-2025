@@ -1,4 +1,5 @@
 import { useEditReservation, useReservation } from "../../../../api/reservationApi";
+import MessageToast from "../../../messageToast/MessageToast";
 import MotorcycleInfo from "../reservations-table/MotorcycleInfo";
 import { useEffect, useState } from "react";
 
@@ -7,6 +8,8 @@ export default function ReservationDetails({
     setIsOpen,
     setEditReservation,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { reservation, isLoading } = useReservation(reservationId);
 
     const { edit } = useEditReservation();
@@ -41,14 +44,15 @@ export default function ReservationDetails({
             setEditReservation(editReservation);
             setIsOpen(false);
         } catch (err) {
-            console.log(err);
+            setMessageShowToast({type: 'error', content: err.message});
         }
 
     }
 
     return (
         <>
-            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+            <div onClick={() => {setIsOpen(false); setEditReservation(null)}} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+                {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
@@ -64,7 +68,7 @@ export default function ReservationDetails({
                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                     data-modal-hide="large-modal"
                                     type="button"
-                                    onClick={() => setIsOpen(false)}>
+                                    onClick={() => {setIsOpen(false); setEditReservation(null)}}>
                                     <svg
                                         aria-hidden="true"
                                         className="w-3 h-3"
@@ -405,7 +409,7 @@ export default function ReservationDetails({
                                         className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                                         data-modal-hide="large-modal"
                                         type="button"
-                                        onClick={() => setIsOpen(false)}>
+                                        onClick={() => {setIsOpen(false); setEditReservation(null)}}>
                                         Close
                                     </button>
 

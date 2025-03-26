@@ -28,11 +28,11 @@ const ReservationTable = () => {
     }, [reservations, isLoading]);
 
     useEffect(() => {
-        if (editReservation) {
+        if (editReservation && !isOpenDetails) {
             setMessageShowToast({type: 'success', content: 'Reservation updated successfully!'});
             setShowReservations(state => state.map(reservation => reservation._id === editReservation._id ? editReservation : reservation));
         }
-    }, [editReservation]);
+    }, [editReservation, isOpenDetails]);
 
     const handleDelete = (id) => {
         setMessageShowToast({type: 'success', content: 'Reservation has been deleted!'});

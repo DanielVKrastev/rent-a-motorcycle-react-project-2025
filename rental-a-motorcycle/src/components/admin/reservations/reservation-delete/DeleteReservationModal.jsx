@@ -1,25 +1,30 @@
+import { useState } from "react";
 import { useDeleteReservation } from "../../../../api/reservationApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function DeleteReservationModal({
     reservation,
     setIsOpen,
     handleDeleteLocal,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { deleteReservation } = useDeleteReservation();
     async function deleteReservationHandler(){
         try{
 
             await deleteReservation(reservation._id);
             handleDeleteLocal(reservation._id);
-            console.log('delete');
-            }catch(err){
-            console.log(err.message);
+            setIsOpen(false);
+        }catch(err){
+            setMessageShowToast({type: 'error', content: err.message});
         }
     }
 
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
             <div
                 className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                 id="popup-modal"
@@ -72,7 +77,7 @@ export default function DeleteReservationModal({
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                                 data-modal-hide="popup-modal"
                                 type="button"
-                                onClick={() => { deleteReservationHandler(); setIsOpen(false)}}>
+                                onClick={() => { deleteReservationHandler(); }}>
                                 Yes, I'm sure
                             </button>
                             <button
