@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useDeleteUser } from "../../../../api/userApi";
 import useAuth from "../../../../hooks/useAuth";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function DeleteUserModal({
     user: userDel,
     setIsOpen,
     handleDeleteLocal,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { _id: userId } = useAuth();
     const { deleteUser } = useDeleteUser();
     async function deleteUserHandler(){
@@ -16,14 +20,15 @@ export default function DeleteUserModal({
 
             await deleteUser(userDel._id);
             handleDeleteLocal(userDel._id);
-            }catch(err){
-            console.log(err.message);
+        }catch(err){
+            setMessageShowToast({type: 'error', content: err.message});
         }
     }
 
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
             <div
                 className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                 id="popup-modal"

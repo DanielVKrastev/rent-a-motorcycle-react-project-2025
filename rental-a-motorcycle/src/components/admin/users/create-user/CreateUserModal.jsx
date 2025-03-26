@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useRegister } from "../../../../api/authApi";
-import { getErrorMessage } from "../../../../utils/error-unitls";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function CreateUserModal({
     setNewUser,
     setIsOpen,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+    
     const { register } = useRegister();
     async function submitActionAddUser(formData){
         const {email, username, password, rePassword} = Object.fromEntries(formData);
@@ -14,8 +17,7 @@ export default function CreateUserModal({
             setNewUser(newUser);
             setIsOpen(false);
         }catch(err){
-            const error = getErrorMessage(err);
-            console.log(error);
+            setMessageShowToast({type: 'error', content: err.message});
         }
 
     }
@@ -23,6 +25,7 @@ export default function CreateUserModal({
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"

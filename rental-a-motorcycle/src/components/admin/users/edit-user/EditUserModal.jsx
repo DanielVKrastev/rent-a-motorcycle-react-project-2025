@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useEditUser, useUser } from "../../../../api/userApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function EditUserModal({
     userId,
     setEditUser,
     setIsOpen,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { user, isLoading } = useUser(userId);
 
      const { edit } = useEditUser();
@@ -30,19 +33,20 @@ export default function EditUserModal({
 
           setIsOpen(false);
         } catch (err) {
-          console.log(err.message);
+          setMessageShowToast({type: 'error', content: err.message});
         }
       }
     
     return (
         <>
-            <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+            <div onClick={() => {setIsOpen(false); setEditUser(null) }} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+                 {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
                     tabIndex="-1"
                     role="dialog">
-                    <div className="relative w-full max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
+                    <div className="relative w-full max-w-4xl max-h-full" onClick={(e) => {e.stopPropagation()}}>
                         <div className="relative bg-white rounded-lg shadow-sm">
                             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                                 <h3 className="text-xl font-medium text-gray-900">
@@ -52,7 +56,7 @@ export default function EditUserModal({
                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                     data-modal-hide="large-modal"
                                     type="button"
-                                    onClick={() => setIsOpen(false)}>
+                                    onClick={() => {setIsOpen(false); setEditUser(null) }}>
                                     <svg
                                         aria-hidden="true"
                                         className="w-3 h-3"
@@ -142,7 +146,7 @@ export default function EditUserModal({
                                         className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                                         data-modal-hide="large-modal"
                                         type="button"
-                                        onClick={() => setIsOpen(false)}>
+                                        onClick={() => {setIsOpen(false); setEditUser(null)}}>
                                         Decline
                                     </button>
                                 </div>
