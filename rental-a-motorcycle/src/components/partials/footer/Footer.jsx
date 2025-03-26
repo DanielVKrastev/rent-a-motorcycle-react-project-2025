@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import { useUserContext } from "../../../contexts/UserContext";
 
 export default function Footer() {
+    const { accessToken } = useUserContext();
     return (
         <>
             <footer className="bg-white dark:bg-gray-900 sticky z-40">
@@ -35,31 +37,43 @@ export default function Footer() {
 
                             </div>
                             <div>
-                                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                    <li className="mt-11">
+                                {!accessToken ?
+                                    <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                        <li className="mt-11">
 
-                                    </li>
-                                    <li className="mt-4">
-                                        <Link to="/login" className="hover:underline">
-                                            Login
-                                        </Link>
-                                    </li>
-                                    <li className="mt-4">
-                                        <Link to="/register" className="hover:underline">
-                                            Register
-                                        </Link>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li className="mt-4">
+                                            <Link to="/login" className="hover:underline">
+                                                Login
+                                            </Link>
+                                        </li>
+                                        <li className="mt-4">
+                                            <Link to="/register" className="hover:underline">
+                                                Register
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                    :
+                                    <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                        <li className="mt-11">
+
+                                        </li>
+                                        <li className="mt-4">
+                                            <Link to="/user-settings" className="hover:underline">
+                                                User
+                                            </Link>
+                                        </li>
+                                        <li className="mt-4">
+                                            <Link to="/user-dashboard" className="hover:underline">
+                                                Dashboard
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                }
                             </div>
                             <div>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                     <li className="mt-11">
-
-                                    </li>
-                                    <li className="mt-4">
-                                        <Link to="/user" className="hover:underline">
-                                            User
-                                        </Link>
                                     </li>
                                     <li className="mt-4">
                                         <Link to="/about" className="hover:underline">
