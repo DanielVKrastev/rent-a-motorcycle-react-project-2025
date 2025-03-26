@@ -3,6 +3,7 @@ import CreateUserModal from "../create-user/CreateUserModal";
 import EditUserModal from "../edit-user/EditUserModal";
 import DeleteUserModal from "../delete-user/DeleteUserModal";
 import { useUsers } from "../../../../api/userApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 const UserTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
@@ -16,6 +17,8 @@ const UserTable = () => {
 
     const [showUsers, setShowUsers] = useState([]);
 
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { users, isLoading } = useUsers();
 
     useEffect(() => {
@@ -27,6 +30,7 @@ const UserTable = () => {
     // Update locale users
     useEffect(() => {
         if(newUser){
+            setMessageShowToast({type: 'success', content: 'User added successfully!'});
             setShowUsers(state => [...state, newUser]);
         }
     }, [newUser]);
@@ -34,6 +38,7 @@ const UserTable = () => {
     // Update locale edit user
     useEffect(() => {
         if(editUser){
+            setMessageShowToast({type: 'success', content: 'User updated successfully'});
             setShowUsers(state => state.map(user => user._id === editUser._id ? editUser : user));
         }
     }, [editUser]);
@@ -65,6 +70,7 @@ const UserTable = () => {
 
 
     const handleDelete = (id) => {
+        setMessageShowToast({type: 'success', content: 'User has been deleted!'});
         setShowUsers(users.filter(user => user._id !== id));
     };
 
@@ -81,6 +87,8 @@ const UserTable = () => {
 
     return (
         <>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
+
             <div className="">
                 <h2 className="text-3xl font-semibold mb-6">Users data</h2>
                 <button
@@ -110,7 +118,7 @@ const UserTable = () => {
                                     <td className="px-6 py-4" scope="row">{user.email}</td>
                                     <td className="px-6 py-4" scope="row">{user.role}</td>
                                     <td className="px-6 py-4" scope="row">
-                                        <button type="button" onClick={() => { setIsOpenEdit(true); setEditUser(user)}} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
+                                        <button type="button" onClick={() => { setIsOpenEdit(true); }} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button>
                                         <button type="button" onClick={() => { setIsOpenDelete(true); setDeleteUser(user)}} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                                     </td>
                                 </tr>

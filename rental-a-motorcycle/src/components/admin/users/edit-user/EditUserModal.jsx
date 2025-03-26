@@ -25,11 +25,9 @@ export default function EditUserModal({
      const editActionHandle = async (formData) => {
         const { email, username, role } = Object.fromEntries(formData);
         try {
-        console.log(email, username, role);
-        
           const editUser = await edit(userId, { email, username, role });
           setEditUser(editUser);
-          console.log('Edit success');
+
           setIsOpen(false);
         } catch (err) {
           console.log(err.message);

@@ -16,7 +16,6 @@ export default function DeleteUserModal({
 
             await deleteUser(userDel._id);
             handleDeleteLocal(userDel._id);
-            console.log('delete');
             }catch(err){
             console.log(err.message);
         }
