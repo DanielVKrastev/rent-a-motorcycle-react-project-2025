@@ -37,5 +37,17 @@ export default {
         } catch (error) {
             throw error;
         }
+    },
+    async searchMotorcycle(searchQuery){
+        try {
+            return await Motorcycle.find({
+                $or: [
+                    { brand: { $regex: searchQuery, $options: "i" } },
+                    { model: { $regex: searchQuery, $options: "i" } },
+                ]
+            });
+        } catch (error) {
+            throw error;
+        }
     }
 }

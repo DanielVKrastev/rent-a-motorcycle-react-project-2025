@@ -39,6 +39,23 @@ motorcycleController.get('/', async (req, res) => {
     }
 });
 
+motorcycleController.get('/search/:searchParams', async (req, res) => {
+    try {
+        const searchParams = req.params.searchParams;
+
+        if (!searchParams) {
+            const motorcycles = await motorcycleController.get();
+            return res.status(200).json(motorcycles);
+        }
+
+        const motorcycles = await motorcycleService.searchMotorcycle(searchParams);
+
+        res.status(200).json(motorcycles);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 motorcycleController.get('/:motorcycleId', async (req, res) => {
     const motorcycleId = req.params.motorcycleId;
     try {
