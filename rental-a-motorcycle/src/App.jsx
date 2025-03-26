@@ -75,6 +75,8 @@ function App() {
             </Route>
           </Route>
         </Route>
+
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
 
       <Footer />

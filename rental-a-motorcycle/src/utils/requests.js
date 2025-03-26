@@ -34,9 +34,8 @@ const request = async (method, url, data, options = {}) => {
         return result;
     }catch(err){
         console.error("Fetch error:", err.message); 
-        throw err.message;
+        throw err;
     }
-
 
 };
 

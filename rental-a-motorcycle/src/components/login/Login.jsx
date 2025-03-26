@@ -1,111 +1,129 @@
 import { Link, useNavigate } from "react-router";
 
-import { getErrorMessage } from "../../utils/error-unitls";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useLogin } from "../../api/authApi";
 
 export default function Login() {
     const navigate = useNavigate();
+
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [email, setEmail] = useState('');
     const { userLoginHandler } = useContext(UserContext);
     const { login } = useLogin();
 
-    async function submitActionLogin(formData){
-        const {email, password} = Object.fromEntries(formData);
-        
-        try{
+    async function submitActionLogin(formData) {
+        const { email, password } = Object.fromEntries(formData);
+        setEmail(email);
+        try {
             const authData = await login(email, password);
             console.log('auth login');
-            
+
             userLoginHandler(authData);
             navigate('/');
-        }catch(err){
-            const error = getErrorMessage(err);
-            console.log(error);
+        } catch (err) {
+            setErrorMessage(err.message);
         }
     }
-
+    
     return (
         <>
-<section
-    className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-no-repeat md:h-[calc(90vh-50px)] flex items-center justify-center"
->
-    <div className="flex flex-col items-center justify-center px-1 py-8 mx-auto lg:py-0 mb-20 ">
-        <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white z-0">
-            <img
-                className="w-45 h-20 mr-2"
-                src="/images/logo-white.png"
-                alt="logo"
-            />
-            
-        </Link>
-        <div className="w-[95vw] bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow sm:max-w-md xl:p-0 mt-2 mb-16">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                    Sign in to your account
-                </h1>
-                <form className="space-y-4 md:space-y-6" action={submitActionLogin}>
-                    <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                            Your email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="name@company.com"
-                            required=""
+
+            <section
+                className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-no-repeat md:h-[calc(90vh-50px)] flex items-center justify-center"
+            >
+                <div className="flex flex-col items-center justify-center px-1 py-8 mx-auto lg:py-0 mb-20 ">
+
+                    <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white z-0">
+                        <img
+                            className="w-45 h-20 mr-2"
+                            src="/images/logo-white.png"
+                            alt="logo"
                         />
-                    </div>
-                    <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required=""
-                        />
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
-                                <input
-                                    id="remember"
-                                    aria-describedby="remember"
-                                    type="checkbox"
-                                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                                    required=""
-                                />
-                            </div>
-                            <div className="ml-3 text-sm">
-                                <label htmlFor="remember" className="text-gray-500">
-                                    Remember me
-                                </label>
-                            </div>
+                    </Link>
+                    <div className="w-[95vw] bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow sm:max-w-md xl:p-0 mt-2 mb-16">
+                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                                Sign in to your account
+                            </h1>
+                            <form className="space-y-4 md:space-y-6" action={submitActionLogin}>
+                                <div>
+                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                                        Your email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="name@company.com"
+                                        defaultValue={email}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
+                                        Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        placeholder="••••••••"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        required
+                                    />
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-start">
+                                        <div className="flex items-center h-5">
+                                            <input
+                                                id="remember"
+                                                aria-describedby="remember"
+                                                type="checkbox"
+                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+                                                required=""
+                                            />
+                                        </div>
+                                        <div className="ml-3 text-sm">
+                                            <label htmlFor="remember" className="text-gray-500">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {errorMessage && (
+
+                                    <div className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 light:bg-gray-800 light:text-red-400 light:border-red-800" role="alert">
+                                        <svg className="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                        </svg>
+                                        <span className="sr-only">Info</span>
+                                        <div>
+                                            <span className="font-medium">{errorMessage}</span> 
+                                        </div>
+                                    </div>
+
+                                )}
+
+                                <button
+                                    type="submit"
+                                    className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                >
+                                    Sign in
+                                </button>
+                                <p className="text-sm font-light text-gray-500">
+                                    Don’t have an account yet?{" "}
+                                    <Link to="/register" className="font-medium text-blue-600 hover:underline">
+                                        Sign up
+                                    </Link>
+                                </p>
+                            </form>
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    >
-                        Sign in
-                    </button>
-                    <p className="text-sm font-light text-gray-500">
-                        Don’t have an account yet?{" "}
-                        <Link to="/register" className="font-medium text-blue-600 hover:underline">
-                            Sign up
-                        </Link>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+                </div>
+            </section>
 
 
 

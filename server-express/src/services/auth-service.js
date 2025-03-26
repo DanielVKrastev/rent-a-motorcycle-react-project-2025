@@ -26,14 +26,14 @@ export default {
     async login(email, password){
         const user = await User.findOne({email});
         if(! user){
-            throw new Error('Invalid email');
+            throw new Error('Invalid email or password');
         }
 
         const accessToken = generateToken(user);
 
         const isValid = await bcrypt.compare(password, user.password);
         if(! isValid){
-            throw new Error('Invalid email');
+            throw new Error('Invalid email or password');
         }
 
         return { _id: user._id, accessToken: accessToken, email: user.email, username: user.username, role: user.role};
