@@ -113,7 +113,6 @@ export const useEditMotorcycle = () => {
 
     const edit = (motorcycleId, motorcycleData) =>
         request.patch(`${baseUrl}/${motorcycleId}`, motorcycleData );
-
     return {
         edit,
     }

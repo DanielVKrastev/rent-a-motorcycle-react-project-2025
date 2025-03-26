@@ -5,6 +5,7 @@ import { useEditReservation, useReservation } from "../../../api/reservationApi"
 import { useEditMotorcycle, useMotorcycle } from "../../../api/motorcycleApi";
 import StatusBadge from "../StatusBadge";
 import MessageToast from "../../messageToast/MessageToast";
+import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
 
 export default function ReservationDetails() {
     const { reservationId } = useParams();
@@ -12,7 +13,7 @@ export default function ReservationDetails() {
     const [showMorocycle, setShowMotorcycle] = useState(null);
     const [showMessageToast, setMessageShowToast] = useState(false);
 
-    const { reservation } = useReservation(reservationId);
+    const { reservation, isLoading } = useReservation(reservationId);
     const { edit } = useEditReservation();
     const { edit: editMotorcycle } = useEditMotorcycle();
 
@@ -31,8 +32,8 @@ export default function ReservationDetails() {
     }, [motorcycle]);
 
 
-    if (!showReservation || !showMorocycle) {
-        return <div className="text-center text-gray-600 mt-20">Loading reservation details...</div>;
+    if (isLoading) {
+        return <LoadingSpinner/>;
     }
 
     const handleEditReservation = async () => {

@@ -4,6 +4,7 @@ import EditMotorcycleModal from "../edit-motorcycle/EditMotorcycleModal";
 import DeleteMotorcycleModal from "../delete-motorcycle/DeleteMotorcycleModal";
 import { useMotorcycles } from "../../../../api/motorcycleApi";
 import MessageToast from "../../../messageToast/MessageToast";
+import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 
 const MotorcycleTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
@@ -84,6 +85,10 @@ const MotorcycleTable = () => {
     const handlePagination = (page) => {
         setCurrentPage(page);
     };
+
+      if (isLoading) {
+          return <LoadingSpinner/>;
+      }
 
     return (
         <>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useEditMotorcycle, useMotorcycle } from "../../../../api/motorcycleApi";
 import MessageToast from "../../../messageToast/MessageToast";
+import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 
 export default function EditMotorcycleModal({
     motorcycleId,
@@ -8,6 +9,8 @@ export default function EditMotorcycleModal({
     setEditMotorcycle,
 }) {
     const [showMessageToast, setMessageShowToast] = useState(false);
+    const [isLoadingEdit, setIsLoadingEdit] = useState(false);
+
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
     const [selectedValueType, setSelectedValueType] = useState(motorcycle?.type || '');
@@ -22,7 +25,7 @@ export default function EditMotorcycleModal({
         if (!isLoading && motorcycle) {
             setSelectedValueType(motorcycle.type);
             setSelectedValueCategory(motorcycle.category);
-            setIsActive(motorcycle?.active === 'no'? false : true);
+            setIsActive(motorcycle?.active === 'no' ? false : true);
         }
     }, [motorcycle, isLoading]);
 
@@ -40,25 +43,27 @@ export default function EditMotorcycleModal({
 
     async function submitActionAddMotorcycle(e) {
         e.preventDefault();
+        setIsLoadingEdit(true);
         const formData = new FormData(e.target);
-    
+
         const active = isActive ? "yes" : "no";
         formData.append("active", active);
 
         try {
             const editMotorcycle = await edit(motorcycleId, formData);
+            setIsLoadingEdit(false);
             setEditMotorcycle(editMotorcycle);
             setIsOpen(false);
         } catch (err) {
-            setMessageShowToast({type: 'error', content: err.message});
+            setMessageShowToast({ type: 'error', content: err.message });
         }
 
     }
 
     return (
         <>
-            <div onClick={() => {setIsOpen(false); setEditMotorcycle(null)}} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
-                {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
+            <div onClick={() => { setIsOpen(false); setEditMotorcycle(null) }} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+                {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
@@ -67,14 +72,23 @@ export default function EditMotorcycleModal({
                     <div className="relative w-full max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
                         <div className="relative bg-white rounded-lg shadow-sm">
                             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
-                                <h3 className="text-xl font-medium text-gray-900">
-                                    Edit Motorcycle for Rent
+                                <h3 className="text-xl font-medium text-gray-900 w-1/6">
+                                    Edit Motorcycle
                                 </h3>
+                                {isLoading && <div className="flex items-center justify-center w-full">
+                                    <LoadingSpinner />
+                                </div>
+                                }
+                                {isLoadingEdit && <div className="flex items-center justify-center w-full">
+                                    <LoadingSpinner />
+                                </div>
+                                }
+
                                 <button
                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                     data-modal-hide="large-modal"
                                     type="button"
-                                    onClick={() => {setIsOpen(false); setEditMotorcycle(null)}}>
+                                    onClick={() => { setIsOpen(false); setEditMotorcycle(null) }}>
                                     <svg
                                         aria-hidden="true"
                                         className="w-3 h-3"
@@ -195,7 +209,7 @@ export default function EditMotorcycleModal({
                                                 />
                                             </div>
 
-                                            
+
                                             <div className="mt-4">
                                                 <label className="inline-flex items-center mb-5 cursor-pointer">
                                                     <input type="checkbox" className="sr-only peer" checked={isActive} onChange={handleCheckboxChange} />
@@ -331,7 +345,7 @@ export default function EditMotorcycleModal({
                                         className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                                         data-modal-hide="large-modal"
                                         type="button"
-                                        onClick={() => {setIsOpen(false); setEditMotorcycle(null)}}>
+                                        onClick={() => { setIsOpen(false); setEditMotorcycle(null) }}>
                                         Decline
                                     </button>
 

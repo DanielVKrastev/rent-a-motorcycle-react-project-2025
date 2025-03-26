@@ -11,6 +11,7 @@ import { useNavigate, useParams } from "react-router";
 import { useMotorcycle } from "../../api/motorcycleApi";
 import formatDate from "../../utils/formatDate";
 import { useReservationsMotorcycleDates } from "../../api/reservationApi";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function MotorcycleRent() {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function MotorcycleRent() {
         "start": new Date(date.startDate),
         "end": new Date(date.endDate)
     }));
-    
+
 
     const [sumAddOptions, setSumAddOptions] = useState(0);
 
@@ -53,16 +54,18 @@ export default function MotorcycleRent() {
         reservationData.startDate = startDateFormatted;
         reservationData.endDate = endDateFormatted;
 
-        navigate(`/checkout/${motorcycleId}`, { state: reservationData});
+        navigate(`/checkout/${motorcycleId}`, { state: reservationData });
     }
-    
-    return !isLoading ?
-            <>
+
+    return (
+        <>
+            {isLoading && <LoadingSpinner />}
             <form onSubmit={submitRentMotorcycle} id="form-reservation">
                 <div className="page-2-boxs">
 
-                    <DetailsBox 
-                        motorcycle={motorcycle} 
+
+                    <DetailsBox
+                        motorcycle={motorcycle}
                         setAddOptions={setSumAddOptions}
                     />
 
@@ -93,13 +96,11 @@ export default function MotorcycleRent() {
                     setStartDate={setStartDate}
                     setEndDate={setEndDate}
                 />
-                
+
             </form>
 
-                <MostRented />
+            <MostRented />
 
-            </>
-            :
-            <div>Loading...</div>
-            ;
+        </>
+    );
 }

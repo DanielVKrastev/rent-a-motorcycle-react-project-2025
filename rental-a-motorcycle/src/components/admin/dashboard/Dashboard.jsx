@@ -1,5 +1,6 @@
 import { useReservations, useReservationsLimit, useRevenue } from "../../../api/reservationApi";
 import { useUsers } from "../../../api/userApi";
+import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
 import MotorcycleInfo from "../reservations/reservations-table/MotorcycleInfo";
 import { Link } from "react-router";
 
@@ -10,9 +11,14 @@ export default function Dashboard() {
   const { reservations } = useReservations();
   const numberOfReservations = reservations?.length;
 
-  const { revenue } = useRevenue();
+  const { revenue, isLoading } = useRevenue();
 
   const { reservations: reservationsLimit } = useReservationsLimit(5);
+
+  
+  if (isLoading) {
+      return <LoadingSpinner/>;
+  }
 
   return (
     <div className="flex-1">

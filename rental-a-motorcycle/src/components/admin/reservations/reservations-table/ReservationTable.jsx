@@ -7,6 +7,7 @@ import MotorcycleInfo from "./MotorcycleInfo";
 import DeleteReservationModal from "../reservation-delete/DeleteReservationModal";
 import ReservationDetails from "../reservation-details/ReservationDetails";
 import MessageToast from "../../../messageToast/MessageToast";
+import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 
 const ReservationTable = () => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
@@ -49,6 +50,11 @@ const ReservationTable = () => {
     const handlePagination = (page) => {
         setCurrentPage(page);
     };
+
+    
+    if (isLoading) {
+        return <LoadingSpinner/>;
+    }
 
     return (
         <>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useEditUser, useUser } from "../../../../api/userApi";
 import MessageToast from "../../../messageToast/MessageToast";
+import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 
 export default function EditUserModal({
     userId,
@@ -8,6 +9,7 @@ export default function EditUserModal({
     setIsOpen,
 }) {
     const [showMessageToast, setMessageShowToast] = useState(false);
+    const [isLoadingEdit, setIsLoadingEdit] = useState(false);
 
     const { user, isLoading } = useUser(userId);
 
@@ -27,8 +29,10 @@ export default function EditUserModal({
     
      const editActionHandle = async (formData) => {
         const { email, username, role } = Object.fromEntries(formData);
+        setIsLoadingEdit(true);
         try {
           const editUser = await edit(userId, { email, username, role });
+          setIsLoadingEdit(false);
           setEditUser(editUser);
 
           setIsOpen(false);
@@ -49,9 +53,17 @@ export default function EditUserModal({
                     <div className="relative w-full max-w-4xl max-h-full" onClick={(e) => {e.stopPropagation()}}>
                         <div className="relative bg-white rounded-lg shadow-sm">
                             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
-                                <h3 className="text-xl font-medium text-gray-900">
+                            <h3 className="text-xl font-medium text-gray-900 w-1/6">
                                     Edit User
                                 </h3>
+                                {isLoading && <div className="flex items-center justify-center w-full">
+                                    <LoadingSpinner />
+                                </div>
+                                }
+                                {isLoadingEdit && <div className="flex items-center justify-center w-full">
+                                    <LoadingSpinner />
+                                </div>
+                                }
                                 <button
                                     className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                     data-modal-hide="large-modal"

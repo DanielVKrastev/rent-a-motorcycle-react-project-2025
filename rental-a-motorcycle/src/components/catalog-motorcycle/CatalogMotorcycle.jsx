@@ -3,6 +3,7 @@ import './CatalogMotorcycle.css';
 import FilterMotorcycle from "./filter-motorcycle/FilterMotorcycle";
 import { useMotorcycles } from "../../api/motorcycleApi";
 import { useState } from "react";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function CatalogMotorcycle() {
     const [searchParams] = useSearchParams();
@@ -25,9 +26,10 @@ export default function CatalogMotorcycle() {
     return (
         <>
             <FilterMotorcycle />
-            {isLoading && <div>Loading...</div>}
+            
 
             <section className="rent-moto">
+            {isLoading && <LoadingSpinner />}
                 <div className="container">
                     {currentMotorcycles.map(motorcycle =>
                         <Link key={motorcycle._id} to={`/rent-a-motorcycle/${motorcycle._id}`}>

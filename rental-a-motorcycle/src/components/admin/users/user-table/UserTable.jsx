@@ -4,6 +4,7 @@ import EditUserModal from "../edit-user/EditUserModal";
 import DeleteUserModal from "../delete-user/DeleteUserModal";
 import { useUsers } from "../../../../api/userApi";
 import MessageToast from "../../../messageToast/MessageToast";
+import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 
 const UserTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
@@ -84,6 +85,10 @@ const UserTable = () => {
     const handlePagination = (page) => {
         setCurrentPage(page);
     };
+
+    if (isLoading) {
+        return <LoadingSpinner/>;
+    }
 
     return (
         <>

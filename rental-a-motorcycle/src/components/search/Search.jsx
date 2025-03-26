@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
 import { useSearchMotorcycle } from "../../api/motorcycleApi";
 import { useState } from "react";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function Search() {
     const { searchParams } = useParams();
@@ -22,7 +23,6 @@ export default function Search() {
     return (
         <>
 
-
             <section className="rent-moto">
 
                 <div className="container">
@@ -30,6 +30,7 @@ export default function Search() {
                     <br />
                     <h2 className="text-center text-4xl font-bold dark:text-white">Result of your search</h2>
                     <br />
+                    {isLoading && <LoadingSpinner />}
 
                     {currentMotorcycles.map(motorcycle =>
                         <Link key={motorcycle._id} to={`/rent-a-motorcycle/${motorcycle._id}`}>
