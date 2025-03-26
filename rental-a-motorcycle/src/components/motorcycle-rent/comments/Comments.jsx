@@ -31,21 +31,13 @@ export default function Comments() {
                         possimus vero. Dolor, sit?
                     </div>
                 </div>
+
                 {/* Form for new comments */}
                 <div className="review-form">
                     <div className="subtitle">
                         <h2 className="text-2xl font-bold">Leave your review</h2>
                         <h3 className="text-4xl font-bold mt-1">WE APPRECIATE YOUR FEEDBACK.</h3>
                     </div>
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        form="form-comment"
-                        type="text"
-                        id="name"
-                        name="name"
-                        required=""
-                    />
-                    <br />
                     <div>
                         <label htmlFor="rating">Rating:</label>
                         <div className="rating flex text-2xl">
@@ -71,7 +63,7 @@ export default function Comments() {
                         name="comment"
                         rows={4}
                         cols={50}
-                        required=""
+                        required
                         defaultValue={""}
                     />
                     <br />

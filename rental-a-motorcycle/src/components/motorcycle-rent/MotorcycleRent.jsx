@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import './MotorcycleRent.css';
 
@@ -12,9 +12,11 @@ import { useMotorcycle } from "../../api/motorcycleApi";
 import formatDate from "../../utils/formatDate";
 import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function MotorcycleRent() {
     const navigate = useNavigate();
+    const { accessToken } = useContext(UserContext);
 
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
@@ -57,9 +59,23 @@ export default function MotorcycleRent() {
         navigate(`/checkout/${motorcycleId}`, { state: reservationData });
     }
 
+    function submitComment(e){
+        e.preventDefault();
+        if(!accessToken){
+            return navigate('/login');
+        }
+
+        console.log('comment');
+        
+        // TODO: Create comment
+    }
+
     return (
         <>
             {isLoading && <LoadingSpinner />}
+
+            <form onSubmit={submitComment} id="form-comment"></form>
+            
             <form onSubmit={submitRentMotorcycle} id="form-reservation">
                 <div className="page-2-boxs">
 
