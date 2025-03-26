@@ -1,32 +1,73 @@
+import { useCallback, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import ErrorAlert from "../../../errorAlert/ErrorAlert";
 
 export default function RentalMobileModal({
     motorcycle,
-    sumAddOptions,
     startDate,
     endDate,
     isOpen,
+    sumAddOptions,
+    disabledDates,
     setIsOpen,
     setStartDate,
     setEndDate
 }) {
-    let differenceInTime = endDate.getTime() - startDate.getTime();
+    const [errorMessage, setErrorMessage] = useState("");
 
-    //calc. the no. of days between 2 dates
+    let differenceInTime = endDate.getTime() - startDate.getTime();
+    
+    const isDateInRange = (date) => {
+        return disabledDates.some(range => {
+            const startDate = new Date(range.start);
+            const endDate = new Date(range.end);
+            const currentDate = new Date(date);
+    
+            // Set the time to 00:00:00 so that only dates are compared
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+            currentDate.setHours(0, 0, 0, 0);
+    
+            return currentDate >= startDate && currentDate <= endDate;
+        });
+    };
+
+    const isRangeBlocked = useCallback((start, end) => { // useCallback() - to cache a function definition between re-renders
+        return disabledDates.some(range => {
+            const rangeStart = new Date(range.start).setHours(0, 0, 0, 0);
+            const rangeEnd = new Date(range.end).setHours(23, 59, 59, 999); //end day
+            const selectedStart = new Date(start).setHours(0, 0, 0, 0);
+            const selectedEnd = new Date(end).setHours(23, 59, 59, 999); //end day
+
+            return selectedStart <= rangeEnd && selectedEnd >= rangeStart;
+        });
+    }, [disabledDates]);
+
+    useEffect(() => {
+        if (isRangeBlocked(startDate, endDate)) {
+            setErrorMessage("The selected period contains busy dates. Please choose another one");
+        } else {
+            setErrorMessage("");
+        }
+    }, [startDate, endDate, isRangeBlocked]);
+    
+    //calc. the № of days between 2 dates
     let differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
-    if (differenceInDays === 0) {
+    if(differenceInDays === 0){
         differenceInDays += 1;
     }
 
-    let pricePerDayWithAddOns = (motorcycle.pricePerDay + sumAddOptions / differenceInDays).toFixed(2);
-    if (differenceInDays > 5) {
-        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
-    }
-    if (differenceInDays > 7) {
-        pricePerDayWithAddOns = (pricePerDayWithAddOns - 5).toFixed(2);
-    }
+    let pricePerDayAddOns = Number(sumAddOptions / differenceInDays);
+    let pricePerDayMoto = Number(motorcycle.pricePerDay);
 
-    const totalSum = (differenceInDays * pricePerDayWithAddOns).toFixed(2);
+    if(differenceInDays > 5) {
+        pricePerDayMoto = (pricePerDayMoto - 5);
+    }
+    if(differenceInDays > 7){
+        pricePerDayMoto = (pricePerDayMoto - 5);
+    }
+    
+    const totalSum = Number(differenceInDays * (Number(pricePerDayMoto.toFixed(2)) + Number(pricePerDayAddOns.toFixed(2)))).toFixed(2); 
     return (
         <>
             {/* Small Modal */}
@@ -81,13 +122,13 @@ export default function RentalMobileModal({
                                         defaultValue={differenceInDays}
                                     />
                                     <div className="rent-per-day">
-                                        ({pricePerDayWithAddOns} lv. / day)
+                                        ({(pricePerDayMoto + pricePerDayAddOns).toFixed(2)} lv. / day)
                                     </div>
                                     <input
                                         form="form-reservation"
                                         type="hidden"
                                         name="rentPricePerDay"
-                                        defaultValue={pricePerDayWithAddOns}
+                                        defaultValue={pricePerDayMoto.toFixed(2)}
                                     />
                                     <input
                                         form="form-reservation"
@@ -111,7 +152,8 @@ export default function RentalMobileModal({
                                         <p>Rental date</p>
                                         <DatePicker
                                             selected={startDate}
-                                            onChange={(date) => setStartDate(date)}
+                                            filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
+                                            onChange={(date) => { setStartDate(date); setEndDate(date); }}
                                             dateFormat="dd/MM/yyyy"
                                             minDate={new Date()}
                                         />
@@ -120,20 +162,23 @@ export default function RentalMobileModal({
                                         <p>Return date</p>
                                         <DatePicker
                                             selected={endDate}
-                                            onChange={(date) => setEndDate(date)}
+                                            filterDate={(date) => !isDateInRange(date)}  // Excludes dates in intervals
+                                            onChange={(date) => { setEndDate(date); }}
                                             dateFormat="dd/MM/yyyy"
-                                            minDate={startDate}
+                                            minDate={new Date(startDate)}
                                         />
                                     </div>
-                                    <div className="check-button">
+                                    {errorMessage && <ErrorAlert error={errorMessage} />}
+
+                                    <div className={!errorMessage ? "check-button" : "button-disabled"}>
                                         <button
                                             form="form-reservation"
                                             type="submit"
                                             id="submit_check_button"
+                                            disabled={errorMessage}
                                         >
                                             Next
                                         </button>
-
                                     </div>
                                 </div>
                                 {/* Modal footer */}
@@ -158,7 +203,7 @@ export default function RentalMobileModal({
 
             <div className="page-box-right-mobile text-center" id="mobile-box">
                 <div className="rent-for-days js-rent-for-days-mobile">Rent for {differenceInDays} day</div>
-                <div className="rent-price-sum js-rent-price-sum-mobile">{pricePerDayWithAddOns} lv.</div>
+                <div className="rent-price-sum js-rent-price-sum-mobile">{pricePerDayMoto} lv.</div>
                 <div className="next-button-mobile">
 
                     <div className="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">

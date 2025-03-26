@@ -88,6 +88,7 @@ export default function MotorcycleRent() {
                     startDate={startDate}
                     endDate={endDate}
                     sumAddOptions={sumAddOptions}
+                    disabledDates={disabledDates}
                     setIsOpen={setIsOpen}
                     setStartDate={setStartDate}
                     setEndDate={setEndDate}
