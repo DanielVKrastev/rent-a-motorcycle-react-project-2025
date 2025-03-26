@@ -37,7 +37,7 @@ export default function CatalogMotorcycle() {
                                     <p>Power: {motorcycle.power}hp.</p>
                                     <p>Weight: {motorcycle.weight}kg.</p>
                                     <p>Category: {motorcycle.category}</p>
-                                    <p>Reservation: {motorcycle.reservationCount}</p>
+                                    <p>Rented: {motorcycle.reservationCount}</p>
                                 </div>
                                 <input type="submit" name="submit" value="More Details" />
                             </div>

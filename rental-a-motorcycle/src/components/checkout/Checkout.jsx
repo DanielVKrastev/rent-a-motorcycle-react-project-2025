@@ -5,7 +5,7 @@ import DriverDetails from "./driver-details/DriverDetails";
 import CheckoutBox from "./checkout-box/CheckoutBox";
 import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMobileModal";
 import { useLocation, useParams } from "react-router";
-import { useMotorcycle } from "../../api/motorcycleApi";
+import { useEditMotorcycle, useMotorcycle } from "../../api/motorcycleApi";
 import useAuth from "../../hooks/useAuth";
 import { useCreateReservation } from "../../api/reservationApi";
 
@@ -20,6 +20,7 @@ export default function Checkout() {
     const { username, email, _id: userId } = useAuth();
 
     const { createReservation } = useCreateReservation();
+    const { edit: editMotorcycle } = useEditMotorcycle();
     
     useEffect(() => {
         if (isOpen) {
@@ -67,6 +68,10 @@ export default function Checkout() {
             rentData.status = 'Pending';
             
             const newReservation = await createReservation(rentData);
+            
+            const reservationCount = motorcycle.reservationCount + 1;
+            editMotorcycle(motorcycleId, { reservationCount });
+            
             console.log(newReservation);
         }catch(err){
             console.log(err);
