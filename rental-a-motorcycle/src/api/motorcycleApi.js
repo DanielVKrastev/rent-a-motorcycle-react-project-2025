@@ -51,6 +51,30 @@ export const useMostRentedMotorcyclesLimit = (limit) => {
     };
 };
 
+export const useSearchMotorcycle = (searchQuery) => {
+    const [motorcycles, setMotorcycles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        setIsLoading(true);
+        request.get(`${baseUrl}/search/${searchQuery}`)
+            .then(result => {
+                setMotorcycles(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    }, [searchQuery])
+
+    return {
+        motorcycles,
+        isLoading,
+    };
+};
+
+
 export const useMotorcycle = (motorcycleId) => {
     const [motorcycle, setMotorcycle] = useState({});
     const [isLoading, setIsLoading] = useState(true); 

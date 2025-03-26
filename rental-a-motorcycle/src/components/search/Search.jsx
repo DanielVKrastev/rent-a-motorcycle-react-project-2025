@@ -1,38 +1,40 @@
-import { Link, useSearchParams } from "react-router";
-import './CatalogMotorcycle.css';
-import FilterMotorcycle from "./filter-motorcycle/FilterMotorcycle";
-import { useMotorcycles } from "../../api/motorcycleApi";
+import { Link, useParams } from "react-router";
+import { useSearchMotorcycle } from "../../api/motorcycleApi";
 import { useState } from "react";
 
-export default function CatalogMotorcycle() {
-    const [searchParams] = useSearchParams();
-    const filterMotorcycle = (searchParams.get("brand"));
-    
-    const { motorcycles, isLoading } = useMotorcycles(filterMotorcycle);
+export default function Search() {
+    const { searchParams } = useParams();
+
+    const { motorcycles, isLoading } = useSearchMotorcycle(searchParams);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const motorcyclePerPage = 3;
+    const motorcyclePerPage = 6;
 
     const totalPages = Math.ceil(motorcycles.length / motorcyclePerPage);
     const startIndex = (currentPage - 1) * motorcyclePerPage;
     const currentMotorcycles = motorcycles.slice(startIndex, startIndex + motorcyclePerPage);
 
-    
+
     const handlePagination = (page) => {
         setCurrentPage(page);
     };
 
     return (
         <>
-            <FilterMotorcycle />
-            {isLoading && <div>Loading...</div>}
+
 
             <section className="rent-moto">
+
                 <div className="container">
+                    <h3 className="text-center text-3xl font-bold dark:text-white">Your search: {searchParams}</h3>
+                    <br />
+                    <h2 className="text-center text-4xl font-bold dark:text-white">Result of your search</h2>
+                    <br />
+
                     {currentMotorcycles.map(motorcycle =>
                         <Link key={motorcycle._id} to={`/rent-a-motorcycle/${motorcycle._id}`}>
                             <div className="frequently-box-3 float-container">
-                                <img src={motorcycle.image? motorcycle.image : "/images/motorcycle_default.jpg"} alt={`${motorcycle.brand} ${motorcycle.model}`} />
+                                <img src={motorcycle.image ? motorcycle.image : "/images/motorcycle_default.jpg"} alt={`${motorcycle.brand} ${motorcycle.model}`} />
                                 <div className="moto-info">
                                     <h4 className="text-center">{`${motorcycle.brand} ${motorcycle.model}`}</h4>
                                     <br />
@@ -48,8 +50,8 @@ export default function CatalogMotorcycle() {
                         </Link>
                     )}
 
-                    {(!currentMotorcycles || currentMotorcycles.length === 0) && 
-                        <div className="flex justify-center items-center p-6 bg-white shadow-md rounded-lg">
+                    {(!currentMotorcycles || currentMotorcycles.length === 0) &&
+                        <div className="flex justify-center items-center p-10 mb-110 bg-white shadow-md rounded-lg">
                             <div className="text-center">
                                 <i className="fas fa-frown text-4xl text-red-500 mb-4">There are no motorcycles available for this selection.</i>
                                 <p className="text-lg text-gray-700"></p>
@@ -60,27 +62,27 @@ export default function CatalogMotorcycle() {
                     <div className="clearfix" />
                     <div className="text-center">
                         <br />
-                    {currentMotorcycles.length > 0 && (
-                        <>
-                            {/* Pagination */}
-                            <div className="mt-4 flex justify-center">
-                                <button
-                                    onClick={() => handlePagination(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                    className="px-4 py-2 mx-1 bg-red-400 text-white rounded-md disabled:bg-gray-400"
-                                >
-                                    Previous
-                                </button>
-                                <span className="px-4 py-2 mx-1 text-lg">{currentPage}</span>
-                                <button
-                                    onClick={() => handlePagination(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                    className="px-4 py-2 mx-1 bg-red-400 text-white rounded-md disabled:bg-gray-400"
-                                >
-                                    Next
-                                </button>
-                        </div>
-                        </>
+                        {currentMotorcycles.length > 0 && (
+                            <>
+                                {/* Pagination */}
+                                <div className="mt-4 flex justify-center">
+                                    <button
+                                        onClick={() => handlePagination(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                        className="px-4 py-2 mx-1 bg-red-400 text-white rounded-md disabled:bg-gray-400"
+                                    >
+                                        Previous
+                                    </button>
+                                    <span className="px-4 py-2 mx-1 text-lg">{currentPage}</span>
+                                    <button
+                                        onClick={() => handlePagination(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        className="px-4 py-2 mx-1 bg-red-400 text-white rounded-md disabled:bg-gray-400"
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            </>
                         )}
                     </div>
                     <div className="clearfix" />

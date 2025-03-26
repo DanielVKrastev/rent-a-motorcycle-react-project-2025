@@ -1,6 +1,7 @@
 /* css for Rent-moto */
 .rent-moto{
     padding: 1%;
+    min-height: calc(60vh - 50px);
 }
 
 .rent-moto h2{

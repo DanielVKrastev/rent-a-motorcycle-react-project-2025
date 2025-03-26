@@ -31,6 +31,7 @@ import UserReservations from './components/user-dashboard/user-reservations/User
 import UserDashboard from './components/user-dashboard/UserDashboard';
 import PublicGuard from './guards/PublicGuard';
 import SuccessReservation from './components/checkout/success-reservation/SuccessReservation';
+import Search from './components/search/Search';
 
 
 function App() {
@@ -48,10 +49,13 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/rent-a-motorcycle" element={<CatalogMotorcycle />} />
         <Route path="/rent-a-motorcycle/:motorcycleId" element={<MotorcycleRent />} />
+
         <Route element={<PublicGuard />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        </Route>
+        </Route>  
+
+        <Route path="/search/:searchParams" element={<Search />} />
         <Route path="/logout" element={<Logout />} />
 
         {/* Private */}
