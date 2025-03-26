@@ -29,5 +29,13 @@ export default {
         } catch (error) {
             throw error;
         }
+    },
+    async filterByConditions(whereFilter){
+        try {
+            return await Motorcycle.find(whereFilter)
+                .sort({ _id: -1 })         
+        } catch (error) {
+            throw error;
+        }
     }
 }
