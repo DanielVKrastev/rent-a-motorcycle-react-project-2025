@@ -3,6 +3,7 @@ import CreateMotorcycleModal from "../create-motorcycle/CreateMotorcycleModal";
 import EditMotorcycleModal from "../edit-motorcycle/EditMotorcycleModal";
 import DeleteMotorcycleModal from "../delete-motorcycle/DeleteMotorcycleModal";
 import { useMotorcycles } from "../../../../api/motorcycleApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 const MotorcycleTable = () => {
     const [isOpenCreate, setIsOpenCreate] = useState(false);
@@ -16,6 +17,8 @@ const MotorcycleTable = () => {
 
     const [showMotorcycles, setShowMotorcycles] = useState([]);
 
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
     const { motorcycles, isLoading } = useMotorcycles();
 
     useEffect(() => {
@@ -27,6 +30,7 @@ const MotorcycleTable = () => {
     // Update locale motorcycle
     useEffect(() => {
         if (newMotorcycle) {
+            setMessageShowToast({type: 'success', content: 'Motorcycle added successfully!'});
             setShowMotorcycles(state => [...state, newMotorcycle]);
         }
     }, [newMotorcycle]);
@@ -35,6 +39,7 @@ const MotorcycleTable = () => {
     
     useEffect(() => {
         if (editMotorcycle) {
+            setMessageShowToast({type: 'success', content: 'Motorcycle updated successfully!'});
             setShowMotorcycles(state => state.map(motorcycle => motorcycle._id === editMotorcycle._id ? editMotorcycle : motorcycle));
         }
     }, [editMotorcycle]);
@@ -64,6 +69,7 @@ const MotorcycleTable = () => {
     }, [isOpenCreate, isOpenEdit, isOpenDelete]);
 
     const handleDelete = (id) => {
+        setMessageShowToast({type: 'success', content: 'Motorcycle has been deleted!'});
         setShowMotorcycles(showMotorcycles.filter(motorcycle => motorcycle._id !== id));
     };
 
@@ -81,6 +87,8 @@ const MotorcycleTable = () => {
 
     return (
         <>
+         {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
+
             <div className="w-full overflow-x-auto">
                 <h2 className="text-3xl font-semibold mb-6">Motorcycles data</h2>
                 <button
