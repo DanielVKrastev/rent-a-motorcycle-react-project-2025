@@ -21,4 +21,13 @@ export default {
         
         return this.getOne(updateMotorcycle);
     },
+    async latestReservation(limit){
+        try {
+            return await Motorcycle.find()
+                .sort({ _id: -1 })  
+                .limit(limit);           
+        } catch (error) {
+            throw error;
+        }
+    }
 }

@@ -10,7 +10,14 @@ const upload = multer({dest: 'uploads/'});
 
 motorcycleController.get('/', async (req, res) => {
     try {
-        const motorcycles = await motorcycleService.getAll();
+        let motorcycles;
+        if (req.query.limit) {
+            const limit = parseInt(req.query.limit);
+            motorcycles = await motorcycleService.latestReservation(limit);
+        }
+        else {
+            motorcycles = await motorcycleService.getAll();
+        }
         res.status(200).json(motorcycles);
     } catch (error) {
         res.status(400).json(error.message);
