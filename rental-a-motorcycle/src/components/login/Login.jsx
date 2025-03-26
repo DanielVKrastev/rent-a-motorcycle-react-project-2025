@@ -9,6 +9,7 @@ export default function Login() {
 
     const [errorMessage, setErrorMessage] = useState(false);
     const [email, setEmail] = useState('');
+    
     const { userLoginHandler } = useContext(UserContext);
     const { login } = useLogin();
 
@@ -17,15 +18,14 @@ export default function Login() {
         setEmail(email);
         try {
             const authData = await login(email, password);
-            console.log('auth login');
-
             userLoginHandler(authData);
+
             navigate('/');
         } catch (err) {
             setErrorMessage(err.message);
         }
     }
-    
+
     return (
         <>
 
