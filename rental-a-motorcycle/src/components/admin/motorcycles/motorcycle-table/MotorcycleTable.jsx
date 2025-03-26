@@ -38,11 +38,11 @@ const MotorcycleTable = () => {
     // Update locale edit motorcycle
     
     useEffect(() => {
-        if (editMotorcycle) {
+        if (editMotorcycle && !isOpenEdit) {
             setMessageShowToast({type: 'success', content: 'Motorcycle updated successfully!'});
             setShowMotorcycles(state => state.map(motorcycle => motorcycle._id === editMotorcycle._id ? editMotorcycle : motorcycle));
         }
-    }, [editMotorcycle]);
+    }, [editMotorcycle, isOpenEdit]);
 
     useEffect(() => {
         if (isOpenCreate) {
@@ -87,6 +87,7 @@ const MotorcycleTable = () => {
 
     return (
         <>
+
          {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
 
             <div className="w-full overflow-x-auto">

@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useDeleteMotorcycle } from "../../../../api/motorcycleApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function DeleteMotorcycleModal({
     motorcycle,
     setIsOpen,
     handleDeleteLocal,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
     const { deleteMotorcycle } = useDeleteMotorcycle();
     async function deleteMotorcycleHandler(){
         try{
@@ -12,14 +15,15 @@ export default function DeleteMotorcycleModal({
             await deleteMotorcycle(motorcycle._id);
             handleDeleteLocal(motorcycle._id);
             console.log('delete');
-            }catch(err){
-            console.log(err.message);
+        }catch(err){
+            setMessageShowToast({type: 'error', content: err.message});
         }
     }
 
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"></div>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
             <div
                 className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                 id="popup-modal"

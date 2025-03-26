@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useCreateMotorcycle } from "../../../../api/motorcycleApi";
 import useAuth from "../../../../hooks/useAuth";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function CreateMotorcycleModal({
     setIsOpen,
     setNewMotorcycle,
 }) {
+    const [showMessageToast, setMessageShowToast] = useState(false);
     const [isActive, setIsActive] = useState(true);
+
     const { _id: userId } = useAuth();
 
     const handleCheckboxChange = (e) => {
@@ -26,7 +29,7 @@ export default function CreateMotorcycleModal({
             setNewMotorcycle(newMotorcycle);
             setIsOpen(false);
         } catch (err) {
-            console.log(err);
+            setMessageShowToast({type: 'error', content: err.message});
         }
 
     }
@@ -34,6 +37,7 @@ export default function CreateMotorcycleModal({
     return (
         <>
             <div onClick={() => setIsOpen(false)} className="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-50">
+                 {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
                 <div
                     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full justify-center items-center flex"
                     id="large-modal"
