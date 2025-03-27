@@ -13,6 +13,7 @@ import formatDate from "../../utils/formatDate";
 import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import { UserContext } from "../../contexts/UserContext";
+import { useCreateComment } from "../../api/commentApi";
 
 export default function MotorcycleRent() {
     const navigate = useNavigate();
@@ -25,6 +26,8 @@ export default function MotorcycleRent() {
     const { motorcycleId } = useParams();
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
     const { dates } = useReservationsMotorcycleDates(motorcycleId);
+
+    const { createComment } = useCreateComment(); 
 
     const disabledDates = dates.map(date => ({
         "start": new Date(date.startDate),
@@ -59,15 +62,22 @@ export default function MotorcycleRent() {
         navigate(`/checkout/${motorcycleId}`, { state: reservationData });
     }
 
-    function submitComment(e){
+    async function submitComment(e){
         e.preventDefault();
         if(!accessToken){
             return navigate('/login');
         }
 
-        console.log('comment');
-        
-        // TODO: Create comment
+        const formData = new FormData(e.currentTarget);
+        const rating = formData.get('rating');
+        const commentText = formData.get('commentText');
+
+        try{
+            const createdComment = await createComment({rating, commentText, motorcycleId});
+            console.log(createdComment);
+        }catch(err){
+            console.log(err.message);
+        }
     }
 
     return (

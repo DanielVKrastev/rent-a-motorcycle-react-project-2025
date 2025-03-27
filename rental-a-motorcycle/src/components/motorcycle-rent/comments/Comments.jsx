@@ -53,14 +53,14 @@ export default function Comments() {
                             ))}
                         </div>
 
-                        <input type="hidden" name="rating" value={rating} required />
+                        <input form="form-comment" type="hidden" name="rating" value={rating} required />
                     </div>
                     <br />
                     <label htmlFor="comment">Review:</label>
                     <textarea
                         form="form-comment"
                         id="comment"
-                        name="comment"
+                        name="commentText"
                         rows={4}
                         cols={50}
                         required
