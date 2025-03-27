@@ -33,6 +33,7 @@ import PublicGuard from './guards/PublicGuard';
 import SuccessReservation from './components/checkout/success-reservation/SuccessReservation';
 import Search from './components/search/Search';
 import UserComments from './components/user-dashboard/user-comments/UserComments';
+import CommentsTable from './components/admin/comments/comments-table/CommentsTable';
 
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
               <Route path="users" element={<UserTable />} />
               <Route path="motorcycles" element={<MotorcycleTable />} />
               <Route path="reservations" element={<Reservations />} />
+              <Route path="comments" element={<CommentsTable />} />
             </Route>
           </Route>
         </Route>

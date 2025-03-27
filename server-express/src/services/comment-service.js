@@ -18,7 +18,7 @@ export default {
 
         return createdComment;
     },
-    async getAll(filter){
+    async getAll(filter = {}){
         let filterFind = {};
         
         
@@ -43,7 +43,7 @@ export default {
 
         const comment = await this.getOne(commentId);
         
-        if(user._id.toString() !== comment.owner.toString()){
+        if(user._id.toString() !== comment.owner.toString() && user.role === 'User'){
             throw new Error('You are not a owner');
         }
 
