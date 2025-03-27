@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
-import { useComments } from "../../../api/commentApi";
+import { useUserComments } from "../../../api/commentApi";
 import { MotorcycleImage, MotorcycleModelBrand } from "../motorcycle-info/MotorcycleInfo";
 import DashboardButtons from "../dashboard-buttons/DashboardButtons";
 
 export default function UserComments() {
     const { _id: userId } = useAuth();
-    const { comments, isLoading } = useComments();
+    const { comments, isLoading } = useUserComments(userId);
     console.log(comments);
     
     const [showComments, setShowComments] = useState([]);
@@ -81,10 +81,10 @@ export default function UserComments() {
                                         </p>
 
                                         <div className="mt-4 text-center">
-                                            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                                            <button className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                                 Edit
                                             </button>
-                                            <button className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                                            <button className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                 Delete
                                             </button>
                                         </div>

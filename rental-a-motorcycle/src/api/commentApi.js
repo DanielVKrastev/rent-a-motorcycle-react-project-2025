@@ -31,6 +31,33 @@ export const useComments = (motorcycleId = null) => {
     };
 };
 
+export const useUserComments = (ownerId = null) => {
+    const [comments, setComments] = useState({});
+    const [isLoading, setIsLoading] = useState(true); 
+
+     useEffect(() => {
+        let url = baseUrl;
+        if(ownerId){
+            url = `${baseUrl}?ownerId=${ownerId}`;
+        }
+        setIsLoading(true);
+        request.get(url)
+            .then(result => {
+                setComments(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+     }, [ownerId]);
+
+    return {
+        comments,
+        isLoading,
+    };
+};
+
 export const useUser = (userId) => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
