@@ -26,12 +26,13 @@ import PrivateGuard from './guards/PrivateGuard';
 import PrivateAdminGuard from './guards/PrivateAdminGuard';
 import Logout from './components/logout/Logout';
 import UserProvider from './providers/UserProvider';
-import ReservationDetails from './components/user-dashboard/reservation-details/ReservationDetails';
+import ReservationDetails from './components/user-dashboard/user-reservations/reservation-details/ReservationDetails';
 import UserReservations from './components/user-dashboard/user-reservations/UserReservations';
 import UserDashboard from './components/user-dashboard/UserDashboard';
 import PublicGuard from './guards/PublicGuard';
 import SuccessReservation from './components/checkout/success-reservation/SuccessReservation';
 import Search from './components/search/Search';
+import UserComments from './components/user-dashboard/user-comments/UserComments';
 
 
 function App() {
@@ -66,7 +67,9 @@ function App() {
           {/* User Dashboard */}
           <Route path="/user-dashboard" element={<UserDashboard />}>
             <Route index element={<UserReservations />} />
+            <Route path="reservations" element={<UserReservations />} />
             <Route path="reservation-details/:reservationId" element={<ReservationDetails />} />
+            <Route path="comments" element={<UserComments />} />
           </Route>
 
           <Route path="user-settings" element={<UserSettings />} />

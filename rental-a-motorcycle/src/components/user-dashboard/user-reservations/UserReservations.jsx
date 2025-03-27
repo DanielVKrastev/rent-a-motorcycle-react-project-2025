@@ -1,16 +1,18 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import { MotorcycleImage, MotorcycleModelBrand } from "./MotorcycleInfo";
+import { MotorcycleImage, MotorcycleModelBrand } from "../motorcycle-info/MotorcycleInfo";
 import { useReservations } from "../../../api/reservationApi";
 import StatusBadge from "../StatusBadge";
 import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
+import DashboardButtons from "../dashboard-buttons/DashboardButtons";
 
 export default function UserReservations() {
     const { _id: userId } = useAuth();
     const { reservations, isLoading } = useReservations(userId);
 
     const [currentPage, setCurrentPage] = useState(1);
+
     const reservationPerPage = 3;
 
     const totalPages = Math.ceil(reservations.length / reservationPerPage);
@@ -22,13 +24,31 @@ export default function UserReservations() {
     };
 
     if (isLoading) {
-        return <LoadingSpinner />;
+        return (
+            <>
+                <div className="container mx-auto px-4">
+                    <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
+
+                        <DashboardButtons />
+                        
+                    <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
+                        Your Rented Motorcycles
+                    </h1>
+                    
+                        <LoadingSpinner />
+                    </div>
+                </div>
+            </>
+        );
     }
 
     return (
         <>
             <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
+
+                    <DashboardButtons />
+
                     <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
                         Your Rented Motorcycles
                     </h1>
@@ -54,7 +74,7 @@ export default function UserReservations() {
                                                 <p className="flex"><strong>Status:</strong> <StatusBadge status={reservation.status} /></p>
                                             </div>
                                             <div className="mt-4 text-center">
-                                                <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                                                <button className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-600 transition">
                                                     More Details
                                                 </button>
                                             </div>
