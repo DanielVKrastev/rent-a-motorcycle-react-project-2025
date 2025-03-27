@@ -58,20 +58,20 @@ export const useUserComments = (ownerId = null) => {
     };
 };
 
-export const useUser = (userId) => {
-    const [user, setUser] = useState({});
+export const useComment = (commentId) => {
+    const [comment, setComment] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
 
     useEffect(() => {
-        request.get(`${baseUrl}/${userId}`)
+        request.get(`${baseUrl}/${commentId}`)
             .then(result => { 
-                setUser(result);
+                setComment(result);
                 setIsLoading(false);
             });
-    }, [userId])
+    }, [commentId])
 
     return {
-        user,
+        comment,
         isLoading
     };
 };
