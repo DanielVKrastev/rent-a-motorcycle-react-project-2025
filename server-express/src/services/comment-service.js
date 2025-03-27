@@ -42,8 +42,8 @@ export default {
         const user = await User.findById(decoded.id);
 
         const comment = await this.getOne(commentId);
-
-        if(user._id !== comment.owner){
+        
+        if(user._id.toString() !== comment.owner.toString()){
             throw new Error('You are not a owner');
         }
 
