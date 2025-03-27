@@ -1,25 +1,20 @@
 import { useState } from "react";
-import { useDeleteUser } from "../../../../api/userApi";
-import useAuth from "../../../../hooks/useAuth";
 import MessageToast from "../../../messageToast/MessageToast";
+import { useDeleteComment } from "../../../../api/commentApi";
 
-export default function DeleteUserModal({
-    user: userDel,
+export default function DeleteCommentModal({
+    comment,
     setIsOpen,
     handleDeleteLocal,
 }) {
     const [showMessageToast, setMessageShowToast] = useState(false);
+    const { deleteComment } = useDeleteComment();
 
-    const { _id: userId } = useAuth();
-    const { deleteUser } = useDeleteUser();
     async function deleteUserHandler(){
         try{
-            if(userDel._id === userId){
-                throw new Error("You can't delete this account!")
-            }
 
-            await deleteUser(userDel._id);
-            handleDeleteLocal(userDel._id);
+            await deleteComment(comment._id);
+            handleDeleteLocal(comment._id);
             setIsOpen(false);
         }catch(err){
             setMessageShowToast({type: 'error', content: err.message});
@@ -73,7 +68,7 @@ export default function DeleteUserModal({
                                 />
                             </svg>
                             <h3 className="mb-5 text-lg font-normal text-gray-500">
-                                Are you sure you want to delete this user?
+                                Are you sure you want to delete this comment?
                             </h3>
                             <button
                                 className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"

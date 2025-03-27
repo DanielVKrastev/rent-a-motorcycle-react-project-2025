@@ -4,20 +4,30 @@ import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
 import { useUserComments } from "../../../api/commentApi";
 import { MotorcycleImage, MotorcycleModelBrand } from "../motorcycle-info/MotorcycleInfo";
 import DashboardButtons from "../dashboard-buttons/DashboardButtons";
+import DeleteCommentModal from "./delete-comment/DeleteCommentModal";
+import MessageToast from "../../messageToast/MessageToast";
 
 export default function UserComments() {
     const { _id: userId } = useAuth();
     const { comments, isLoading } = useUserComments(userId);
-    console.log(comments);
     
     const [showComments, setShowComments] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
+    const [isOpenDelete, setIsOpenDelete] = useState(false);
+    const [deleteComment, setDeleteComment] = useState(null);
 
     useEffect(() => {
         if (!isLoading  && comments.length > 0) {
             setShowComments(comments);
         }
     }, [comments, isLoading])
+
+    const handleDelete = (id) => {
+        setMessageShowToast({type: 'success', content: 'Your comment has been deleted!'});
+        setShowComments(comments.filter(comment => comment._id !== id));
+    };
 
     const reservationPerPage = 3;
 
@@ -51,6 +61,7 @@ export default function UserComments() {
 
     return (
         <>
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
             <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
 
@@ -84,7 +95,7 @@ export default function UserComments() {
                                             <button className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                                 Edit
                                             </button>
-                                            <button className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                            <button  onClick={() => { setIsOpenDelete(true); setDeleteComment(comment)}} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                                 Delete
                                             </button>
                                         </div>
@@ -117,7 +128,17 @@ export default function UserComments() {
                     )}
                 </div>
             </div>
+
+                    {/* Delete Comment */}
+        {isOpenDelete && <DeleteCommentModal 
+                            comment={deleteComment}
+                            setIsOpen={setIsOpenDelete} 
+                            handleDeleteLocal={handleDelete} 
+                        />
+        }
         </>
+
+
 
     );
 }

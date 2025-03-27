@@ -111,7 +111,7 @@ export const useEditComment = () => {
     }
 };
 
-export const useDeleteUser = () => {
+export const useDeleteComment = () => {
     const { request } = useAuth();
     const { accessToken } = useAuth();
 
@@ -121,11 +121,11 @@ export const useDeleteUser = () => {
         }
     };
 
-    const deleteUser = (userId) =>
-        request.delete(`${baseUrl}/${userId}`, null, options);
+    const deleteComment = (commentId) =>
+        request.delete(`${baseUrl}/${commentId}`, null, options);
 
     return {
-        deleteUser,
+        deleteComment,
     }
 };
 
