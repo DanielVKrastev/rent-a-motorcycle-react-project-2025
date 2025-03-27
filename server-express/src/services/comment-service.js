@@ -18,8 +18,8 @@ export default {
 
         return createdComment;
     },
-    async getAll(){
-        const comments = await Comment.find().sort({ _id: -1 }) ;
+    async getAll(motorcycleId = {}){
+        const comments = await Comment.find(motorcycleId).sort({ _id: -1 }) ;
         return comments;
     },
     async getOne(commentId){

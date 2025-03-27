@@ -6,8 +6,15 @@ const commentController = Router();
 
 commentController.get('/', async (req, res) => {
     try {
-        const reservations = await commentService.getAll();
-        res.status(200).json(reservations);
+        let comments;
+        if(req.query.motorcycleId){
+            const motorcycleId = req.query.motorcycleId;
+            comments = await commentService.getAll({motorcycleId});
+        }
+        else {
+            comments = await commentService.getAll();
+        }
+        res.status(200).json(comments);
     } catch (error) {
         res.status(400).json({error: error});
     }
