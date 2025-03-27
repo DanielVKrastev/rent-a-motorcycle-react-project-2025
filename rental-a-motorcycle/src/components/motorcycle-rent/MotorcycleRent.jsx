@@ -13,12 +13,14 @@ import formatDate from "../../utils/formatDate";
 import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import { UserContext } from "../../contexts/UserContext";
-import { useCreateComment } from "../../api/commentApi";
+import { useComments, useCreateComment } from "../../api/commentApi";
+import MessageToast from "../messageToast/MessageToast";
 
 export default function MotorcycleRent() {
     const navigate = useNavigate();
     const { accessToken } = useContext(UserContext);
 
+    const [showMessageToast, setMessageShowToast] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -27,7 +29,15 @@ export default function MotorcycleRent() {
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
     const { dates } = useReservationsMotorcycleDates(motorcycleId);
 
-    const { createComment } = useCreateComment(); 
+    const { createComment } = useCreateComment();
+    const { comments, isLoading: isLoadingComments } = useComments(motorcycleId);
+    const [showComments, setShowComments] = useState([]);
+    
+    useEffect(() => {
+        if (!isLoadingComments  && comments.length > 0) {
+            setShowComments(comments);
+        }
+    }, [comments, isLoadingComments])
 
     const disabledDates = dates.map(date => ({
         "start": new Date(date.startDate),
@@ -73,16 +83,19 @@ export default function MotorcycleRent() {
         const commentText = formData.get('commentText');
 
         try{
-            const createdComment = await createComment({rating, commentText, motorcycleId});
-            console.log(createdComment);
+            const newComment = await createComment({rating, commentText, motorcycleId});
+            setShowComments(state => [ newComment, ...state ]);
+            setMessageShowToast({ type: 'success', content: 'Comment added successfully!' });
         }catch(err){
-            console.log(err.message);
+            setMessageShowToast({ type: 'error', content: err.message });
         }
     }
 
     return (
         <>
             {isLoading && <LoadingSpinner />}
+
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
 
             <form onSubmit={submitComment} id="form-comment"></form>
             
@@ -92,6 +105,7 @@ export default function MotorcycleRent() {
 
                     <DetailsBox
                         motorcycle={motorcycle}
+                        comments={showComments}
                         setAddOptions={setSumAddOptions}
                     />
 

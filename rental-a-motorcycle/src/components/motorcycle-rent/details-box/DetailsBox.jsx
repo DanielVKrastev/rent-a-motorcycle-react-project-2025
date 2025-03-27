@@ -2,6 +2,7 @@ import Comments from "../comments/Comments";
 
 export default function DetailsBox({
     motorcycle,
+    comments,
     setAddOptions
 }) {
     function addHandlerPrice(event, amount){
@@ -352,7 +353,7 @@ export default function DetailsBox({
                 {/* End section for policy rental */}
                 <hr />
 
-                <Comments />
+                <Comments comments={comments}/>
 
             </div>
         </>

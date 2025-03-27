@@ -4,31 +4,30 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3000/comments';
 
-export const useUsers = () => {
-    const [users, setUsers] = useState({});
+export const useComments = (motorcycleId = null) => {
+    const [comments, setComments] = useState({});
     const [isLoading, setIsLoading] = useState(true); 
 
-    const refetch = () => {
+     useEffect(() => {
+        let url = baseUrl;
+        if(motorcycleId){
+            url = `${baseUrl}?motorcycleId=${motorcycleId}`;
+        }
         setIsLoading(true);
-        request.get(`${baseUrl}`)
+        request.get(url)
             .then(result => {
-                setUsers(result);
+                setComments(result);
                 setIsLoading(false);
             })
             .catch((error) => {
                 setIsLoading(false);
                 console.error(error);
             });
-    };
-
-    useEffect(() => {
-        refetch();
-    }, []);
+     }, [motorcycleId]);
 
     return {
-        users,
+        comments,
         isLoading,
-        refetch
     };
 };
 

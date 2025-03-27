@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import './Comments.css';
 
-export default function Comments() {
-
+export default function Comments({
+    comments
+}) {
     const [rating, setRating] = useState(0); 
 
     const handleStarRating = (value) => {
         setRating(value);
     };
+
+    function formatDateString(isoString) {
+        const date = new Date(isoString);
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = date.toLocaleString("en-US", { month: "long" });
+        const year = date.getFullYear(); 
+    
+        return `${day} ${month} ${year}`;
+    }
 
     return (
         <>
@@ -18,19 +28,21 @@ export default function Comments() {
                     <h3 className="text-4xl font-bold mt-1">WHAT OUR CLIENTS SAY.</h3>
                 </div>
                 <br />
-                <div className="comment-box">
-                    <div className="comment-name">Daniel</div>
-                    <div className="comment-date"> - 03 March 2025 - </div>
-                    <div className="comment-rating">
-                        <img src="/images/ratings/rating-5.png" alt="" />
+                {comments.slice(0, 5).map(comment => (
+                    <div key={comment._id} className="comment-box">
+                        <div className="comment-name">{comment.email}</div>
+                        <div className="comment-date"> - {formatDateString(comment.date)} - </div>
+                        <div className="comment-rating">
+                            <img src={`/images/ratings/rating-${comment.rating}.png`} alt={`rating-${comment.rating}`} />
+                        </div>
+                        <div className="comment-text">
+                            {comment.commentText}
+                        </div>
                     </div>
-                    <div className="comment-text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto
-                        exercitationem nulla ea, aliquam dolor nihil dolores quidem quos
-                        commodi esse eum animi nostrum distinctio molestias temporibus
-                        possimus vero. Dolor, sit?
-                    </div>
-                </div>
+                    ))
+                }
+
+                {comments.length === 0 && <div className="comment-box">No reviews have been written for this motorcycle.</div> }
 
                 {/* Form for new comments */}
                 <div className="review-form">
