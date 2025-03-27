@@ -10,6 +10,9 @@ commentController.get('/', async (req, res) => {
         if(req.query.motorcycleId){
             const motorcycleId = req.query.motorcycleId;
             comments = await commentService.getAll({motorcycleId});
+        }else if(req.query.ownerId){
+            const owner = req.query.ownerId;
+            comments = await commentService.getAll({owner});
         }
         else {
             comments = await commentService.getAll();

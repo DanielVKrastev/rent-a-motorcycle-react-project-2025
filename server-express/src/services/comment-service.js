@@ -29,7 +29,6 @@ export default {
         if(filter.owner){
             filterFind = filter;
         }
-        console.log(filterFind);
         
         const comments = await Comment.find(filterFind).sort({ _id: -1 }) ;
         return comments;
