@@ -18,8 +18,20 @@ export default {
 
         return createdComment;
     },
-    async getAll(motorcycleId = {}){
-        const comments = await Comment.find(motorcycleId).sort({ _id: -1 }) ;
+    async getAll(filter){
+        let filterFind = {};
+        
+        
+        if(filter.motorcycleId){
+            filterFind = filter;
+        }
+
+        if(filter.owner){
+            filterFind = filter;
+        }
+        console.log(filterFind);
+        
+        const comments = await Comment.find(filterFind).sort({ _id: -1 }) ;
         return comments;
     },
     async getOne(commentId){
