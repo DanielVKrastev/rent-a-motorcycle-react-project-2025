@@ -25,6 +25,6 @@ const customerRequestSchema = new Schema({
     },
 });
 
-const CustomerRequest = model('CustomerRequest', customerRequestSchema);
+const CustomerRequest = model('Customer-Request', customerRequestSchema);
 
 export default CustomerRequest;

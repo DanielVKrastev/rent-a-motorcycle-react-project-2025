@@ -1,8 +1,31 @@
+import { useState } from 'react';
+
 import './About.css';
 
+import { useCreateReqeust } from '../../api/customerRequestApi';
+
+import MessageToast from '../messageToast/MessageToast';
+
 export default function About() {
+    const [showMessageToast, setMessageShowToast] = useState(false);
+
+    const { createCustomerRequest } = useCreateReqeust();
+
+    async function submitActionRequest(formData) {
+        const { theme, message } = Object.fromEntries(formData);
+
+        try {
+            const customerRequest = await createCustomerRequest({theme, message});
+            console.log(customerRequest);
+            setMessageShowToast({ type: 'success', content: 'Send message request success!' });
+        } catch (err) {
+            setMessageShowToast({ type: 'error', content: err.message});
+        }
+    }
+    
     return (
         <>
+        {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
             {/*Start About section*/}
             <section className="about">
                 <div className="container">
@@ -35,25 +58,26 @@ export default function About() {
 
                     </div>
                     <div className="about-contact">
-                        <h2 className="text-1xl font-bold">Write to us</h2>
-                        <br />
-                        <p>Theme</p>
-                        <input
-                            type="text"
-                            name="client_subject"
-                            placeholder="Theme"
-                            className="about-input"
-                        />
-                        <p>Message</p>
-                        <textarea name="client_message" cols={30} rows={10} defaultValue={""} />
-                        <br />
-                        <button
-                            type="button"
-                            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:border-gray-600 focus:ring-gray-700"
-                        >
-                            Send
-                        </button>
-
+                        <form action={submitActionRequest}>
+                            <h2 className="text-1xl font-bold">Write to us</h2>
+                            <br />
+                            <p>Theme</p>
+                            <input
+                                type="text"
+                                name="theme"
+                                placeholder="Theme"
+                                className="about-input"
+                            />
+                            <p>Message</p>
+                            <textarea name="message" cols={30} rows={10} defaultValue={""} />
+                            <br />
+                            <button
+                                type="submit"
+                                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 hover:border-gray-600 focus:ring-gray-700"
+                            >
+                                Send
+                            </button>
+                        </form>
                     </div>
                     <div className="about-faq">
                         <h3 className="text-center text-1xl font-bold">FAQ</h3>
