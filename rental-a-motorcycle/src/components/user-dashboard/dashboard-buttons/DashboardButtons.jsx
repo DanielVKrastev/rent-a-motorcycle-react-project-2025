@@ -6,8 +6,13 @@ export default function DashboardButtons() {
     useEffect(() => {
         const pathSegments = location.pathname.split("/");
         const lastSegment = pathSegments[pathSegments.length - 1];
+        
+        if(pathSegments[pathSegments.length - 2] == 'reservation-details'){
+            return setActiveTab('reservations');
+        }
 
         setActiveTab(lastSegment);
+        
     }, [location])
 
     const [activeTab, setActiveTab] = useState('');
