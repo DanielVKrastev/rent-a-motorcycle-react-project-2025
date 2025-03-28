@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MessageToast from "../../../messageToast/MessageToast";
 import { useDeleteComment } from "../../../../api/commentApi";
+import MessageToast from "../../../messageToast/MessageToast";
 
 export default function DeleteCommentModal({
     comment,

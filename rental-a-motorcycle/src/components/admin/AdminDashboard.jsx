@@ -1,8 +1,8 @@
 
 import { useState } from "react";
+import { Outlet } from "react-router";
 import Header from "./header/Header";
 import Sidebar from "./sidebar/Sidebar";
-import { Outlet } from "react-router";
 
 export default function AdminDashboard() {
 

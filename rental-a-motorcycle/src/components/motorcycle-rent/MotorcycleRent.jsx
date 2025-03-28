@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import './MotorcycleRent.css';
 
-import MostRented from "../most-rented/MostRented";
+import { useComments, useCreateComment } from "../../api/commentApi";
+import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 
+import MostRented from "../most-rented/MostRented";
 import DetailsBox from "./details-box/DetailsBox";
 import RentalBox from "./rental-box/RentalBox";
 import RentalMobileModal from "./rental-box/rental-mobile-modal/RentalMobileModalBox";
-import { useNavigate, useParams } from "react-router";
 import { useMotorcycle } from "../../api/motorcycleApi";
 import formatDate from "../../utils/formatDate";
-import { useReservationsMotorcycleDates } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import { UserContext } from "../../contexts/UserContext";
-import { useComments, useCreateComment } from "../../api/commentApi";
 import MessageToast from "../messageToast/MessageToast";
 
 export default function MotorcycleRent() {

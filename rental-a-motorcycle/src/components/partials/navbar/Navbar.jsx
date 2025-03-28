@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 import 'flowbite';
-import { useEffect, useState } from "react";
+
 import { UserContext, useUserContext } from "../../../contexts/UserContext";
 
 export default function Navbar() {

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+
+import { useComments } from "../../../../api/commentApi";
+
 import MessageToast from "../../../messageToast/MessageToast";
 import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 import DeleteCommentModal from "../../../user-dashboard/user-comments/delete-comment/DeleteCommentModal";
-import { useComments } from "../../../../api/commentApi";
 import MotorcycleInfo from "./MotorcycleInfo";
 import Pagination from "../../../partials/pagination/Pagination";
 

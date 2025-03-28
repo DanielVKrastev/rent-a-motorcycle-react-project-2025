@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router";
-import { useSearchMotorcycle } from "../../api/motorcycleApi";
 import { useState } from "react";
+
+import { useSearchMotorcycle } from "../../api/motorcycleApi";
+
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import Pagination from "../partials/pagination/Pagination";
 

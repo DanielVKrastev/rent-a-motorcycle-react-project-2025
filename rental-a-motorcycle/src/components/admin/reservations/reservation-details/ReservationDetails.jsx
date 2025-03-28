@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
+
 import { useEditReservation, useReservation } from "../../../../api/reservationApi";
+
 import MessageToast from "../../../messageToast/MessageToast";
 import MotorcycleInfo from "../reservations-table/MotorcycleInfo";
-import { useEffect, useState } from "react";
 
 export default function ReservationDetails({
     reservationId,

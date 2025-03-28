@@ -1,8 +1,11 @@
 import { Link, useSearchParams } from "react-router";
-import './CatalogMotorcycle.css';
-import FilterMotorcycle from "./filter-motorcycle/FilterMotorcycle";
-import { useMotorcycles } from "../../api/motorcycleApi";
 import { useState } from "react";
+
+import './CatalogMotorcycle.css';
+
+import { useMotorcycles } from "../../api/motorcycleApi";
+
+import FilterMotorcycle from "./filter-motorcycle/FilterMotorcycle";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import Pagination from "../partials/pagination/Pagination";
 

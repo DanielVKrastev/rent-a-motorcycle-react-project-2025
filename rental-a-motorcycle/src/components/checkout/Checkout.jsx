@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 import './Checkout.css';
+
+import { useEditMotorcycle, useMotorcycle } from "../../api/motorcycleApi";
+import { useEditUser } from "../../api/userApi";
+import { useCreateReservation } from "../../api/reservationApi";
+
 import DriverDetails from "./driver-details/DriverDetails";
 import CheckoutBox from "./checkout-box/CheckoutBox";
 import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMobileModal";
-import { useLocation, useNavigate, useParams } from "react-router";
-import { useEditMotorcycle, useMotorcycle } from "../../api/motorcycleApi";
 import useAuth from "../../hooks/useAuth";
-import { useCreateReservation } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import MessageToast from "../messageToast/MessageToast";
-import { useEditUser } from "../../api/userApi";
 
 export default function Checkout() {
     const navigate = useNavigate();

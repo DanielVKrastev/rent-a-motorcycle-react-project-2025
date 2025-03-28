@@ -1,8 +1,9 @@
 import { Link } from "react-router";
 import { useState } from "react";
+import { useReservations } from "../../../api/reservationApi";
+
 import useAuth from "../../../hooks/useAuth";
 import { MotorcycleImage, MotorcycleModelBrand } from "../motorcycle-info/MotorcycleInfo";
-import { useReservations } from "../../../api/reservationApi";
 import StatusBadge from "../StatusBadge";
 import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
 import DashboardButtons from "../dashboard-buttons/DashboardButtons";

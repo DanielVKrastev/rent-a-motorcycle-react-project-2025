@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
+
 import { useRegister } from "../../api/authApi";
+
 import { UserContext } from "../../contexts/UserContext";
 import ErrorAlert from "../errorAlert/ErrorAlert";
 

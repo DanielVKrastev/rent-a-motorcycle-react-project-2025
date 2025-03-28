@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
+import { useUserComments } from "../../../api/commentApi";
+
 import useAuth from "../../../hooks/useAuth";
 import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
-import { useUserComments } from "../../../api/commentApi";
 import { MotorcycleImage, MotorcycleModelBrand } from "../motorcycle-info/MotorcycleInfo";
 import DashboardButtons from "../dashboard-buttons/DashboardButtons";
 import DeleteCommentModal from "./delete-comment/DeleteCommentModal";

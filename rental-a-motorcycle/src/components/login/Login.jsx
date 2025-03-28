@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router";
-
 import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
+
 import { useLogin } from "../../api/authApi";
+
+import { UserContext } from "../../contexts/UserContext";
 import ErrorAlert from "../errorAlert/ErrorAlert";
 
 export default function Login() {

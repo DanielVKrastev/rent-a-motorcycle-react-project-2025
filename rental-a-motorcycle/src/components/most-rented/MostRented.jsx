@@ -1,5 +1,7 @@
 import { Link } from "react-router";
+
 import './MostRented.css';
+
 import { useMostRentedMotorcyclesLimit } from "../../api/motorcycleApi";
 
 export default function MostRented() {

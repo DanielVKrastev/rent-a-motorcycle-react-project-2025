@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaCheckCircle, FaTimesCircle, FaClock } from "react-icons/fa";
+
 import { useEditReservation, useReservation } from "../../../../api/reservationApi";
 import { useEditMotorcycle, useMotorcycle } from "../../../../api/motorcycleApi";
+
 import StatusBadge from "../../StatusBadge";
 import MessageToast from "../../../messageToast/MessageToast";
 import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
