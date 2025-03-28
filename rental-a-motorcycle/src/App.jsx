@@ -19,7 +19,7 @@ import Register from './components/register/Register';
 import ContactsHeader from './components/partials/contacts-header/ContactsHeader';
 import Navbar from './components/partials/navbar/Navbar';
 import Footer from './components/partials/footer/Footer';
-import UserSettings from './components/user-settings/UserSettings';
+import UserSettings from './components/user-dashboard/user-settings/UserSettings';
 import PageNotFound from './components/page-not-found/PageNotFound';
 
 import PrivateGuard from './guards/PrivateGuard';
@@ -71,9 +71,8 @@ function App() {
             <Route path="reservations" element={<UserReservations />} />
             <Route path="reservation-details/:reservationId" element={<ReservationDetails />} />
             <Route path="comments" element={<UserComments />} />
+            <Route path="settings" element={<UserSettings />} />
           </Route>
-
-          <Route path="user-settings" element={<UserSettings />} />
 
           {/* Private Admin */}
           <Route element={<PrivateAdminGuard />}>

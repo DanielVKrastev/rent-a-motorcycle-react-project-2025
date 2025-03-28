@@ -1,30 +1,41 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
 
 export default function DashboardButtons() {
     const location = useLocation();
-    const pathSegments = location.pathname.split("/");
-    const lastSegment = pathSegments[pathSegments.length - 1];
+    useEffect(() => {
+        const pathSegments = location.pathname.split("/");
+        const lastSegment = pathSegments[pathSegments.length - 1];
 
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState((lastSegment !== 'reservations' && lastSegment !== 'comments')? 'reservations' : lastSegment );
+        setActiveTab(lastSegment);
+    }, [location])
+
+    const [activeTab, setActiveTab] = useState('');
+
 
     return (
         <>
             {/* Toggle Buttons */}
-            <div className="flex justify-center space-x-4 mb-6">
-                <button
-                    className={`px-4 py-2 rounded-lg font-semibold ${activeTab === "reservations" ? "bg-red-400 text-white hover:bg-red-600 transition" : "bg-gray-300"}`}
-                    onClick={() => {setActiveTab("reservations"); navigate('/user-dashboard/reservations')}}
-                >
+
+            <div className="flex justify-center mb-6">
+                <Link to="/user-dashboard/settings" aria-current="page" 
+                    className={`${activeTab === "settings" ? 'text-red-700' : 'text-gray-900'} px-4 py-2 text-sm font-medium bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 light:bg-gray-800 light:border-gray-700 light:text-white light:hover:text-white light:hover:bg-gray-700 light:focus:ring-red-500 light:focus:text-white`}
+                    onClick={() => setActiveTab('settings')}
+                    >
+                    Settings
+                </Link>
+                <Link to="/user-dashboard/reservations" 
+                    className={`${activeTab === "reservations" ? 'text-red-700' : 'text-gray-900'} px-4 py-2 text-sm font-medium bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 light:bg-gray-800 light:border-gray-700 light:text-white light:hover:text-white light:hover:bg-gray-700 light:focus:ring-red-500 light:focus:text-white`}
+                    onClick={() => setActiveTab('reservations')}
+                    >
                     Your Rented Motorcycles
-                </button>
-                <button
-                    className={`px-4 py-2 rounded-lg font-semibold ${activeTab === "comments" ? "bg-red-400 text-white hover:bg-red-600 transition" : "bg-gray-300"}`}
-                    onClick={() => {setActiveTab("comments"); navigate('/user-dashboard/comments')}}
-                >
+                </Link>
+                <Link to="/user-dashboard/comments" 
+                    className={`${activeTab === "comments" ? 'text-red-700' : 'text-gray-900'} px-4 py-2 text-sm font-medium bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 light:bg-gray-800 light:border-gray-700 light:text-white light:hover:text-white light:hover:bg-gray-700 light:focus:ring-red-500 light:focus:text-white`}
+                    onClick={() => setActiveTab('comments')}
+                    >
                     Your Comments
-                </button>
+                </Link>
             </div>
         </>
     );

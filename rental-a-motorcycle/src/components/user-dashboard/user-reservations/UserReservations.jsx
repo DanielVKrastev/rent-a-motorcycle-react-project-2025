@@ -44,10 +44,6 @@ export default function UserReservations() {
 
     return (
         <>
-            <div className="container mx-auto px-4">
-                <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
-
-                    <DashboardButtons />
 
                     <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
                         Your Rented Motorcycles
@@ -107,8 +103,6 @@ export default function UserReservations() {
                             </button>
                         </div>
                     )}
-                </div>
-            </div>
         </>
 
     );

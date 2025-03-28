@@ -220,10 +220,13 @@ export default function Navbar() {
                                                 </div>
                                                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                                                     <li>
-                                                        <Link to="/user-dashboard/reservations" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                                                        <Link to="/user-dashboard/reservations" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Your Rented Moto</Link>
                                                     </li>
                                                     <li>
-                                                        <Link to="/user-settings" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</Link>
+                                                        <Link to="/user-dashboard/comments" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Your Comments</Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/user-dashboard/settings" onClick={() => setIsOpenProfile(false)} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</Link>
                                                     </li>
                                                 </ul>
                                                 <div className="py-1">
