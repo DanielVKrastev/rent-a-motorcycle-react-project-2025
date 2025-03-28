@@ -31,6 +31,7 @@ const userScema = new Schema({
     },
     telephone: {
         type: String,
+        maxLength: [15, 'Category cannot be longer than 2 characters'],
     },
     password: {
         type: String,

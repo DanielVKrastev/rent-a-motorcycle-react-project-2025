@@ -61,7 +61,7 @@ export default function ReservationDetails() {
         <>
             {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
 
-            <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8">
+            <div className="w-full bg-white shadow-lg rounded-lg p-8">
                 <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">Reservation Details</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

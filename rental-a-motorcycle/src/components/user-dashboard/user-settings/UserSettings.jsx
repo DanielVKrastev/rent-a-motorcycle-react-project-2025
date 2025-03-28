@@ -86,14 +86,18 @@ export default function UserSettings() {
                     License Category
                   </label>
                   <input id="licenseCategory" type="text" name="licenseCategory" defaultValue={licenseCategory}
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="A2"
+                    />
                 </div>
                 <div>
                   <label htmlFor="telephone" className="block text-sm font-medium text-gray-700 mb-1">
                     Telephone
                   </label>
                   <input id="telephone" type="tel" name="telephone" defaultValue={telephone}
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="+359..."
+                    />
                 </div>
               </div>
 
