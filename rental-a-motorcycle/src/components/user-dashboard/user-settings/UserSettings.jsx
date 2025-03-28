@@ -26,14 +26,17 @@ export default function UserSettings() {
       setName(user.username);
       setEmail(user.email)
       setRole(user.role);
+      setTelephone(user.telephone);
+      setBirthday(user.birthday);
+      setLicenseCategory(user.licenseCategory);
     }
   }, [user, isLoading])
 
   const editActionHandle = async (formData) => {
-    const { username, email } = Object.fromEntries(formData);
+    const { username, email, telephone, licenseCategory, birthday } = Object.fromEntries(formData);
     try {
 
-      const editUser = await edit(userId, { email, username });
+      const editUser = await edit(userId, { username, email, telephone, licenseCategory, birthday });
 
       userLoginHandler(editUser);
       setName(editUser.username);
@@ -98,7 +101,7 @@ export default function UserSettings() {
                 <label htmlFor="birthday" className="block text-sm font-medium text-gray-700 mb-1">
                   Birthday
                 </label>
-                <input id="birthday" type="date" name="birthday" defaultValue={birthday}
+                <input id="birthday" type="date" name="birthday" defaultValue={birthday? birthday.split("T")[0] : ''}
                   className="w-full md:w-1/2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
               </div>
 

@@ -34,7 +34,22 @@ export default function DriverDetails() {
                         <br />
                         <input type="date" name="birthday" />
                     </div>
+
+                    
                     <div className="clearfix" />
+                    <br />
+                    <div className="terms-box">
+                        <div className="terms-checkbox text-center">
+                            <input
+                                type="checkbox"
+                                name="rememberDetails"
+                            />
+                        </div>
+                        <div className="terms-text">
+                            Remember details for your next reservation.
+                        </div>
+                    </div>
+
                 </section>
                 {/* End section for reservation for data driver */}
                 <hr />

@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import { useCreateReservation } from "../../api/reservationApi";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import MessageToast from "../messageToast/MessageToast";
+import { useEditUser } from "../../api/userApi";
 
 export default function Checkout() {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function Checkout() {
 
     const { createReservation } = useCreateReservation();
     const { edit: editMotorcycle } = useEditMotorcycle();
+    const { edit: editUser } = useEditUser();
     
     useEffect(() => {
         if (isOpen) {
@@ -77,7 +79,11 @@ export default function Checkout() {
             const newReservation = await createReservation(rentData);
             
             const reservationCount = motorcycle.reservationCount + 1;
-            editMotorcycle(motorcycleId, { reservationCount });
+            await editMotorcycle(motorcycleId, { reservationCount });
+
+            if(rentData.rememberDetails){
+                await editUser(userId, { birthday: birthday, licenseCategory: rentData.licenseCategory, telephone: rentData.telephone });
+            }
             
             navigate("/success-reservation" ,{ state: { reservation: newReservation } });
             setIsLoadingCheckout(false);
