@@ -25,7 +25,7 @@ export default function Navbar() {
 
         const formData = new FormData(e.target);
         const searchParams = formData.get('search');
-        
+        e.target.reset();
         navigate(`/search/${searchParams}`);
     }
 
