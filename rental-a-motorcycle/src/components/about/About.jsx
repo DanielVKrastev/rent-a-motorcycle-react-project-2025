@@ -37,25 +37,11 @@ export default function About() {
                     <div className="about-contact">
                         <h2 className="text-1xl font-bold">Write to us</h2>
                         <br />
-                        <p>Name</p>
-                        <input
-                            type="text"
-                            name="client_name"
-                            placeholder="Ivan"
-                            className="about-input"
-                        />
-                        <p>Telephone</p>
-                        <input
-                            type="text"
-                            name="client_tel"
-                            placeholder="telephone"
-                            className="about-input"
-                        />
                         <p>Theme</p>
                         <input
                             type="text"
                             name="client_subject"
-                            placeholder="Въведи тема"
+                            placeholder="Theme"
                             className="about-input"
                         />
                         <p>Message</p>

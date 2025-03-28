@@ -7,6 +7,7 @@ import DashboardButtons from "../dashboard-buttons/DashboardButtons";
 import DeleteCommentModal from "./delete-comment/DeleteCommentModal";
 import MessageToast from "../../messageToast/MessageToast";
 import EditCommentModal from "./edit-comment/EditCommentModal";
+import Pagination from "../../partials/pagination/Pagination";
 
 export default function UserComments() {
     const { _id: userId } = useAuth();
@@ -117,23 +118,11 @@ export default function UserComments() {
                     )}
                     {/* Pagination */}
                     {totalPages >= 1 && (
-                        <div className="mt-8 flex justify-center space-x-4">
-                            <button
-                                onClick={() => handlePagination(currentPage - 1)}
-                                disabled={currentPage === 1}
-                                className="px-4 py-2 bg-gray-400 text-white rounded-lg disabled:opacity-50"
-                            >
-                                Previous
-                            </button>
-                            <span className="px-4 py-2 text-lg">{currentPage}</span>
-                            <button
-                                onClick={() => handlePagination(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                                className="px-4 py-2 bg-gray-400 text-white rounded-lg disabled:opacity-50"
-                            >
-                                Next
-                            </button>
-                        </div>
+                        <Pagination 
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            handlePagination={handlePagination}
+                        />
                     )}
 
         {/* Edit Motorcycle */}

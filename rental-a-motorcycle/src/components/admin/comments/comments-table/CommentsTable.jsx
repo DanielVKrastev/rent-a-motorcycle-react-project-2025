@@ -4,6 +4,7 @@ import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
 import DeleteCommentModal from "../../../user-dashboard/user-comments/delete-comment/DeleteCommentModal";
 import { useComments } from "../../../../api/commentApi";
 import MotorcycleInfo from "./MotorcycleInfo";
+import Pagination from "../../../partials/pagination/Pagination";
 
 const CommentsTable = () => {
     const [isOpenDelete, setIsOpenDelete] = useState(false);
@@ -95,24 +96,13 @@ const CommentsTable = () => {
                     </table>
                 </div>
 
-                {/* Pagination */}
-                <div className="mt-4 flex justify-center">
-                    <button
-                        onClick={() => handlePagination(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className="px-4 py-2 mx-1 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
-                    >
-                        Previous
-                    </button>
-                    <span className="px-4 py-2 mx-1 text-lg">{currentPage}</span>
-                    <button
-                        onClick={() => handlePagination(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                        className="px-4 py-2 mx-1 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
-                    >
-                        Next
-                    </button>
-                </div>
+                
+                <Pagination 
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    handlePagination={handlePagination}
+                />
+
             </div>
 
             {/* Delete Comment */}

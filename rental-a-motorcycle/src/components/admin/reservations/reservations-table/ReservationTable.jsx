@@ -8,6 +8,7 @@ import DeleteReservationModal from "../reservation-delete/DeleteReservationModal
 import ReservationDetails from "../reservation-details/ReservationDetails";
 import MessageToast from "../../../messageToast/MessageToast";
 import LoadingSpinner from "../../../loading-spinner/LoadingSpinner";
+import Pagination from "../../../partials/pagination/Pagination";
 
 const ReservationTable = () => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
@@ -106,24 +107,11 @@ const ReservationTable = () => {
                 </table>
             </div>
 
-            {/* Pagination */}
-            <div className="mt-4 flex justify-center">
-                <button
-                    onClick={() => handlePagination(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
-                >
-                    Previous
-                </button>
-                <span className="px-4 py-2 mx-1 text-lg">{currentPage}</span>
-                <button
-                    onClick={() => handlePagination(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded-md disabled:bg-gray-400"
-                >
-                    Next
-                </button>
-            </div>
+            <Pagination 
+                currentPage={currentPage}
+                totalPages={totalPages}
+                handlePagination={handlePagination}
+            />
 
             {/* Details Reservation */}
                 {isOpenDetails && <ReservationDetails

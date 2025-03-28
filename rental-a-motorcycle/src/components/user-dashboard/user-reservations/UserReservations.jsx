@@ -6,6 +6,7 @@ import { useReservations } from "../../../api/reservationApi";
 import StatusBadge from "../StatusBadge";
 import LoadingSpinner from "../../loading-spinner/LoadingSpinner";
 import DashboardButtons from "../dashboard-buttons/DashboardButtons";
+import Pagination from "../../partials/pagination/Pagination";
 
 export default function UserReservations() {
     const { _id: userId } = useAuth();
@@ -85,23 +86,11 @@ export default function UserReservations() {
 
                     {/* Pagination */}
                     {totalPages >= 1 && (
-                        <div className="mt-8 flex justify-center space-x-4">
-                            <button
-                                onClick={() => handlePagination(currentPage - 1)}
-                                disabled={currentPage === 1}
-                                className="px-4 py-2 bg-gray-400 text-white rounded-lg disabled:opacity-50"
-                            >
-                                Previous
-                            </button>
-                            <span className="px-4 py-2 text-lg">{currentPage}</span>
-                            <button
-                                onClick={() => handlePagination(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                                className="px-4 py-2 bg-gray-400 text-white rounded-lg disabled:opacity-50"
-                            >
-                                Next
-                            </button>
-                        </div>
+                        <Pagination 
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            handlePagination={handlePagination}
+                        />
                     )}
         </>
 
