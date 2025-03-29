@@ -6,7 +6,7 @@ const userScema = new Schema({
     email: {
         type: String,
         required: true,
-        minLength: [5, 'Email must be at least 10 characters long'],
+        minLength: [5, 'Email must be at least 5 characters long'],
         match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },
     username: {
@@ -31,7 +31,8 @@ const userScema = new Schema({
     },
     telephone: {
         type: String,
-        maxLength: [15, 'Category cannot be longer than 2 characters'],
+        maxLength: [15, 'Тelephone cannot be longer than 15 characters'],
+        minLength: [8, 'Тelephone must be at least 8 characters long'],
     },
     password: {
         type: String,

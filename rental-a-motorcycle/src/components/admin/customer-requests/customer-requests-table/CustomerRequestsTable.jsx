@@ -80,14 +80,14 @@ export default function CustomerRequestsTable() {
          {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast}/>}
 
             <div className="w-full overflow-x-auto">
-                <h2 className="text-3xl font-semibold mb-6">Motorcycles data</h2>
+                <h2 className="text-3xl font-semibold mb-6">Customer request</h2>
 
                 <div className="relative w-full overflow-x-auto block">
                     <table className="min-w-[1400px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-300 dark:text-gray-800">
                             <tr>
-                                <th className="px-6 py-3 text-left" scope="col">S.N</th>
-                                <th className="px-6 py-3 text-left" scope="col">Email</th>
+                                <th className="px-6 py-3 text-left font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">S.N</th>
+                                <th className="px-6 py-3 text-left font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">Email</th>
                                 <th className="px-6 py-3 text-left" scope="col">Theme</th>
                                 <th className="px-6 py-3 text-left" scope="col">Message</th>
                                 <th className="px-6 py-3 text-left" scope="col">Date</th>

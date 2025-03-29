@@ -111,8 +111,8 @@ const MotorcycleTable = () => {
                     <table className="min-w-[1400px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-300 dark:text-gray-800">
                             <tr>
-                                <th className="px-6 py-3 text-left" scope="col">S.N</th>
-                                <th className="px-6 py-3 text-left" scope="col">Motorcycle</th>
+                                <th className="px-6 py-3 text-left font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">S.N</th>
+                                <th className="px-6 py-3 text-left font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">Motorcycle</th>
                                 <th className="px-6 py-3 text-left" scope="col">Type</th>
                                 <th className="px-6 py-3 text-left" scope="col">Engine</th>
                                 <th className="px-6 py-3 text-left" scope="col">Power</th>

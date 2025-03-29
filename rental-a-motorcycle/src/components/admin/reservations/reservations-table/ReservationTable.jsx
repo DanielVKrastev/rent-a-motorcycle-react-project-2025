@@ -65,8 +65,8 @@ const ReservationTable = () => {
                 <table className="min-w-[1400px] w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-300 dark:text-gray-800">
                         <tr>
-                            <th className="px-6 py-3" scope="col">S.N</th>
-                            <th className="px-6 py-3" scope="col">Name</th>
+                            <th className="px-6 py-3 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">S.N</th>
+                            <th className="px-6 py-3 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="col">Name</th>
                             <th className="px-6 py-3" scope="col">Phone</th>
                             <th className="px-6 py-3" scope="col">Email</th>
                             <th className="px-6 py-3" scope="col">Motorcycle</th>
@@ -81,8 +81,8 @@ const ReservationTable = () => {
                     <tbody>
                         {currentReservations.map((reservation, index) => (
                             <tr key={reservation._id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
-                                <td className="px-6 py-4" scope="row">{startIndex + index + 1}</td>
-                                <td className="px-6 py-4" scope="row">{reservation.username}</td>
+                                <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{startIndex + index + 1}</td>
+                                <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{reservation.username}</td>
                                 <td className="px-6 py-4" scope="row">{reservation.telephone}</td>
                                 <td className="px-6 py-4" scope="row">{reservation.email}</td>
                                 <td className="px-6 py-4" scope="row"><MotorcycleInfo motorcycleId={reservation.motorcycleId} /></td>
