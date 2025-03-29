@@ -72,6 +72,6 @@ export default {
         const accessToken = generateToken({ _id: userId, ...updateData, role: newRole });
         const updatedUser = await User.findByIdAndUpdate(userId, { ...updateData, accessToken }, { new: true, runValidators: true });
 
-        return this.getOne(updatedUser);
+        return updatedUser;
     },
 }

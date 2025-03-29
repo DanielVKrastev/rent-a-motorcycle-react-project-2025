@@ -7,11 +7,14 @@ const reservationSchema = new Schema({
     },
     telephone: {
         type: String,
-        required: true
+        maxLength: [15, 'Тelephone cannot be longer than 15 characters'],
+        minLength: [8, 'Тelephone must be at least 8 characters long'],
     },
     email: {
         type: String,
         required: true,
+        minLength: [5, 'Email must be at least 5 characters long'],
+        match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },
     licenseCategory: {
         type: String,
@@ -19,6 +22,7 @@ const reservationSchema = new Schema({
     },
     birthday: {
         type: Date,
+        required: true
     },
     dateOrder: {
         type: Date

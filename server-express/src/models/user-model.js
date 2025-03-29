@@ -28,6 +28,7 @@ const userScema = new Schema({
     },
     birthday: {
         type: Date,
+        required: true
     },
     telephone: {
         type: String,

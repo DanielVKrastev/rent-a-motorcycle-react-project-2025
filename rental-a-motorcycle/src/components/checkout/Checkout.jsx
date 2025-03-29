@@ -78,19 +78,40 @@ export default function Checkout() {
 
             rentData.status = 'Pending';
             
-            const newReservation = await createReservation(rentData);
-            
-            const reservationCount = motorcycle.reservationCount + 1;
-            await editMotorcycle(motorcycleId, { reservationCount });
+            try{
+                const newReservation = await createReservation(rentData);
 
-            if(rentData.rememberDetails){
-                await editUser(userId, { birthday: birthday, licenseCategory: rentData.licenseCategory, telephone: rentData.telephone });
+                const reservationCount = motorcycle.reservationCount + 1;
+
+                try{
+                    if(newReservation){
+                        await editMotorcycle(motorcycleId, { reservationCount });
+                    }
+                }catch(err){
+                    console.error(err.message);
+                    throw err;
+                }
+                
+                try{
+                    if(rentData.rememberDetails){
+                        await editUser(userId, { birthday: birthday, licenseCategory: rentData.licenseCategory, telephone: rentData.telephone });
+                        console.log('edit success');
+                    }
+                }catch(err){
+                    console.error(err.message);
+                    throw err;
+                }
+
+                navigate("/success-reservation" ,{ state: { reservation: newReservation } });
+                setIsLoadingCheckout(false);
+            }catch(err){
+                console.error(err.message);
+                throw err;
             }
-            
-            navigate("/success-reservation" ,{ state: { reservation: newReservation } });
-            setIsLoadingCheckout(false);
         }catch(err){
             setMessageShowToast({ type: 'error', content: err.message });
+            console.log('edit error');
+            setIsLoadingCheckout(false);
         }
         
     }
