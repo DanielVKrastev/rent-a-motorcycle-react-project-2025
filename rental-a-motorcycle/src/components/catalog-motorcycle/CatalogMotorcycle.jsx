@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import './CatalogMotorcycle.css';
 
@@ -12,16 +12,24 @@ import Pagination from "../partials/pagination/Pagination";
 export default function CatalogMotorcycle() {
     const [searchParams] = useSearchParams();
     const filterMotorcycle = (searchParams.get("brand"));
+
+    const[showMotorcycle, setShowMotorcycles] = useState([]);
     
     const { motorcycles, isLoading } = useMotorcycles(filterMotorcycle);
+    
+    useEffect(() => {
+        if (!isLoading && motorcycles.length >= 0) {
+            setShowMotorcycles(motorcycles);
+            setCurrentPage(1);
+        }
+    }, [motorcycles, isLoading, filterMotorcycle])
 
     const [currentPage, setCurrentPage] = useState(1);
     const motorcyclePerPage = 3;
 
-    const totalPages = Math.ceil(motorcycles.length / motorcyclePerPage);
+    const totalPages = Math.ceil(showMotorcycle.length / motorcyclePerPage);
     const startIndex = (currentPage - 1) * motorcyclePerPage;
-    const currentMotorcycles = motorcycles.slice(startIndex, startIndex + motorcyclePerPage);
-
+    const currentMotorcycles = showMotorcycle.slice(startIndex, startIndex + motorcyclePerPage);    
     
     const handlePagination = (page) => {
         setCurrentPage(page);
