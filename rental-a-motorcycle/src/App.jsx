@@ -35,6 +35,7 @@ import Search from './components/search/Search';
 import UserComments from './components/user-dashboard/user-comments/UserComments';
 import CommentsTable from './components/admin/comments/comments-table/CommentsTable';
 import UserSupportQueries from './components/user-dashboard/user-support-queries/UserSupportQueries';
+import CustomerRequestsTable from './components/admin/customer-requests/customer-requests-table/CustomerRequestsTable';
 
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
               <Route path="motorcycles" element={<MotorcycleTable />} />
               <Route path="reservations" element={<Reservations />} />
               <Route path="comments" element={<CommentsTable />} />
+              <Route path="customer-requests" element={<CustomerRequestsTable />} />
             </Route>
           </Route>
         </Route>

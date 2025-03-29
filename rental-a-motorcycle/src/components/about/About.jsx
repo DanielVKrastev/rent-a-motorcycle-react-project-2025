@@ -15,8 +15,7 @@ export default function About() {
         const { theme, message } = Object.fromEntries(formData);
 
         try {
-            const customerRequest = await createCustomerRequest({theme, message});
-            console.log(customerRequest);
+            await createCustomerRequest({theme, message});
             setMessageShowToast({ type: 'success', content: 'Send message request success!' });
         } catch (err) {
             setMessageShowToast({ type: 'error', content: err.message});
