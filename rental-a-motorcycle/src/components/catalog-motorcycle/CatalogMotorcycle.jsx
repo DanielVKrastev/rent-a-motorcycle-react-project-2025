@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import './CatalogMotorcycle.css';
 
-import { useMotorcycles } from "../../api/motorcycleApi";
+import { useActiveMotorcycles } from "../../api/motorcycleApi";
 
 import FilterMotorcycle from "./filter-motorcycle/FilterMotorcycle";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
@@ -15,7 +15,7 @@ export default function CatalogMotorcycle() {
 
     const[showMotorcycle, setShowMotorcycles] = useState([]);
     
-    const { motorcycles, isLoading } = useMotorcycles(filterMotorcycle);
+    const { motorcycles, isLoading } = useActiveMotorcycles(filterMotorcycle);
     
     useEffect(() => {
         if (!isLoading && motorcycles.length >= 0) {

@@ -10,7 +10,31 @@ export const useMotorcycles = (filter = undefined) => {
 
     useEffect(() => {
         setIsLoading(true);
-        const url = filter? `${baseUrl}?where=brand=${filter}` : baseUrl;
+        const url = filter? `${baseUrl}?where=brand=${filter}` : `${baseUrl}`;
+        request.get(url)
+            .then(result => {
+                setMotorcycles(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                console.error(error);
+            });
+    }, [filter]);
+
+    return {
+        motorcycles,
+        isLoading,
+    };
+};
+
+export const useActiveMotorcycles = (filter = undefined) => {
+    const [motorcycles, setMotorcycles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        setIsLoading(true);
+        const url = filter? `${baseUrl}?where=brand=${filter}&active=yes` : `${baseUrl}?active=yes`;
         request.get(url)
             .then(result => {
                 setMotorcycles(result);

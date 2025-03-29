@@ -11,19 +11,30 @@ const upload = multer({dest: 'uploads/'});
 motorcycleController.get('/', async (req, res) => {
     try {
         let motorcycles;
-        const { limit, where } = req.query;
+        const { limit, active, where } = req.query;
 
         if (limit) {
             const parsedLimit = parseInt(limit);
             motorcycles = await motorcycleService.latestReservation(parsedLimit);
+        }
+        else if (active && !where) { 
+            motorcycles = await motorcycleService.getActive(active);
         } 
         else if (where) {
             const whereFilter = {};
 
-            const params = where.split('=');
-            if (params.length === 2) {
-                const [key, value] = params;
-                whereFilter[key] = value; 
+            // key=value&key2=value2
+            const conditions = where.split('&');
+            conditions.forEach(condition => {
+                const [key, value] = condition.split('=');
+                if (key && value) {
+                    whereFilter[key] = value;
+                }
+            });
+
+            // add active in whereFilter
+            if (active) {
+                whereFilter.active = active;
             }
 
             motorcycles = await motorcycleService.filterByConditions(whereFilter);

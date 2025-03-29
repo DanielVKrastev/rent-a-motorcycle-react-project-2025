@@ -9,6 +9,10 @@ export default {
         const motorcycles = await Motorcycle.find().sort({ _id: -1 });
         return motorcycles;
     },
+    async getActive(active){
+        const motorcycles = await Motorcycle.find({active}).sort({ _id: -1 });
+        return motorcycles;
+    },
     async getOne(motorcycleId){
         const motorcycle = await Motorcycle.findOne({ _id: motorcycleId});
         return motorcycle;
