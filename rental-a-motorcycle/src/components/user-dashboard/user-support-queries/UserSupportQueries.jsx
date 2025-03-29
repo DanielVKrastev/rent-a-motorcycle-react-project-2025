@@ -70,17 +70,14 @@ export default function UserSupportQueries() {
                             <p className="mt-2 text-gray-800">
                                 {query.message.length > 100 ? `${query.message.slice(0, 100)}...` : query.message}
                             </p>
-                            {query.response && (
+                            {query.response ? (
                                 <div className="mt-4 p-3 bg-blue-100 rounded-lg">
                                     <h4 className="font-semibold text-blue-800">Support Response:</h4>
                                     <p className="text-blue-700">{query.response}</p>
                                 </div>
+                            ) : (
+                                <p className="mt-4 text-center text-gray-500">Awaiting response...</p>
                             )}
-                            <div className="mt-4 text-center">
-                                <button onClick={() => { setIsOpenEdit(true); setEditQuery(query) }} className="text-white bg-yellow-400 hover:bg-yellow-500 px-5 py-2.5 rounded-lg">
-                                    Details
-                                </button>
-                            </div>
                         </div>
                     ))}
                 </div>
