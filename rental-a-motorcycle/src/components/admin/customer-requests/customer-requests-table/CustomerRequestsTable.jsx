@@ -128,7 +128,7 @@ export default function CustomerRequestsTable() {
             {isOpenEdit && <CustomerRequestResponse
                 setIsOpen={setIsOpenEdit}
                 requestId={editRequest._id}
-                setEditMotorcycle={setEditRequest}
+                setEditRequest={setEditRequest}
                 />}
 
             {/* Delete Request */}
