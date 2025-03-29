@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   const { revenue, isLoading } = useRevenue();
 
-  const { reservations: reservationsLimit } = useReservationsLimit(5);
+  const { reservations: reservationsLimit } = useReservationsLimit(8);
 
   
   if (isLoading) {

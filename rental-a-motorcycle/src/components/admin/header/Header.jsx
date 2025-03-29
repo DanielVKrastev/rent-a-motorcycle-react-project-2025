@@ -1,7 +1,10 @@
+import useAuth from "../../../hooks/useAuth";
+
 export default function Header({
   openAdminNav,
   closeOpenHandlerAdminMenu
 }) {
+  const { username } = useAuth();
   return (
     <div className="flex justify-between items-center p-4 bg-white shadow-md">
       <div className="flex items-center ">
@@ -13,8 +16,7 @@ export default function Header({
       </div>
       <div className="flex items-center">
         <button className="flex items-center text-gray-500 hover:text-gray-700">
-
-          Admin
+          {username} (Admin)
         </button>
       </div>
     </div>
