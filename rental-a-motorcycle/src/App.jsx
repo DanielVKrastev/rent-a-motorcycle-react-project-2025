@@ -34,6 +34,7 @@ import SuccessReservation from './components/checkout/success-reservation/Succes
 import Search from './components/search/Search';
 import UserComments from './components/user-dashboard/user-comments/UserComments';
 import CommentsTable from './components/admin/comments/comments-table/CommentsTable';
+import UserSupportQueries from './components/user-dashboard/user-support-queries/UserSupportQueries';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
             <Route path="reservation-details/:reservationId" element={<ReservationDetails />} />
             <Route path="comments" element={<UserComments />} />
             <Route path="settings" element={<UserSettings />} />
+            <Route path="support-request" element={<UserSupportQueries />} />
           </Route>
 
           {/* Private Admin */}

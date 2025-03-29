@@ -19,6 +19,9 @@ const customerRequestSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    response: {
+        type: String,
+    },
     userId: {
         type: Types.ObjectId,
         ref: 'User',
