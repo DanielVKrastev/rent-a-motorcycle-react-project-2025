@@ -98,7 +98,7 @@ export default function CustomerRequestsTable() {
                         <tbody>
 
                             {currentMotorcycles.map((request, index) => (
-                                <tr key={request._id} className="bg-white border-b dark:bg-gray-100 dark:border-gray-400 border-gray-200 dark:text-black" >
+                                <tr key={request._id} className={`bg-white border-b ${!request.response? 'dark:bg-red-100' : 'dark:bg-gray-100'}  dark:border-gray-400 border-gray-200 dark:text-black`}>
                                     <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{startIndex + index + 1}</td>
                                     <td className="px-6 py-4 font-bold text-gray-100 whitespace-nowrap dark:text-black" scope="row">{request.email}</td>
                                     <td className="px-6 py-4" scope="row">{request.theme}</td>
@@ -127,13 +127,13 @@ export default function CustomerRequestsTable() {
             {/* Return response */}
             {isOpenEdit && <CustomerRequestResponse
                 setIsOpen={setIsOpenEdit}
-                motorcycleId={editRequest._id}
+                requestId={editRequest._id}
                 setEditMotorcycle={setEditRequest}
                 />}
 
             {/* Delete Request */}
             {isOpenDelete && <CustomerRequestDelete
-                motorcycle={deleteRequest}
+                request={deleteRequest}
                 setIsOpen={setIsOpenDelete} 
                 handleDeleteLocal={handleDelete} 
             />}
