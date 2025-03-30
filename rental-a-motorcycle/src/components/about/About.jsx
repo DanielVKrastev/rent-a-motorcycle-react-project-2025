@@ -5,6 +5,7 @@ import './About.css';
 import { useCreateReqeust } from '../../api/customerRequestApi';
 
 import MessageToast from '../messageToast/MessageToast';
+import MapComponent from './map/MapComponent';
 
 export default function About() {
     const [showMessageToast, setMessageShowToast] = useState(false);
@@ -15,16 +16,16 @@ export default function About() {
         const { theme, message } = Object.fromEntries(formData);
 
         try {
-            await createCustomerRequest({theme, message});
+            await createCustomerRequest({ theme, message });
             setMessageShowToast({ type: 'success', content: 'Send message request success!' });
         } catch (err) {
-            setMessageShowToast({ type: 'error', content: err.message});
+            setMessageShowToast({ type: 'error', content: err.message });
         }
     }
-    
+
     return (
         <>
-        {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
+            {showMessageToast && <MessageToast message={showMessageToast} onClose={setMessageShowToast} />}
             {/*Start About section*/}
             <section className="about">
                 <div className="container">
@@ -78,7 +79,14 @@ export default function About() {
                             </button>
                         </form>
                     </div>
+
                     <div className="about-faq">
+
+                        <div className="container z-10">
+                            <h2 className="text-1xl font-bold">Our own office</h2><br />
+                            <MapComponent />
+                        </div>
+
                         <h3 className="text-center text-1xl font-bold">FAQ</h3>
                         <details close="">
                             <summary className="faq-box">
