@@ -131,10 +131,11 @@ export default function DetailsBox({
                                 form="form-reservation"
                                 type="checkbox"
                                 name="passengerEquipment"
+                                id="passengerEquipment"
                                 defaultValue={25}
                                 onChange={(e) => addHandlerPrice(e, 25)}
                             />
-                            Passenger equipment <b>+ 25 lv.</b>
+                            <label htmlFor="passengerEquipment">Passenger equipment <b>+ 25 lv.</b></label>
                         </div>
                     </div>
                     <div className="container-moto-rent">
