@@ -1,6 +1,5 @@
 import { it, expect } from 'vitest'
-import ReactDom from 'react-dom/client'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import Comments from './Comments';
 
 const comments = [{
@@ -27,11 +26,24 @@ const comments = [{
 it('Renders comments correctly', () => {
     render(<Comments comments={comments} />);
 
-    // Проверяваме дали първият коментар е в документа
     expect(screen.getByText('test suzuki the best man')).toBeInTheDocument();
     expect(screen.getByText('danielvalentinov01@gmail.com')).toBeInTheDocument();
 
-    // Проверяваме дали вторият коментар е в документа
     expect(screen.getByText('test admin')).toBeInTheDocument();
     expect(screen.getByText('admin@abv.bg')).toBeInTheDocument();
+});
+
+it('Renders message when there are no comments', () => {
+    render(<Comments comments={[]} />);
+
+    expect(screen.getByText('No reviews have been written for this motorcycle.')).toBeInTheDocument();
+});
+
+it('Prevents submission of an empty comment', () => {
+    render(<Comments comments={[]} />);
+
+    const submitButton = screen.getByRole('button', { name: /send/i });
+    fireEvent.click(submitButton);
+
+    expect(screen.queryByText('No reviews have been written for this motorcycle.')).toBeInTheDocument();
 });

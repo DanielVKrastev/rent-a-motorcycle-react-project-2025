@@ -82,7 +82,7 @@ export default function Comments({
                     <input
                         form="form-comment"
                         type="submit"
-                        defaultValue="Send"
+                        value="Send"
                         name="submit-comment"
                         className="btn btn-secondary"
                     />
