@@ -17,9 +17,9 @@ const userScema = new Schema({
     },
     licenseCategory: {
         type: String,
-        minLength: [1, 'Category must be at least 1 characters long'],
         maxLength: [2, 'Category cannot be longer than 2 characters'],
         enum: [
+            '',
             'A',
             'A1',
             'A2',
@@ -28,12 +28,10 @@ const userScema = new Schema({
     },
     birthday: {
         type: Date,
-        required: true
     },
     telephone: {
         type: String,
         maxLength: [15, 'Тelephone cannot be longer than 15 characters'],
-        minLength: [8, 'Тelephone must be at least 8 characters long'],
     },
     password: {
         type: String,

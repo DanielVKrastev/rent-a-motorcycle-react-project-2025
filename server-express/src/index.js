@@ -8,14 +8,22 @@ import routes from './routes.js';
 const app = express();
 
 // Setup DB mongoose
-try{
-    const uri = 'mongodb://127.0.0.1/';
-    await mongoose.connect(uri, { dbName: 'test-motorcycle' });
+const onlineUri = "mongodb+srv://danielvalentinov01:8OE4dQIjRDx3hu3d@moto-krastev-softuni.lnz5ym4.mongodb.net/?retryWrites=true&w=majority&appName=Moto-Krastev-Softuni";
+const localUri = "mongodb://127.0.0.1:27017/moto-krastev-softuni";
 
-    console.log('Success DB connect');
-}catch(err){
-    console.error('Cannot connect to DB');
-    console.log(err.message);
+try {
+    await mongoose.connect(onlineUri, { dbName: "moto-krastev-softuni" });
+    console.log("✅ Connected to MongoDB Atlas (Online)");
+} catch (err) {
+    console.warn("⚠️ Cannot connect to MongoDB Atlas. Trying local MongoDB...");
+    try {
+        await mongoose.connect(localUri);
+        console.log("✅ Connected to Local MongoDB");
+    } catch (localErr) {
+        console.error("❌ Cannot connect to any database!");
+        console.error(localErr.message);
+        process.exit(1); // stop app
+    }
 }
 
 // Express Setup

@@ -70,8 +70,9 @@ export default {
         }
 
         const accessToken = generateToken({ _id: userId, ...updateData, role: newRole });
-        const updatedUser = await User.findByIdAndUpdate(userId, { ...updateData, accessToken }, { new: true, runValidators: true });
+        const updatedUser = await User.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
+        const result = { ...updatedUser._doc, accessToken};
 
-        return updatedUser;
+        return result;
     },
 }
