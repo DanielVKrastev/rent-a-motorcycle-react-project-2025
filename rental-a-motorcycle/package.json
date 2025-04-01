@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "serve -s build",
     "dev": "vite",
     "test": "vitest",
     "build": "vite build",
