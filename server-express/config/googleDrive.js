@@ -43,7 +43,7 @@ async function uploadFile(filePath, fileName) {
         });
 
         // Return the public URL of the uploaded image
-        const fileUrl = `https://drive.google.com/uc?id=${response.data.id}`;
+        const fileUrl = `https://lh3.googleusercontent.com/d/${response.data.id}`;
         return fileUrl;
     } catch (error) {
         console.error('Error uploading file to Google Drive:', error);
