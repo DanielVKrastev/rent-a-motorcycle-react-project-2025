@@ -12,5 +12,13 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul'
     }
-  }
+  },
+  define: {
+    'crypto': crypto,
+  },
+  resolve: {
+    alias: {
+      crypto: 'crypto-browserify',
+    },
+  },
 })
