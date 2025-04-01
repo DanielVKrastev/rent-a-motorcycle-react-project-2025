@@ -3,12 +3,13 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import routes from './routes.js';
+import { MONGODB_URI_LOCAL, MONGODB_URI_ONLINE } from '../constants.js';
 
 const app = express();
 
 // Setup DB mongoose
-const onlineUri = "mongodb+srv://danielvalentinov01:8OE4dQIjRDx3hu3d@moto-krastev-softuni.lnz5ym4.mongodb.net/?retryWrites=true&w=majority&appName=Moto-Krastev-Softuni";
-const localUri = "mongodb://127.0.0.1:27017/moto-krastev-softuni";
+const onlineUri = MONGODB_URI_ONLINE;
+const localUri = MONGODB_URI_LOCAL;
 
 try {
     await mongoose.connect(onlineUri, { dbName: "moto-krastev-softuni" });
