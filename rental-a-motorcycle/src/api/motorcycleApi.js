@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import request from "../utils/requests";
 import useAuth from "../hooks/useAuth";
+import { BASEURL } from "../constants";
 
-const baseUrl = 'http://localhost:3000/motorcycle';
+const baseUrl = `${BASEURL}/motorcycle`;
 
 export const useMotorcycles = (filter = undefined) => {
     const [motorcycles, setMotorcycles] = useState([]);

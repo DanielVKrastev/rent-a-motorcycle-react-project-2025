@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import request from "../utils/requests";
 import { UserContext } from "../contexts/UserContext";
 import { clearUserData } from "../utils/userUtils";
+import { BASEURL } from "../constants";
 
-const baseUrl = 'http://localhost:3000/auth';
+const baseUrl = `${BASEURL}/auth`;
 
 export const useLogin = () => {
     // const abortRef = useRef(new AbortController());
@@ -73,7 +74,7 @@ export const useUserRole = () => {
 
     async function fetchUserData() {
         try {
-            const response = await fetch('http://localhost:3000/auth/me', {
+            const response = await fetch(`${BASEURL}/auth/me`, {
                 method: 'GET',
                 headers: {
                     'X-Authorization': localStorage.getItem('accessToken'),

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import request from "../utils/requests";
 import useAuth from "../hooks/useAuth";
+import { BASEURL } from "../constants";
 
-const baseUrl = 'http://localhost:3000/comments';
+const baseUrl = `${BASEURL}/comments`;
 
 export const useComments = (motorcycleId = null) => {
     const [comments, setComments] = useState({});

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import request from "../utils/requests";
 import useAuth from "../hooks/useAuth";
+import { BASEURL } from "../constants";
 
-const baseUrl = 'http://localhost:3000/users';
+const baseUrl = `${BASEURL}/users`;
 
 export const useUsers = () => {
     const [users, setUsers] = useState({});
