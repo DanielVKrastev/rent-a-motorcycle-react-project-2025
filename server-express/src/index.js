@@ -1,5 +1,4 @@
 import express from 'express';
-import expressSession from 'express-session';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
@@ -33,12 +32,8 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.urlencoded({extended: false}));
-app.use(expressSession({
-    secret: 'dasfr*vHJIdhjio()FB549324',
-    resave: false,
-    saveUninitialized: false,
-  }));
 app.use(routes);
 
+const port = process.env.PORT || 3000;
 // Start Express
-app.listen(3000, () => console.log('Server is listening on http://localhost:3000...'));
+app.listen(port, () => console.log(`Server is listening on port ${port}...`));
