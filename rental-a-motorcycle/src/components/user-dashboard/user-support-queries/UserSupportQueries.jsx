@@ -42,15 +42,7 @@ export default function UserSupportQueries() {
     };
 
     if (isLoading) {
-        return (
-            <div className="container mx-auto px-4">
-                <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
-                    <DashboardButtons />
-                    <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">Your Support Queries</h1>
-                    <LoadingSpinner />
-                </div>
-            </div>
-        );
+        return (<LoadingSpinner />)
     }
 
     return (

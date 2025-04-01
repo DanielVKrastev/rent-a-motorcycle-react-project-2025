@@ -5,6 +5,7 @@ import { useLogin } from "../../api/authApi";
 
 import { UserContext } from "../../contexts/UserContext";
 import ErrorAlert from "../errorAlert/ErrorAlert";
+import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -21,16 +22,14 @@ export default function Login() {
         try {
             const authData = await login(email, password);
             userLoginHandler(authData);
-
             navigate('/');
         } catch (err) {
             setErrorMessage(err.message);
         }
     }
-
+    
     return (
         <>
-
             <section
                 className="bg-gray-500 bg-blend-multiply dark:bg-gray-500 bg-cover bg-[url('/images/bg-road.jpg')] bg-center bg-no-repeat md:h-[calc(90vh-50px)] flex items-center justify-center"
             >
@@ -48,6 +47,7 @@ export default function Login() {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Sign in to your account
                             </h1>
+
                             <form className="space-y-4 md:space-y-6" action={submitActionLogin}>
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">

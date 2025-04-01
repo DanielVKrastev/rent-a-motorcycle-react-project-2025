@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/rental-a-motorcycle/',
   test: {
     environment: 'jsdom',
     globals: false,
@@ -13,5 +12,15 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul'
     }
-  }
+  },
+  base: './',
+  build: {
+    assetsDir: 'assets', // директория за assets
+    emptyOutDir: true, // изчиства dist при нов билд
+    rollupOptions: {
+      input: {
+        main: './index.html', // основната HTML страница
+      },
+    },
+  },
 })

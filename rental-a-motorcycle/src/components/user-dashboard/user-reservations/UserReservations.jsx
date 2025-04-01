@@ -25,28 +25,10 @@ export default function UserReservations() {
         setCurrentPage(page);
     };
 
-    if (isLoading) {
-        return (
-            <>
-                <div className="container mx-auto px-4">
-                    <div className="max-w-6xl mx-auto bg-white bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg p-8">
-
-                        <DashboardButtons />
-                        
-                    <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
-                        Your Rented Motorcycles
-                    </h1>
-                    
-                        <LoadingSpinner />
-                    </div>
-                </div>
-            </>
-        );
-    }
-
     return (
         <>
-
+            {isLoading ? <LoadingSpinner /> :
+                <>
                     <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
                         Your Rented Motorcycles - <span className="text-red-600">{reservations.length}</span>
                     </h1>
@@ -87,12 +69,15 @@ export default function UserReservations() {
 
                     {/* Pagination */}
                     {totalPages >= 1 && (
-                        <Pagination 
+                        <Pagination
                             currentPage={currentPage}
                             totalPages={totalPages}
                             handlePagination={handlePagination}
                         />
                     )}
+                </>
+            }
+
         </>
 
     );
