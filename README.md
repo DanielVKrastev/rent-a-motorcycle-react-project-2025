@@ -88,9 +88,11 @@ npm run dev
 
    3.2. Create a `.env` File:  
    Open the server root (`./server-express`) and create a `.env` file. Add your credentials:
+   
    ```sh
    GOOGLE_CLOUD_CLIENT_EMAIL=your-service-account-email@example.iam.gserviceaccount.com
    GOOGLE_CLOUD_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEv...your_key_here...\n-----END PRIVATE KEY-----\n"
+   ```
 
 
 
