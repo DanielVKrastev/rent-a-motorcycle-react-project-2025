@@ -119,5 +119,30 @@ npm start
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/home.png">
 </div>
 
+  ### Rent a motorcycle page
+This page allows users to browse and select motorcycles for rent.
 
+- **Filter by Brand** – Enables users to filter motorcycles based on their preferred brand.  
+- **Motorcycle List** – Displays available motorcycles with key details such as model, price, and availability.  
+- **Pagination** – Allows users to navigate through multiple pages of motorcycle listings.
+<div>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/rent-a-moto.png">
+</div>
+
+  ### Details and rented page
+This page provides detailed information about a selected motorcycle and allows users to proceed with the rental process.
+
+- **Left Side – Details, Add-ons, and Comments** - Displays motorcycle specifications, additional features, and user reviews.  
+
+- **Right Side – Rental Box** - Shows the rental price and allows users to select rental dates.  
+
+- **Most Popular Motorcycles** - Displays the top rented motorcycles with images and key details.  
+<div>
+   <h4>Details and rented page</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/rent-a-moto-details.png">
+</div>
+<div>
+   <h4>Comments in details</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/comments.png">
+</div>
 
