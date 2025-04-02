@@ -174,3 +174,41 @@ The Search page allows users to find motorcycles based on their criteria.
 <div>
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/search.png">
 </div>
+
+### Profile Page  
+The Profile page allows users to edit their profile, view rented motorcycles, see created comments, and manage support requests.  
+
+<div>
+   <h4>Settings</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-settings.png">
+</div>
+<div>
+   <h4>Rented motorcycles and details page</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-rented.png">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-rented-details.png">
+</div>
+<div>
+   <h4>Created comments (The User can edit and delete comments)</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-comments.png">
+</div>
+<div>
+   <h4>User support requests</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-query.png">
+</div>
+
+### Admin Panel  
+The Admin page allows admins (users with the "admin" role) to perform CRUD operations on data related to Users, Motorcycles, Reservations, Comments, and Customer Requests.
+
+| Admin Dashboard | Admin Dashboard Users | Admin Dashboard Motorcycles |
+|-----------------|-----------------------|-----------------------------|
+| ![Admin Dashboard](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard.png) | ![Admin Dashboard Users](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-users.png) | ![Admin Dashboard Motorcycles](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-motorcycle.png) |
+
+| Admin Dashboard Reservations | Admin Dashboard Reservations Edit | Admin Dashboard Comments |
+|------------------------------|----------------------------------|--------------------------|
+| ![Admin Dashboard Reservations](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-reservations2.png) | ![Admin Dashboard Reservations Edit](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-edit-reservation.png) | ![Admin Dashboard Comments](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-comments.png) |
+
+| Admin Customer Requests |
+|-------------------------|
+| ![Admin Customer Requests](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-dashboard-queries.png) |
+
+
