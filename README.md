@@ -63,4 +63,61 @@ npm start
 
 5. Open the app (rental-a-motorcycle terminal):
    
-    Go to <a href="http://localhost:5173">http://localhost:5173</a> (or the displayed port) in your browser. разбираш ли го ?
+    Go to <a href="http://localhost:5173">http://localhost:5173</a> (or the displayed port) in your browser.
+
+## Features
+### Authentication
+   - Register: Users can register, providing Username Email, Password and Confirm Password - an error message is shown when the requirements are not met.
+   - Login: Users can log in to their account after it has been created.
+   - Logout: Users can log out of their accounts after they have been logged in.
+<div>
+   <h4>Login page</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/login.png">
+</div>
+<div>
+   <h4>Register page</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/register.png">
+</div>
+
+### Navigations
+- **Home**: Redirects to the Home page.  
+- **Rent a Motorcycle**: Redirects to the Motorcycle Catalog page.  
+- **About**: Redirects to the About page.  
+
+#### **User Authentication Links:**
+- **Guest** (not logged in):
+  - **Log In**: Redirects to the Login page.  
+  - **Register**: Redirects to the Registration page.  
+
+- **User** (logged in):
+  - **Profile**: Redirects to the Profile page *(includes settings, rented motorcycles, comments, support requests)*.  
+  - **Motorcycle Details**: Redirects to the Motorcycle Details page.  
+  - **Checkout**: Redirects to the Checkout page.  
+  - **Logout**: Logs the user out.  
+
+- **Admin** (admin access required):
+  - **Admin Panel**: Redirects to the Admin Dashboard page.
+
+<div>
+   <h4>Guest navigation</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/guest-navbar.png">
+</div>
+<div>
+   <h4>User navigation</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/user-navbar.png">
+</div>
+<div>
+   <h4>Admin navigation</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/admin-navbar.png">
+</div>
+
+  ### Home Page
+- **Get Started Header** – Welcomes users with a brief introduction and a call to action.  
+- **Why Choose Our Motorbike Rental** – Lists the benefits of using our service.  
+- **Most Popular Motorcycles** – Displays the top rented motorcycles with images and details.
+<div>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/home.png">
+</div>
+
+
+
