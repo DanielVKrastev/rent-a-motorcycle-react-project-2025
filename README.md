@@ -93,6 +93,7 @@ npm start
    - Register: Users can register, providing Username Email, Password and Confirm Password - an error message is shown when the requirements are not met.
    - Login: Users can log in to their account after it has been created.
    - Logout: Users can log out of their accounts after they have been logged in.
+   - Access Restriction: Logged-in users are redirected to the homepage if they try to access the Login or Register pages. This ensures that authenticated users cannot access these pages.
 <div>
    <h4>Login page</h4>
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/login.png">
