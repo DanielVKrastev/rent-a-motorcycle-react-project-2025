@@ -1,7 +1,7 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import multer from "multer";
-import { uploadFile } from "../../config/googleDriveLocal.js";
+import { uploadFile } from "../../config/googleDrive.js";
 import motorcycleService from "../services/motorcycle-service.js";
 
 const motorcycleController = Router();
