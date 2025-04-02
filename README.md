@@ -65,6 +65,29 @@ npm start
    
     Go to <a href="http://localhost:5173">http://localhost:5173</a> (or the displayed port) in your browser.
 
+## Used Technologies
+- JavaScript: Core language for the functionality of the application.
+- React: Front-end framework used for building the user interface and handling the application logic.
+- TailwindCSS: Utility-first CSS framework for fast styling and responsive design.
+- Heroicons: A set of free, open-source high-quality SVG icons, designed to work seamlessly with TailwindCSS.
+- Flowbite: UI component library based on TailwindCSS for building modern interfaces.
+- Date-fns: Modern JavaScript date utility library for manipulating dates.
+- Leaflet: JavaScript library for interactive maps. Used for embedding and customizing maps in the application.
+- React-Leaflet: A React wrapper for Leaflet that allows seamless integration of maps with React.
+- Lucide-React: A set of beautiful, open-source icons designed for React.
+- React Datepicker: A flexible and customizable date picker for React.
+- React Icons: A library of customizable icons for React, providing a wide variety of options.
+- React Router: Routing library for handling navigation within a React application, providing dynamic routing capabilities.
+- React Router DOM: The DOM bindings for React Router, allowing seamless client-side routing in web applications.
+- Serve: Static file serving and directory listing for web applications.
+- Vite: Next-generation, fast build tool for modern web applications, used to bundle and serve the project.
+- TailwindCSS Vite Plugin: A plugin that enables TailwindCSS to be used efficiently with Vite.
+
+## Users for testing
+- Users:
+     - Email: admin@motokrastev.com; password: admin (role: Admin)
+     - Email: peter@gmail.com; password: 123456 (role: User)
+     - Email: daniel@gmail.com; password: 123456 (role: User)
 ## Features
 ### Authentication
    - Register: Users can register, providing Username Email, Password and Confirm Password - an error message is shown when the requirements are not met.
