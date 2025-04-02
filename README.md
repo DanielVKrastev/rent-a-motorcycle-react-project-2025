@@ -30,7 +30,17 @@ npm run dev
    - Go to [Google Cloud Console](https://console.cloud.google.com/)  
    - Create a new project or use an existing one  
    - Enable **Google Drive API**  
-   - Create a **Service Account** and generate a JSON key file  
+   -  Navigate to IAM & Admin > Service Accounts
+      - In the left menu, go to IAM & Admin > Service Accounts.
+      - Click Create Service Account.
+   - Fill in the Service Account details - Enter a name for the service account (e.g., my-app-service-account).
+   -  Assign Roles (Permissions) - Owner
+   -  Generate a JSON Key:
+      - After creating the service account, open its details.
+      - Go to the Keys tab.
+      - Click Add Key > Create new key.
+      - Select JSON and click Create.
+   - Download the JSON Key File.
    - Open the JSON file and copy the values for `client_email` and `private_key`  
 
      Example JSON key file:
