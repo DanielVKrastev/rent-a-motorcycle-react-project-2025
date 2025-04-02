@@ -3,7 +3,7 @@ A React-based application than allows users to rent a motorcycle. The users can 
 <br />
 The project uses the Express server to handle backend operations and data management.
 <br />
-Open the Project in Your Browser: <a href="http://localhost:5173/simple-calculator/">MotoKrastev</a>.
+Open the Project in Your Browser: <a href="https://moto-krastev-rentals.web.app/" target="_blank">MotoKrastev</a>.
 
 ## Getting Started
 
