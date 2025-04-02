@@ -133,9 +133,7 @@ This page allows users to browse and select motorcycles for rent.
 This page provides detailed information about a selected motorcycle and allows users to proceed with the rental process.
 
 - **Left Side – Details, Add-ons, and Comments** - Displays motorcycle specifications, additional features, and user reviews.  
-
 - **Right Side – Rental Box** - Shows the rental price and allows users to select rental dates.  
-
 - **Most Popular Motorcycles** - Displays the top rented motorcycles with images and key details.  
 <div>
    <h4>Details and rented page</h4>
@@ -146,3 +144,23 @@ This page provides detailed information about a selected motorcycle and allows u
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/comments.png">
 </div>
 
+| Rental box - dates | Rental box - busy dates | Message for busy dates |
+|--------------------|----------------------|----------------------|
+| ![Rental box - dates](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/date-picker.png) | ![Rental box - busy dates](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/date-picker-2.png) | ![Rental box - message for busy dates](https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/date-picker-busy.png) |
+
+### Checkout Page  
+The Checkout page allows logged-in users to complete their rental booking.
+
+- **Left Side – Driver Details & Terms and Conditions**  
+  - Users enter their driver information and agree to the terms and conditions.  
+
+- **Right Side – Checkout Summary & Payment**  
+  - Displays the total rental cost and payment details.  
+  - Includes a **Pay** button to confirm the booking.  
+<div>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/checkout.png">
+</div>
+<div>
+   <h4>Success reservation message</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/checkout-success.png">
+</div>
