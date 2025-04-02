@@ -41,7 +41,40 @@ npm run dev
       - Click Add Key > Create new key.
       - Select JSON and click Create.
    - Download the JSON Key File.
-   - Open the JSON file and copy the values for `client_email` and `private_key`  
+   - Open the JSON file and copy the values for `client_email` and `private_key`
+
+<div align="center">
+   <h4>Create Project</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/create-project.png" width="100%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/create-project-2.png" width="51%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/create-project-3.png" width="46%">
+</div>
+
+<div align="center">
+   <h4>Select Project</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/select-project.png" width="50%">
+</div>
+
+<div align="center">
+   <h4>APIs & Services</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/api-services.png" width="100%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/enabled-apis.png" width="32%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/google-drive-api.png" width="100%">
+</div>
+
+<div align="center">
+   <h4>Create Service Account</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/iam-admin.png" width="32%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/create-service-account.png" width="80%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/created-service.png" width="100%">
+</div>
+
+<div align="center">
+   <h4>Create Key</h4>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/create-key.png" width="80%">
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/google-drive-api/download-key-json.png" width="45%">
+</div>
+
 
      Example JSON key file:
      ```json
