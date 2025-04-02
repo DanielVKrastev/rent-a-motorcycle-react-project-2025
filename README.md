@@ -158,7 +158,8 @@ This page provides detailed information about a selected motorcycle and allows u
 
 - **Left Side – Details, Add-ons, and Comments** - Displays motorcycle specifications, additional features, and user reviews.  
 - **Right Side – Rental Box** - Shows the rental price and allows users to select rental dates.  
-- **Most Popular Motorcycles** - Displays the top rented motorcycles with images and key details.  
+- **Most Popular Motorcycles** - Displays the top rented motorcycles with images and key details.
+- **Date Selection** - If users select dates that are already reserved, a message will appear informing them that the selected dates are unavailable for rental.
 <div>
    <h4>Details and rented page</h4>
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/rent-a-moto-details.png">
