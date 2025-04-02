@@ -12,6 +12,11 @@ export default function useActiveNavButton() {
             return setActiveTab('reservations');
         }
 
+        if(pathSegments[pathSegments.length - 2] == 'rent-a-motorcycle'){
+            return setActiveTab('rent-a-motorcycle');
+        }
+
+
         setActiveTab(lastSegment);
         
     }, [location])
