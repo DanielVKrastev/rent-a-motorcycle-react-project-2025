@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import 'flowbite';
 
 import { UserContext, useUserContext } from "../../../contexts/UserContext";
+import useActiveNavButton from "../../../hooks/useActiveNavButton";
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -13,6 +14,8 @@ export default function Navbar() {
     useEffect(() => {
         setIsOpenProfile(false);
     }, [])
+
+    const [activeTab ] = useActiveNavButton();
 
     const { accessToken, username, role, email } = useUserContext();
 
@@ -163,7 +166,9 @@ export default function Navbar() {
                             <li>
                                 <Link
                                     to="/"
-                                    className="block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400"
+                                    className={activeTab === '' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                        "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                    }
                                     aria-current="page"
                                     onClick={closeOpenHandlerMobileMenu}
                                 >
@@ -173,7 +178,9 @@ export default function Navbar() {
                             <li>
                                 <Link
                                     to="/rent-a-motorcycle"
-                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                    className={activeTab === 'rent-a-motorcycle' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                        "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                    }
                                     onClick={closeOpenHandlerMobileMenu}
                                 >
                                     Rent a Moto
@@ -184,7 +191,9 @@ export default function Navbar() {
                                     <li>
                                         <Link
                                             to="/login"
-                                            className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                            className={activeTab === 'login' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                                "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                            }
                                             onClick={closeOpenHandlerMobileMenu}
                                         >
                                             Login
@@ -193,7 +202,9 @@ export default function Navbar() {
                                     <li>
                                         <Link
                                             to="/register"
-                                            className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                            className={activeTab === 'register' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                                "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                            }
                                             onClick={closeOpenHandlerMobileMenu}
                                         >
                                             Register
@@ -205,7 +216,11 @@ export default function Navbar() {
                                     <li>
                                         <button
                                             onClick={() => setIsOpenProfile(!isOpenProfile)}
-                                            className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-red-400 md:p-0 md:w-auto dark:text-white md:dark:hover:text-red-400 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                                            className={(activeTab === 'settings' || activeTab === 'reservations' || activeTab === 'comments' || activeTab === 'support-request') 
+                                                ? "flex items-center justify-between w-fullpy-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" 
+                                                : 
+                                                "flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:hover:text-red-400 md:p-0 md:w-auto dark:text-white md:dark:hover:text-red-400 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                                            }
                                         >
                                             Profile
                                             <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -243,7 +258,9 @@ export default function Navbar() {
                                         <li>
                                             <Link
                                                 to="/admin"
-                                                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                                className={activeTab === 'admin' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                                    "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                                }
                                                 onClick={closeOpenHandlerMobileMenu}
                                             >
                                                 Admin Panel
@@ -256,7 +273,9 @@ export default function Navbar() {
                             <li>
                                 <Link
                                     to="/about"
-                                    className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 md:dark:hover:text-red-400 dark:text-white dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                    className={activeTab === 'about' ? "block py-2 px-3 text-white bg-red-400 rounded-sm md:bg-transparent md:text-red-400 md:p-0 md:dark:text-red-400" : 
+                                        "block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-400 md:p-0 dark:text-white md:dark:hover:text-red-400 dark:hover:bg-gray-400 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-400"
+                                    }
                                     onClick={closeOpenHandlerMobileMenu}
                                 >
                                     About

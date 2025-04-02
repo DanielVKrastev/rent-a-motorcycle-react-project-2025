@@ -34,7 +34,7 @@ export default function About() {
                         <br />
                         <h3 className="text-2xl font-bold">Welcome to Moto Krastev</h3>
                         <p>
-                            We are a group of passionate motorcyclists who created [Your Company Name] with one simple goal – to offer you unforgettable and authentic motorcycle experiences. Whether you are exploring your local roads or venturing into far-off destinations, we believe that traveling on two wheels offers a unique perspective of the world.
+                            We are a group of passionate motorcyclists who created MotoKrastev with one simple goal – to offer you unforgettable and authentic motorcycle experiences. Whether you are exploring your local roads or venturing into far-off destinations, we believe that traveling on two wheels offers a unique perspective of the world.
                         </p>
                         <br />
                         <br />
