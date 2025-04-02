@@ -5,7 +5,7 @@ The project uses the Express server to handle backend operations and data manage
 <br />
 Open the Project in Your Browser: <a href="https://moto-krastev-rentals.web.app/" target="_blank">MotoKrastev</a>.
 
-## Getting Started
+## 📦 Getting Started
 
 Follow these steps to run the project locally:
 
@@ -110,7 +110,7 @@ npm start
    
     Go to <a href="http://localhost:5173">http://localhost:5173</a> (or the displayed port) in your browser.
 
-## Used Technologies
+## 🛠 Used Technologies
 - JavaScript: Core language for the functionality of the application.
 - React: Front-end framework used for building the user interface and handling the application logic.
 - TailwindCSS: Utility-first CSS framework for fast styling and responsive design.
@@ -128,12 +128,12 @@ npm start
 - Vite: Next-generation, fast build tool for modern web applications, used to bundle and serve the project.
 - TailwindCSS Vite Plugin: A plugin that enables TailwindCSS to be used efficiently with Vite.
 
-## Users for testing
+## 📌 Users for testing
 - Users:
      - Email: admin@motokrastev.com; password: admin (role: Admin)
      - Email: peter@gmail.com; password: 123456 (role: User)
      - Email: daniel@gmail.com; password: 123456 (role: User)
-## Features
+## 🚀 Features
 ### Authentication
    - Register: Users can register, providing Username Email, Password and Confirm Password - an error message is shown when the requirements are not met.
    - Login: Users can log in to their account after it has been created.
