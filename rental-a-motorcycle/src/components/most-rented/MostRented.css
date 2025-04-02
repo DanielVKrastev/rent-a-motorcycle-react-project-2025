@@ -9,6 +9,27 @@
     color:  black;
 }
 
+.moto-info {
+    padding: 10px 0;
+}
+
+.moto-info h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.moto-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: bold;
+    color: #ff3f4d;
+}
+
+
 .frequently-box-3{
     border: 1px solid rgba(181,46,55,0.4);
     border-radius: 5px;

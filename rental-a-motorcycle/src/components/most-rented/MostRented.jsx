@@ -29,6 +29,7 @@ export default function MostRented() {
                                     <p>Weight: {motorcycle.weight}kg.</p>
                                     <p>Category: {motorcycle.category}</p>
                                     <p>Rented: {motorcycle.reservationCount}</p>
+                                    <p className="price">Price per day: {motorcycle.pricePerDay} lv.</p>
                                 </div>
                                 <input type="submit" name="submit" value="More Details" />
                             </div>
