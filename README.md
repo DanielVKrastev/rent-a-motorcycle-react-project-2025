@@ -15,7 +15,7 @@ git clone https://github.com/DanielVKrastev/rent-a-motorcycle-react-project-2025
 ```
 
 
-3. Navigate to <b>"rental-a-motorcycle"</b> folder, install dependencies and run the app:
+2. Navigate to <b>"rental-a-motorcycle"</b> folder, install dependencies and run the app:
 ```sh
 cd rental-a-motorcycle
 npm install
@@ -23,7 +23,7 @@ npm run dev
 ```
 
 
-4. Setting up Google Drive API Locally  
+3. Setting up Google Drive API Locally  
    If you want to upload images to Google Drive, follow the instructions:
 
    3.1. Enable Google Drive API:  
@@ -51,7 +51,7 @@ npm run dev
 
 
 
-5. Open a new terminal windows and navigate to <b>"server-express"</b> folder, install dependencies, and start the server:
+4. Open a new terminal windows and navigate to <b>"server-express"</b> folder, install dependencies, and start the server:
 
 ```sh
 cd server-express
