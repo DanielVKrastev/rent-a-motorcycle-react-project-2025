@@ -164,3 +164,13 @@ The Checkout page allows logged-in users to complete their rental booking.
    <h4>Success reservation message</h4>
    <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/checkout-success.png">
 </div>
+
+### Search Page  
+The Search page allows users to find motorcycles based on their criteria.
+
+- **Motorcycle List** – Displays search results with key details such as model, price, and availability.  
+- **Pagination** – Enables users to navigate through multiple pages of search results.
+
+<div>
+   <img src="https://raw.githubusercontent.com/DanielVKrastev/rent-a-motorcycle-react-project-2025/main/rental-a-motorcycle/screenshots/search.png">
+</div>
