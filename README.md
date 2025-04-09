@@ -5,6 +5,15 @@ The project uses the Express server to handle backend operations and data manage
 <br />
 Open the Project in Your Browser: <a href="https://moto-krastev-rentals.web.app/" target="_blank">MotoKrastev</a>.
 
+Key features:
+ - Browse available motorcycles by brands
+ - View detailed motorcycle info with image and specifications
+ - Create and manage user accounts
+ - Book and cancel reservations
+ - Leave a rating and a written review for any motorcycle
+ - Admin panel for managing listings and users
+ - Fully responsive design for mobile & desktop
+
 ## 📦 Getting Started
 
 Follow these steps to run the project locally:
