@@ -1,6 +1,24 @@
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import PhoneInput from "react-phone-number-input/input";
+import { useUser } from "../../../api/userApi";
+import DatePicker from "react-datepicker";
+import { subYears } from "date-fns";
 
-export default function DriverDetails() {
+export default function DriverDetails({
+    userId
+}) {
+    const [phoneValue, setPhoneValue] = useState('+359');
+    const [categoryValue, setCategoryValue] = useState('A');
+    const [dateValue, setDateValue] = useState('2000-12-31T00:00:00.000Z');
+    const { user } = useUser(userId);
+
+    useEffect(() => {
+        const rawPhone = user.telephone?.replace(/\s+/g, '') || '+359';
+        setPhoneValue(rawPhone);
+        setCategoryValue(user.licenseCategory);
+        setDateValue(user.birthday);
+    }, [user])
+
     return (
         <>
             <div className="reservation-data-left" id="reservation-data-left">
@@ -14,17 +32,27 @@ export default function DriverDetails() {
                     <div className="input-reservation-box">
                         <label htmlFor="telephone">Telephone *</label>
                         <br />
-                        <input
-                            type="text"
+                        <PhoneInput
+                            className="w-full border rounded-md p-2 focus:ring-2 focus:ring-indigo-500"
                             name="telephone"
-                            defaultValue={+359}
+                            value={phoneValue}
+                             onChange={(value) => {
+                                const cleaned = value?.replace(/[^\d+]/g, '') || '';
+                                setPhoneValue(cleaned);
+                            }}
+                            placeholder="+359..."
                             required
                         />
                     </div>
                     <div className="input-reservation-box">
                         <label htmlFor="licenseCategory">Category *</label>
                         <br />
-                        <select name="licenseCategory" required>
+                        <select
+                            name="licenseCategory"
+                            value={categoryValue}
+                            onChange={(e) => setCategoryValue(e.target.value)}
+                            required
+                        >
                             <option value="A">A</option>
                             <option value="A2">A2</option>
                             <option value="A1">A1</option>
@@ -34,7 +62,17 @@ export default function DriverDetails() {
                     <div className="input-reservation-box" required>
                         <label htmlFor="birthday">Date of birth *</label>
                         <br />
-                        <input type="date" name="birthday" />
+                        <DatePicker
+                            selected={dateValue}
+                            onChange={setDateValue}
+                            dateFormat="dd/MM/yyyy"
+                            maxDate={subYears(new Date(), 18)} 
+                            showYearDropdown
+                            scrollableYearDropdown
+                            yearDropdownItemNumber={100}
+                            placeholderText="Select your birth date"
+                        />
+                <input type="hidden" name="birthday" value={dateValue} />
                     </div>
 
 
