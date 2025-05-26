@@ -81,11 +81,46 @@ export default function About() {
                     </div>
 
                     <div className="about-faq">
-
+                        
                         <div className="container z-10">
                             <h2 className="text-1xl font-bold">Our own office</h2><br />
                             <MapComponent />
                         </div>
+
+                        <h2 className="text-1xl font-bold text-center">Terms and Conditions</h2>
+                        <div className="container z-10" id="terms">
+                            <p className="text-1xl font-bold"><i>By using our platform to rent a motorcycle, you agree to the following terms:</i></p>
+                            <br />
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">1. Age Requirement:</h3></li>
+                                <li>You must be at least 18 years old and hold a valid motorcycle license.</li>
+                            </ol>
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">2. Responsibility:</h3></li>
+                                <li>You are fully responsible for the motorcycle during the rental period, including any damages, theft, or legal violations.</li>
+                            </ol>
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">3. Usage Limits:</h3></li>
+                                <li>Motorcycles must not be used for racing, off-roading, or any illegal activity.</li>
+                            </ol>
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">4. Insurance:</h3></li>
+                                <li>Basic insurance is included. Additional coverage is available at checkout.</li>
+                            </ol>
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">5. Cancellations & Refunds:</h3></li>
+                                <li>Free cancellations up to 7 days before the rental period. No refunds after that.</li>
+                            </ol>
+                            <ol>
+                                <li><h3 className="text-1xl font-bold">6. Data Use:</h3></li>
+                                <li> We store only the necessary data to process bookings. We do not share your personal information with third parties.</li>
+                            </ol>
+                            <br />
+                            <p className="text-1xl font-bold">
+                               <i>By continuing to use this platform, you accept these terms.</i> 
+                            </p>
+                        </div>
+
 
                         <h3 className="text-center text-1xl font-bold">FAQ</h3>
                         <details close="">

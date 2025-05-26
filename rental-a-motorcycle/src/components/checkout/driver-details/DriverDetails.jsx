@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function DriverDetails() {
     return (
         <>
@@ -35,7 +37,7 @@ export default function DriverDetails() {
                         <input type="date" name="birthday" />
                     </div>
 
-                    
+
                     <div className="clearfix" />
                     <br />
                     <div className="terms-box">
@@ -60,12 +62,20 @@ export default function DriverDetails() {
                     <div className="terms-box">
                         <div className="terms-checkbox text-center">
                             <input
+                                name="terms"
                                 type="checkbox"
                                 required
                             />
                         </div>
                         <div className="terms-text">
-                            I accept Moto Krastev's privacy policy, terms of use and booking conditions.
+                            I accept Moto Krastev's privacy policy, <a
+                                className="font-medium text-primary-600 hover:underline text-blue-500"
+                                target="_blank"
+                                href="/about"
+                            >
+                                terms of use and booking conditions.
+                            </a>
+
                         </div>
                     </div>
                     <div className="terms-box">
