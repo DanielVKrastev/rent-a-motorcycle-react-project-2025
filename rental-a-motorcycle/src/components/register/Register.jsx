@@ -17,7 +17,10 @@ export default function Register() {
     const { register } = useRegister();
 
     async function submitActionRegister(formData) {
-        const { email, username, password, rePassword } = Object.fromEntries(formData);
+        const { email, username, password, rePassword, terms } = Object.fromEntries(formData);
+
+        if(!terms) return ;
+        
         setEmail(email);
         setUsername(username);
 
@@ -112,10 +115,11 @@ export default function Register() {
                                     <div className="flex items-center h-5">
                                         <input
                                             id="terms"
+                                            name="terms"
                                             aria-describedby="terms"
                                             type="checkbox"
                                             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                                            required=""
+                                            required
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">
@@ -124,12 +128,12 @@ export default function Register() {
                                             className="font-light text-gray-500"
                                         >
                                             I accept the{" "}
-                                            <a
-                                                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                                                href="#"
+                                            <Link
+                                                className="font-medium text-primary-600 hover:underline text-blue-500"
+                                                to="/about"
                                             >
                                                 Terms and Conditions
-                                            </a>
+                                            </Link>
                                         </label>
                                     </div>
                                 </div>
