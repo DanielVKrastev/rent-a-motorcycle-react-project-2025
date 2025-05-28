@@ -9,7 +9,7 @@ export default function DriverDetails({
 }) {
     const [phoneValue, setPhoneValue] = useState('+359');
     const [categoryValue, setCategoryValue] = useState('A');
-    const [dateValue, setDateValue] = useState('2000-12-31T00:00:00.000Z');
+    const [dateValue, setDateValue] = useState('');
     const { user } = useUser(userId);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function DriverDetails({
                             className="w-full border rounded-md p-2 focus:ring-2 focus:ring-indigo-500"
                             name="telephone"
                             value={phoneValue}
-                             onChange={(value) => {
+                            onChange={(value) => {
                                 const cleaned = value?.replace(/[^\d+]/g, '') || '';
                                 setPhoneValue(cleaned);
                             }}
@@ -66,15 +66,14 @@ export default function DriverDetails({
                             selected={dateValue}
                             onChange={setDateValue}
                             dateFormat="dd/MM/yyyy"
-                            maxDate={subYears(new Date(), 18)} 
+                            maxDate={subYears(new Date(), 18)}
                             showYearDropdown
                             scrollableYearDropdown
                             yearDropdownItemNumber={100}
                             placeholderText="Select your birth date"
+                            name="birthday"
                         />
-                <input type="hidden" name="birthday" value={dateValue} />
                     </div>
-
 
                     <div className="clearfix" />
                     <br />

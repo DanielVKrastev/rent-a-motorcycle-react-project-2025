@@ -13,6 +13,7 @@ import CheckoutMobileModal from "./checkout-box/checkout-mobile-modal/CheckoutMo
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 import MessageToast from "../messageToast/MessageToast";
+import { subYears } from "date-fns";
 
 export default function Checkout() {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Checkout() {
     const { motorcycle, isLoading } = useMotorcycle(motorcycleId);
 
     const { username, email, _id: userId } = useAuth();
-    
+
     const { createReservation } = useCreateReservation();
     const { edit: editMotorcycle } = useEditMotorcycle();
     const { edit: editUser } = useEditUser();
@@ -44,6 +45,11 @@ export default function Checkout() {
     }, [isOpen]);
 
     const reservationData = location.state;
+
+    const isOver18 = (date) => {
+        const todayMinus18 = subYears(new Date(), 18);
+        return date <= todayMinus18;
+    };
 
     async function submitCreateReservation(e) {
         e.preventDefault();
@@ -66,6 +72,11 @@ export default function Checkout() {
             const startDate = new Date(rentData.startDate).toJSON();
             const endDate = new Date(rentData.endDate).toJSON();
             const birthday = new Date(rentData.birthday).toJSON();
+
+            if (!isOver18(birthday)) {
+                setIsLoadingCheckout(false);
+                return setMessageShowToast({ type: 'error', content: 'You must be at least 18 years old.' });
+            }
 
             rentData.dateOrder = dateOrder;
             rentData.startDate = startDate;
@@ -130,8 +141,8 @@ export default function Checkout() {
 
             <form onSubmit={submitCreateReservation}>
                 <div className="reservation-2-boxs">
-                    <DriverDetails 
-                        userId={userId}    
+                    <DriverDetails
+                        userId={userId}
                     />
 
                     <CheckoutBox
