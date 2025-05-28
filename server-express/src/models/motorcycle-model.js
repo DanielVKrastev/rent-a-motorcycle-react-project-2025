@@ -3,15 +3,15 @@ import { Schema, Types, model } from "mongoose";
 const motorcycleSchema = new Schema({
     brand: {
         type: String,
-        required: true,
+        required: [true, 'Brand is required'],
     },
     model: {
         type: String,
-        required: true,
+        required: [true, 'Model is required'],
     },
     type: {
         type: String,
-        required: true,
+        required: [true, 'Type is required'],
     },
     engine: {
         type: Number,

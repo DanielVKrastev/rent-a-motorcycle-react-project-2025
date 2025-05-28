@@ -1,6 +1,7 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import reservationService from "../services/reservation-service.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const reservationContoller = Router();
 
@@ -10,9 +11,9 @@ reservationContoller.get('/', async (req, res) => {
         if (req.query.limit) {
             const limit = parseInt(req.query.limit);
             reservations = await reservationService.latestReservation(limit);
-        } else if(req.query.userId){
+        } else if (req.query.userId) {
             const userId = req.query.userId;
-            reservations = await reservationService.getAll({userId});
+            reservations = await reservationService.getAll({ userId });
         }
         else {
             reservations = await reservationService.getAll();
@@ -21,21 +22,21 @@ reservationContoller.get('/', async (req, res) => {
 
         res.status(200).json(reservations);
     } catch (error) {
-        res.status(400).json({error: error});
+        res.status(400).json({ error: error });
     }
 });
 
 reservationContoller.get('/revenue', async (req, res) => {
-    
-    try{
+
+    try {
         const revenue = await reservationService.revenue();
         if (revenue !== null) {
-            res.json(revenue); 
+            res.json(revenue);
         } else {
             res.status(400).json({ err: 'Error calculating revenue' });
         }
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (err) {
+        res.status(400).json({ error: err.message });
     }
 
 });
@@ -50,7 +51,7 @@ reservationContoller.get('/:reservationId', async (req, res) => {
         const reservation = await reservationService.getOne(reservationId);
         res.status(200).json(reservation);
     } catch (err) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({ error: err.message });
     }
 });
 
@@ -66,13 +67,14 @@ reservationContoller.get('/motorcycle/:motorcycleId/dates', async (req, res) => 
 });
 
 reservationContoller.post('/', async (req, res) => {
-    try{
+    try {
         const reservationData = req.body;
 
         const createdReservation = await reservationService.create(reservationData);
         res.status(201).json(createdReservation);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -91,7 +93,8 @@ reservationContoller.patch('/:reservationId', async (req, res) => {
         }
         res.status(200).json(updatedReservation);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -101,7 +104,7 @@ reservationContoller.delete('/:reservationId', async (req, res) => {
         await reservationService.delete(reservationId);
         res.status(200).json({});
     } catch (error) {
-        res.status(400).json({ error: error.message});
+        res.status(400).json({ error: error.message });
     }
 });
 

@@ -2,6 +2,7 @@ import { Router } from "express";
 import authService from "../services/auth-service.js";
 import checkAuthorizationToken from "../middlewares/checkAuthorizationToken.js";
 import mongoose from "mongoose";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const userController = Router();
 
@@ -39,7 +40,8 @@ userController.patch('/:userId', async (req, res) => {
         }
         res.status(200).json(updatedUser);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 

@@ -5,33 +5,36 @@ import { Schema, model } from "mongoose";
 const userScema = new Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required'],
         minLength: [5, 'Email must be at least 5 characters long'],
         match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },
     username: {
         type: String,
-        required: true,
+        required: [true, 'Username is required'],
         minLength: [3, 'Username must be at least 3 characters long'],
         maxLength: [20, 'Username cannot be longer than 20 characters']
     },
     licenseCategory: {
         type: String,
         maxLength: [2, 'Category cannot be longer than 2 characters'],
-        enum: [
-            '',
-            'A',
-            'A1',
-            'A2',
-            'AM'
-        ],
+        enum: {
+            values: [
+                '',
+                'A',
+                'A1',
+                'A2',
+                'AM'
+            ],
+            message: 'Invalid license category: `{VALUE}`. Allowed values are A, A1, A2, AM.'
+        } 
     },
     birthday: {
         type: Date,
     },
     telephone: {
         type: String,
-        maxLength: [15, 'Тelephone cannot be longer than 15 characters'],
+        maxLength: [20, 'Тelephone cannot be longer than 20 characters'],
     },
     password: {
         type: String,

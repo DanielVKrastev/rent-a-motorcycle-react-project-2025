@@ -3,7 +3,7 @@ import { Schema, Types, model } from "mongoose";
 const reservationSchema = new Schema({
     username: {
         type: String,
-        required: true,
+        required: [true, 'Username is required'],
     },
     telephone: {
         type: String,
@@ -12,7 +12,7 @@ const reservationSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required'],
         minLength: [5, 'Email must be at least 5 characters long'],
         match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },
@@ -22,7 +22,7 @@ const reservationSchema = new Schema({
     },
     birthday: {
         type: Date,
-        required: true
+        required: [true, 'Birthday is required'],
     },
     dateOrder: {
         type: Date
