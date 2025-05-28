@@ -7,13 +7,13 @@ const commentSchema = new Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required'],
         minLength: [5, 'Email must be at least 10 characters long'],
         match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },
     rating: {
         type: Number,
-        required: true,
+        required: [true, 'Rating is required'],
         min: [0, 'Rating must be at least 0'],
     },
     date: {

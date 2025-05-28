@@ -3,15 +3,15 @@ import { Schema, Types, model } from "mongoose";
 const customerRequestSchema = new Schema({
     theme: {
         type: String,
-        required: true,
+        required: [true, 'Theme is required'],
     },
     message: {
         type: String,
-        required: true,
+        required: [true, 'Message is required'],
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required'],
         minLength: [5, 'Email must be at least 5 characters long'],
         match: [/^\S+@\S+\.\S+$/, 'Invalid email format']
     },

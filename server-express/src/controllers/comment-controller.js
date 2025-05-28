@@ -1,6 +1,7 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import commentService from "../services/comment-service.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const commentController = Router();
 
@@ -48,8 +49,9 @@ commentController.post('/', async (req, res) => {
 
         const createdComment = await commentService.create(accessToken, commentData);
         res.status(201).json(createdComment);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    }catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -74,7 +76,8 @@ commentController.patch('/:commentId', async (req, res) => {
         }
         res.status(200).json(updatedReservation);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 

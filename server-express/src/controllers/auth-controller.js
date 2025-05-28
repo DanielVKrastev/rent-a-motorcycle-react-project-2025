@@ -3,28 +3,31 @@ import authService from "../services/auth-service.js";
 import { JWT_SECRET } from "../constants-config.js";
 import jwt from 'jsonwebtoken';
 import User from "../models/user-model.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const authController = Router();
 
 authController.post('/register', async (req, res) => {
     const userData = req.body;
 
-    try{
+    try {
         const createdUser = await authService.register(userData);
         res.status(201).json(createdUser);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
 authController.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    try{
+    try {
         const user = await authService.login(email, password);
         res.status(201).json(user);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 

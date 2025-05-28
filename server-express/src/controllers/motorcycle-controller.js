@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import multer from "multer";
 import { uploadFile } from "../../config/googleDrive.js";
 import motorcycleService from "../services/motorcycle-service.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const motorcycleController = Router();
 
-const upload = multer({dest: 'uploads/'});
+const upload = multer({ dest: 'uploads/' });
 
 motorcycleController.get('/', async (req, res) => {
     try {
@@ -17,9 +18,9 @@ motorcycleController.get('/', async (req, res) => {
             const parsedLimit = parseInt(limit);
             motorcycles = await motorcycleService.latestReservation(parsedLimit);
         }
-        else if (active && !where) { 
+        else if (active && !where) {
             motorcycles = await motorcycleService.getActive(active);
-        } 
+        }
         else if (where) {
             const whereFilter = {};
 
@@ -38,7 +39,7 @@ motorcycleController.get('/', async (req, res) => {
             }
 
             motorcycles = await motorcycleService.filterByConditions(whereFilter);
-        } 
+        }
 
         else {
             motorcycles = await motorcycleService.getAll();
@@ -72,29 +73,30 @@ motorcycleController.get('/:motorcycleId', async (req, res) => {
     try {
         const motorcycle = await motorcycleService.getOne(motorcycleId);
         if (!motorcycle) {
-            return res.status(200).json({}); 
+            return res.status(200).json({});
         }
         res.status(200).json(motorcycle);
     } catch (err) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({ error: err.message });
     }
 });
 
 motorcycleController.post('/', upload.single('image'), async (req, res) => {
-    try{
+    try {
         const motorcycleData = req.body;
 
         if (req.file) {
             const uploadedImageUrl = await uploadFile(req.file.path, req.file.originalname);
             console.log(uploadedImageUrl);
-            
+
             motorcycleData.image = uploadedImageUrl; // Save public link in database
         }
 
         const createdMotorcycle = await motorcycleService.create(motorcycleData);
         res.status(201).json(createdMotorcycle);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -109,7 +111,7 @@ motorcycleController.patch('/:motorcycleId', upload.single('image'), async (req,
     if (req.file) {
         const uploadedImageUrl = await uploadFile(req.file.path, req.file.originalname);
         console.log(uploadedImageUrl);
-        
+
         motorcycleUpdateData.image = uploadedImageUrl; // Save public link in database
     }
 
@@ -120,7 +122,8 @@ motorcycleController.patch('/:motorcycleId', upload.single('image'), async (req,
         }
         res.status(200).json(updatedMotorcycle);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -130,7 +133,7 @@ motorcycleController.delete('/:motorcycleId', async (req, res) => {
         await motorcycleService.delete(motorcycleId);
         res.status(200).json({});
     } catch (error) {
-        res.status(400).json({ error: error.message});
+        res.status(400).json({ error: error.message });
     }
 });
 

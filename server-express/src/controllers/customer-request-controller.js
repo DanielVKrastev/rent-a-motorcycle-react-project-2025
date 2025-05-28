@@ -1,22 +1,23 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import customerRequestService from "../services/customer-request-service.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const custromerRequestController = Router();
 
 custromerRequestController.get('/', async (req, res) => {
     try {
         let requests;
-        if(req.query.userId){
+        if (req.query.userId) {
             const userId = req.query.userId;
-            requests = await customerRequestService.getAll({userId});
+            requests = await customerRequestService.getAll({ userId });
         }
         else {
             requests = await customerRequestService.getAll();
         }
         res.status(200).json(requests);
     } catch (error) {
-        res.status(400).json({error: error});
+        res.status(400).json({ error: error });
     }
 });
 
@@ -30,7 +31,7 @@ custromerRequestController.get('/:requestId', async (req, res) => {
         const request = await customerRequestService.getOne(requestId);
         res.status(200).json(request);
     } catch (err) {
-        res.status(400).json({error: err.message});
+        res.status(400).json({ error: err.message });
     }
 });
 
@@ -40,13 +41,14 @@ custromerRequestController.post('/', async (req, res) => {
         return res.status(403).json({ error: 'No token provided' });
     }
 
-    try{
+    try {
         const requestData = req.body;
 
         const createdRequest = await customerRequestService.create(accessToken, requestData);
         res.status(201).json(createdRequest);
-    }catch(err){
-        res.status(400).json({error: err.message});
+    } catch (error) {
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -64,14 +66,15 @@ custromerRequestController.patch('/:requestId', async (req, res) => {
     }
 
     try {
-        
+
         const updatedRequest = await customerRequestService.update(accessToken, requestId, requestUpdateData);
         if (!updatedRequest) {
             return res.status(404).json({ error: 'Customer request not found' });
         }
         res.status(200).json(updatedRequest);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        const errorMessage = getErrorMessage(error);
+        return res.status(400).json({ error: errorMessage });
     }
 });
 
@@ -87,7 +90,7 @@ custromerRequestController.delete('/:requestId', async (req, res) => {
         await customerRequestService.delete(accessToken, requestId);
         res.status(200).json({});
     } catch (error) {
-        res.status(400).json({ error: error.message});
+        res.status(400).json({ error: error.message });
     }
 });
 
